@@ -1,0 +1,23 @@
+# AgentV2 Backend Dependencies
+
+# Web框架
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# 数据库
+sqlalchemy>=2.0.0
+aiosqlite>=0.19.0
+
+# 数据验证
+pydantic>=2.5.0
+
+# HTTP客户端 (已有，用于vLLM调用)
+requests>=2.31.0
+
+# 工具类
+tqdm>=4.66.0
+
+# 开发依赖 (可选)
+# pytest>=7.4.0
+# httpx>=0.25.0

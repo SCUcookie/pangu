@@ -1,0 +1,24 @@
+{
+  "total_items": 51,
+  "decision_distribution": {
+    "fast": 4,
+    "slow": 42,
+    "both": 5
+  },
+  "task_distribution": {
+    "personalized_learning": 6,
+    "question_answering": 6,
+    "idea_prompting": 6,
+    "personalized_content": 6,
+    "question_generation": 6,
+    "error_correction": 6,
+    "automatic_grading": 6,
+    "teaching_material": 6,
+    "essay_scoring": 3
+  },
+  "language_distribution": {
+    "zh": 24,
+    "en": 27
+  },
+  "timestamp": "2025-12-16T16:13:12.657915"
+}
