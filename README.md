@@ -13,6 +13,7 @@
 7. **🆕 用户画像**：记录学习水平、偏好、薄弱点
 8. **🆕 会话管理**：支持多轮对话和历史记忆
 9. **🆕 工具调用**：内置计算器、公式查询、知识查询工具
+10. **🆕 可视化前端**：基于Streamlit的Web交互界面，支持实时对话、参数配置与思考过程展示
 
 ## 目录结构
 
@@ -42,6 +43,8 @@ agentv2/
 ├── inference_engine.py      # 推理引擎
 ├── main.py                  # 批处理主程序
 ├── run_server.py            # API服务启动脚本
+├── run_frontend.sh          # 前端启动脚本
+├── frontend/                # Streamlit前端应用
 └── results/                 # 输出结果目录
 ```
 
@@ -97,6 +100,27 @@ curl http://localhost:8080/api/v1/health
 cd /opt/pangu/ldh/agentv2
 python main.py
 ```
+
+### 方式三：前端交互模式（Web UI）
+
+此模式提供可视化网页界面，方便用户直接与 Agent 交互。
+
+**前提**：需确保后端 API 服务（方式一）已启动且监听在 `http://localhost:8080`。
+
+```bash
+# 1. 启动前端应用
+cd /opt/pangu/ldh/agentv2
+bash run_frontend.sh
+
+# 2. 浏览器访问
+# http://localhost:8501
+```
+
+**前端功能**：
+- **场景配置**：侧边栏通过下拉框选择任务类型（如问答、作文评分等）及教育背景。
+- **对话交互**：支持多轮对话，实时流式体验。
+- **思考可视**：可展开查看 Agent 的"快/慢思考"决策过程及元数据（延迟、Token消耗）。
+
 
 结果保存在 `results/` 目录下。
 
