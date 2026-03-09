@@ -64,13 +64,13 @@ class AgentCore:
                 session = await self.session_manager.create_session(
                     db_session, request.user_id,
                     task_type=request.task_type,
-                    subject=request.context.get("subject") if request.context else None
+                    subject=request.context.subject if request.context else None
                 )
         else:
             session = await self.session_manager.create_session(
                 db_session, request.user_id,
                 task_type=request.task_type,
-                subject=request.context.get("subject") if request.context else None
+                subject=request.context.subject if request.context else None
             )
         
         # 获取用户画像
@@ -90,7 +90,7 @@ class AgentCore:
         history = memory.get_full_context(user_profile)
         
         # 提取context中的信息
-        ctx = request.context or {}
+        ctx = request.context.model_dump() if request.context else {}
         
         return AgentContext(
             user_id=request.user_id,
