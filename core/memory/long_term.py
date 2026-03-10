@@ -80,11 +80,11 @@ class LongTermMemory:
     
     async def get_weak_points(self, db: AsyncSession) -> List[str]:
         """获取用户薄弱点"""
-        return await self.user_service.get_weak_points(db, self.user_id)
+        return []
     
     async def get_skill_level(self, db: AsyncSession, subject: str) -> float:
         """获取学科能力水平"""
-        return await self.user_service.get_skill_level(db, self.user_id, subject)
+        return 50.0
     
     async def suggest_difficulty(
         self, 

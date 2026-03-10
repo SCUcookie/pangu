@@ -119,3 +119,13 @@ class UserProfileService:
         )
         # 为保持后向兼容和精简代码，忽略部分繁琐的 CRUD 改写
         return record
+
+    async def create_profile(
+        self, db: AsyncSession, user_id: str, name: Optional[str] = None, education_level: str = "unknown", **kwargs
+    ) -> UserProfile:
+        return await crud.create_user_profile(db, user_id, name=name, education_level=education_level, **kwargs)
+
+    async def increment_stats(self, db: AsyncSession, user_id: str):
+        user = await self.get_profile(db, user_id)
+        if user:
+            await crud.update_user_profile(db, user_id, total_questions=(user.total_questions or 0) + 1)

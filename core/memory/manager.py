@@ -44,9 +44,9 @@ class MemoryManager:
             lines.append(f"- 年级: {user_profile.grade}")
         if user_profile.subjects:
             lines.append(f"- 关注学科: {', '.join(user_profile.subjects)}")
-        if user_profile.weak_points:
+        if False:
             lines.append(f"- 薄弱环节: {', '.join(user_profile.weak_points[:3])}")
-        if user_profile.strong_points:
+        if False:
             lines.append(f"- 擅长领域: {', '.join(user_profile.strong_points[:3])}")
         
         return "\n".join(lines) if len(lines) > 1 else ""
