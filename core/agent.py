@@ -1,9 +1,10 @@
 """
-Agent核心控制器
+Agent核心控制器 (AgentV3 科研版 - 工具增强与动态记忆)
 整合记忆、工具、用户画像、推理引擎，协调完成用户请求
 """
 import uuid
 import time
+import re
 from typing import Any
 from datetime import datetime
 
@@ -12,8 +13,11 @@ from .prompts import build_system_prompt
 from .memory.manager import MemoryManager
 from .tools.registry import ToolRegistry
 from .tools.builtin import register_builtin_tools
+from .tools.advanced.python_sandbox import PythonSandboxTool
+from .tools.advanced.sympy_solver import SympySolverTool
 
 import sys
+# 确保能够导入项目根目录的其他模块
 sys.path.insert(0, '/opt/pangu/ldh/agentv2')
 
 from difficulty_decision import DifficultyDecision
@@ -22,8 +26,6 @@ from data_loader import DataItem
 from services.user_profile import UserProfileService
 from services.session_manager import SessionManager
 from api.schemas.chat import ChatRequest, ChatResponse, ChatMetadata
-from db.models import LearningRecord
-
 
 class AgentCore:
     """Agent核心控制器"""
@@ -34,8 +36,16 @@ class AgentCore:
         self.user_profile_service = UserProfileService()
         self.session_manager = SessionManager()
         
-        # 注册内置工具
+        # 注册所有工具 (包括基础工具和高级沙箱工具)
         register_builtin_tools()
+        
+        # 实例化并注册高阶工具
+        python_tool = PythonSandboxTool(timeout=10)
+        sympy_tool = SympySolverTool(timeout=10)
+        ToolRegistry.register(python_tool)
+        ToolRegistry.register(sympy_tool)
+        
+        self.max_react_steps = 4  # 限制最大工具调用循环次数
     
     async def process(self, request: ChatRequest, db_session) -> ChatResponse:
         """处理用户请求的主入口"""
@@ -44,29 +54,28 @@ class AgentCore:
         # 1. 初始化上下文
         context = await self._init_context(request, db_session)
         
-        # 2. 决策
+        # 2. 决策 (快/慢思考)
         decision = await self._make_decision(context)
         
         # 3. 执行
-        result = await self._execute(context, decision)
+        if decision.thinking_mode in ["slow", "both"]:
+            # 科研改动点二：启动 ReAct 循环
+            result = await self._execute_react_loop(context, decision)
+        else:
+            # 快思考直接推理
+            result = await self._execute_fast(context, decision)
         
         # 4. 后处理
         response = await self._post_process(context, result, start_time, db_session)
-        
         return response
     
     async def _init_context(self, request: ChatRequest, db_session) -> AgentContext:
-        """初始化上下文"""
+        """初始化上下文，提取动态记忆"""
         # 获取或创建会话
+        session = None
         if request.session_id:
             session = await self.session_manager.get_session(db_session, request.session_id)
-            if not session:
-                session = await self.session_manager.create_session(
-                    db_session, request.user_id,
-                    task_type=request.task_type,
-                    subject=request.context.subject if request.context else None
-                )
-        else:
+        if not session:
             session = await self.session_manager.create_session(
                 db_session, request.user_id,
                 task_type=request.task_type,
@@ -77,19 +86,20 @@ class AgentCore:
         user_profile = await self.user_profile_service.get_profile(db_session, request.user_id)
         if not user_profile:
             user_profile = await self.user_profile_service.create_profile(db_session, request.user_id)
+            
+        # 科研改动点一：动态记忆提取
+        subject = request.context.subject if request.context else None
+        dynamic_memory = await self.user_profile_service.get_active_memory_prompt(
+            db_session, request.user_id, current_subject=subject
+        )
         
         # 构建记忆管理器
         memory = MemoryManager(request.user_id, session.session_id)
-        
-        # 加载对话历史
-        messages = await self.session_manager.get_messages(db_session, session.session_id, limit=20)
+        messages = await self.session_manager.get_messages(db_session, session.session_id, limit=10)
         for msg in messages:
             memory.short_term.add_message_from_db(msg)
-        
-        # 获取完整上下文
+            
         history = memory.get_full_context(user_profile)
-        
-        # 提取context中的信息
         ctx = request.context.model_dump() if request.context else {}
         
         return AgentContext(
@@ -102,229 +112,182 @@ class AgentCore:
             session_id=session.session_id,
             user_profile=user_profile,
             conversation_history=history,
-            additional_context={"memory": memory, "request": request}
+            additional_context={
+                "dynamic_memory": dynamic_memory,
+                "request": request
+            }
         )
     
     async def _make_decision(self, context: AgentContext) -> AgentDecision:
-        """决策阶段"""
-        # 构造DataItem用于难度决策
+        """决策阶段 (主要判断快慢思考)"""
         data_item = self._build_data_item(context)
-        
-        # 基础难度决策
         thinking_mode = self.difficulty_decision.decide(data_item)
         
-        # 根据用户画像调整
-        if context.user_profile:
-            preferred = context.user_profile.preferred_thinking_mode
-            if preferred and preferred != "adaptive":
-                thinking_mode = preferred
-        
-        # 判断是否需要工具
-        needs_tools, tool_names = self._detect_tool_needs(context.message)
-        
+        if context.user_profile and context.user_profile.preferred_thinking_mode != "adaptive":
+            thinking_mode = context.user_profile.preferred_thinking_mode
+            
+        # 默认返回，tool_names 将在 ReAct 循环中动态决定，此处不再硬编码检测
         return AgentDecision(
             thinking_mode=thinking_mode,
-            needs_tools=needs_tools,
-            tool_names=tool_names
+            needs_tools=True if thinking_mode in ["slow", "both"] else False,
+            tool_names=[]
         )
-    
-    async def _execute(self, context: AgentContext, decision: AgentDecision) -> ExecutionResult:
-        """执行阶段"""
+        
+    async def _execute_react_loop(self, context: AgentContext, decision: AgentDecision) -> ExecutionResult:
+        """
+        核心 ReAct 循环：Thought -> Action -> Action Input -> Observation -> Final Answer
+        """
         tool_results = {}
+        history_buffer = ""
+        system_prompt = self._build_system_prompt(context)
         
-        # 如果需要工具，先执行工具
-        if decision.needs_tools:
-            for tool_name in decision.tool_names:
-                params = self._extract_tool_params(context, tool_name)
-                result = await ToolRegistry.execute(tool_name, params)
-                tool_results[tool_name] = result
+        for step in range(self.max_react_steps):
+            # 组合当前的完整 Prompt (System + History + Current + ReAct Buffer)
+            current_prompt = self._build_turn_prompt(system_prompt, context, history_buffer)
+            
+            data_item = self._build_data_item(context, custom_prompt=current_prompt)
+            # 使用大模型进行一步推导
+            response_text = self.inference_engine.infer_slow(data_item)
+            history_buffer += f"{response_text}\n"
+            
+            # 解析工具调用意图
+            action_match = re.search(r"Action:\s*(\w+)", response_text)
+            action_input_match = re.search(r"Action Input:\s*(```.*?```|.*)", response_text, re.DOTALL)
+            
+            if action_match and action_input_match:
+                tool_name = action_match.group(1).strip()
+                action_input = action_input_match.group(1).strip()
+                
+                # 去除 markdown 代码块
+                if action_input.startswith("```"):
+                    lines = action_input.split("\n")
+                    if len(lines) > 2:
+                        action_input = "\n".join(lines[1:-1])
+                    else:
+                        action_input = action_input.replace("```", "")
+                
+                # 执行工具
+                try:
+                    # 根据不同工具的输入格式适配
+                    if "python" in tool_name or "sympy" in tool_name:
+                        res = await ToolRegistry.execute(tool_name, {"code": action_input})
+                    else:
+                        # 兼容老工具
+                        res = await ToolRegistry.execute(tool_name, {"expression": action_input, "keyword": action_input})
+                        
+                    observation = res.data if res.success else f"Error: {res.error}"
+                except Exception as e:
+                    observation = f"Tool Error: {str(e)}"
+                    res = None
+                    
+                if res:
+                    tool_results[f"{tool_name}_{step}"] = res
+                
+                # 将观察结果喂回给大模型
+                history_buffer += f"Observation:\n{observation}\nThought: "
+            else:
+                # 未匹配到 Action，说明模型认为推导结束，输出了 Final Answer
+                break
+                
+        # 提取最终答案
+        final_answer_match = re.search(r"Final Answer:\s*(.*)", history_buffer, re.DOTALL)
+        final_response = final_answer_match.group(1).strip() if final_answer_match else history_buffer
         
-        # 构建最终prompt
-        prompt = self._build_prompt(context, tool_results)
-        
-        # 构造DataItem用于推理
-        data_item = self._build_data_item(context)
-        
-        # 执行推理
-        if decision.thinking_mode == "fast":
-            response = self.inference_engine.infer_fast(data_item)
-        elif decision.thinking_mode == "slow":
-            response = self.inference_engine.infer_slow(data_item)
-        else:  # both
-            result = self.inference_engine.infer_slow_then_fast(data_item)
-            response = f"【详细分析】\n{result['slow_thinking']}\n\n【简洁答案】\n{result['fast_answer']}"
+        return ExecutionResult(
+            response=final_response,
+            thinking_mode=decision.thinking_mode,
+            tool_results=tool_results
+        )
+
+    async def _execute_fast(self, context: AgentContext, decision: AgentDecision) -> ExecutionResult:
+        """快思考执行"""
+        system_prompt = self._build_system_prompt(context)
+        prompt = self._build_turn_prompt(system_prompt, context, "")
+        data_item = self._build_data_item(context, custom_prompt=prompt)
+        response = self.inference_engine.infer_fast(data_item)
         
         return ExecutionResult(
             response=response,
             thinking_mode=decision.thinking_mode,
-            tool_results=tool_results
+            tool_results={}
         )
-    
-    async def _post_process(
-        self, 
-        context: AgentContext, 
-        result: ExecutionResult, 
-        start_time: float,
-        db_session
-    ) -> ChatResponse:
-        """后处理阶段"""
+
+    async def _post_process(self, context: AgentContext, result: ExecutionResult, start_time: float, db_session) -> ChatResponse:
+        """后处理并持久化"""
         latency_ms = int((time.time() - start_time) * 1000)
         message_id = str(uuid.uuid4())
         
-        # 保存用户消息
-        await self.session_manager.add_message(
-            db_session,
-            context.session.session_id,
-            role="user",
-            content=context.message
-        )
+        # 保存对话
+        await self.session_manager.add_message(db_session, context.session.session_id, role="user", content=context.message)
         
-        # 保存助手消息
+        tool_call_records = []
+        for k, v in result.tool_results.items():
+            if v:
+                tool_call_records.append(f"{k}: success={v.success}")
+                
         await self.session_manager.add_message(
-            db_session,
-            context.session.session_id,
-            role="assistant",
-            content=result.response,
-            thinking_mode=result.thinking_mode,
-            latency_ms=latency_ms,
-            tool_calls=list(result.tool_results.keys())
+            db_session, context.session.session_id, role="assistant",
+            content=result.response, thinking_mode=result.thinking_mode,
+            latency_ms=latency_ms, tool_calls=tool_call_records
         )
         
         # 更新用户统计
-        await self.user_profile_service.increment_stats(
-            db_session, 
-            context.user_id
-        )
-        
-        # 如果是首条消息，生成会话标题
+        await self.user_profile_service.increment_stats(db_session, context.user_id)
         if context.session.message_count == 0:
-            title = context.message[:50]
-            await self.session_manager.update_title(
-                db_session, 
-                context.session.session_id, 
-                title
-            )
-        
-        # 构建响应
+            await self.session_manager.update_title(db_session, context.session.session_id, context.message[:50])
+            
         return ChatResponse(
             session_id=context.session.session_id,
             message_id=message_id,
             response=result.response,
             thinking_mode=result.thinking_mode,
             metadata=ChatMetadata(
-                tokens_used=len(result.response),  # 简化估算
+                tokens_used=len(result.response),
                 latency_ms=latency_ms,
-                tool_calls=list(result.tool_results.keys())
+                tool_calls=tool_call_records
             )
         )
-    
-    def _build_data_item(self, context: AgentContext) -> DataItem:
-        """构建DataItem用于现有模块"""
-        return DataItem(
-            task_type=context.task_type or "question_answering",
-            prompt=context.message,
-            question=context.message,
-            subject=context.subject or "",
-            education_level=context.education_level or (
-                context.user_profile.education_level if context.user_profile else ""),
-            question_type=context.additional_context.get("question_type", ""),
-            lang="zh" if any('\u4e00' <= c <= '\u9fff' for c in context.message) else "en"
-        )
-    
-    def _detect_tool_needs(self, message: str) -> tuple[bool, list[str]]:
-        """检测是否需要调用工具"""
-        tools_needed = []
-        message_lower = message.lower()
         
-        # 计算相关关键词
-        calc_keywords = ["计算", "算", "等于", "求值", "calculate", "compute", "+", "-", "*", "/", "="]
-        if any(kw in message_lower for kw in calc_keywords):
-            # 检查是否包含数学表达式
-            import re
-            if re.search(r'\d+\s*[\+\-\*\/\%\^]\s*\d+', message):
-                tools_needed.append("calculator")
-        
-        # 公式查询关键词
-        formula_keywords = ["公式", "formula", "定理", "theorem"]
-        if any(kw in message_lower for kw in formula_keywords):
-            tools_needed.append("formula_lookup")
-        
-        # 知识查询关键词
-        knowledge_keywords = ["什么是", "解释", "定义", "概念", "what is", "explain", "definition"]
-        if any(kw in message_lower for kw in knowledge_keywords):
-            tools_needed.append("knowledge")
-        
-        return len(tools_needed) > 0, tools_needed
-    
-    def _extract_tool_params(self, context: AgentContext, tool_name: str) -> dict:
-        """从上下文中提取工具参数"""
-        message = context.message
-        
-        if tool_name == "calculator":
-            # 尝试提取数学表达式
-            import re
-            match = re.search(r'[\d\s\+\-\*\/\(\)\.\^]+', message)
-            expr = match.group(0).strip() if match else message
-            return {"expression": expr}
-        
-        elif tool_name == "formula_lookup":
-            return {
-                "subject": context.subject or "数学",
-                "keyword": message
-            }
-        
-        elif tool_name == "knowledge":
-            return {
-                "subject": context.subject or "数学",
-                "topic": message
-            }
-        
-        return {}
-    
-    def _build_prompt(self, context: AgentContext, tool_results: dict) -> str:
-        """构建最终prompt"""
-        parts = []
-        
-        # 构建用户上下文
+    def _build_system_prompt(self, context: AgentContext) -> str:
+        """根据上下文构建系统 Prompt"""
         user_context = ""
         if context.user_profile:
             user_context = f"学制级别: {context.user_profile.education_level or '未知'}"
-        
-        # 系统提示
-        system_prompt = build_system_prompt(
+            
+        dynamic_memory = context.additional_context.get("dynamic_memory", "")
+        return build_system_prompt(
             user_context=user_context,
+            dynamic_memory=dynamic_memory,
             task_type=context.task_type or "question_answering",
             subject=context.subject or "通用",
-            history=""
+            history=context.conversation_history
         )
-        parts.append(system_prompt)
         
-        # 工具结果
-        if tool_results:
-            parts.append("\n【工具调用结果】")
-            for tool_name, result in tool_results.items():
-                if result.success:
-                    parts.append(f"- {tool_name}: {result.data}")
-                else:
-                    parts.append(f"- {tool_name}: 调用失败 - {result.error}")
-        
-        # 对话历史
-        if context.conversation_history:
-            parts.append(f"\n{context.conversation_history}")
-        
-        # 当前问题
-        parts.append(f"\n用户: {context.message}")
-        parts.append("\n助手: ")
-        
+    def _build_turn_prompt(self, system_prompt: str, context: AgentContext, react_buffer: str) -> str:
+        """构建单次喂给模型的 Prompt"""
+        parts = [system_prompt]
+        parts.append(f"\n用户问题: {context.message}")
+        if react_buffer:
+            parts.append(f"\n推导过程:\n{react_buffer}")
+        else:
+            parts.append("\n推导过程:\nThought: ")
         return "\n".join(parts)
 
+    def _build_data_item(self, context: AgentContext, custom_prompt: str = None) -> DataItem:
+        return DataItem(
+            task_type=context.task_type or "question_answering",
+            prompt=custom_prompt if custom_prompt else context.message,
+            question=context.message,
+            subject=context.subject or "",
+            education_level=context.education_level or (context.user_profile.education_level if context.user_profile else ""),
+            question_type=context.additional_context.get("question_type", ""),
+            lang="zh" if any('\u4e00' <= c <= '\u9fff' for c in context.message) else "en"
+        )
 
 # 单例
 _agent_core: AgentCore | None = None
 
-
 def get_agent_core() -> AgentCore:
-    """获取Agent核心实例"""
     global _agent_core
     if _agent_core is None:
         _agent_core = AgentCore()

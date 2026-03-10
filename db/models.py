@@ -1,5 +1,5 @@
 """
-SQLAlchemy 数据模型定义
+SQLAlchemy 数据模型定义 (AgentV3 科研版)
 """
 from datetime import datetime
 from sqlalchemy import Column, String, Integer, Float, Boolean, Text, DateTime, ForeignKey, JSON
@@ -18,10 +18,8 @@ class UserProfile(Base):
     grade = Column(String(20), nullable=True)
     subjects = Column(JSON, default=list)  # 关注的学科列表
     
-    # 能力评估
+    # 宏观能力评估 (兼容旧版)
     skill_levels = Column(JSON, default=dict)  # {"math": 50, "physics": 60, ...}
-    weak_points = Column(JSON, default=list)   # 薄弱知识点
-    strong_points = Column(JSON, default=list) # 擅长知识点
     
     # 学习偏好
     preferred_thinking_mode = Column(String(10), default="adaptive")  # fast/slow/adaptive
@@ -40,9 +38,41 @@ class UserProfile(Base):
     # 关系
     sessions = relationship("Session", back_populates="user", cascade="all, delete-orphan")
     records = relationship("LearningRecord", back_populates="user", cascade="all, delete-orphan")
+    knowledge_nodes = relationship("KnowledgeNode", back_populates="user", cascade="all, delete-orphan")
     
     def __repr__(self):
         return f"<UserProfile(user_id={self.user_id}, name={self.name})>"
+
+
+class KnowledgeNode(Base):
+    """
+    知识节点表 (创新点一：基于记忆追踪的动态画像)
+    用于记录具体的细粒度知识点掌握情况及历史遗忘曲线数据
+    """
+    __tablename__ = "knowledge_nodes"
+
+    node_id = Column(String(36), primary_key=True)
+    user_id = Column(String(36), ForeignKey("user_profiles.user_id"), nullable=False)
+    
+    # 知识点元信息
+    subject = Column(String(50), nullable=False)     # 如：Math
+    topic = Column(String(100), nullable=False)      # 如：Calculus
+    concept = Column(String(100), nullable=False)    # 如：Chain Rule
+    
+    # 状态数据
+    mastery_level = Column(Float, default=0.5)       # 掌握程度 (0.0~1.0)
+    exposure_count = Column(Integer, default=0)      # 考察次数
+    error_count = Column(Integer, default=0)         # 错误次数
+    
+    # 记忆与反思特征
+    latest_error_reason = Column(Text, nullable=True) # 最近一次的错因总结(由Agent反思生成)
+    last_exposure_time = Column(DateTime, default=datetime.utcnow) # 最后一次做这部分题的时间
+    
+    # 关系
+    user = relationship("UserProfile", back_populates="knowledge_nodes")
+
+    def __repr__(self):
+        return f"<KnowledgeNode(concept={self.concept}, mastery={self.mastery_level})>"
 
 
 class Session(Base):
@@ -113,6 +143,9 @@ class LearningRecord(Base):
     subject = Column(String(50), nullable=True)
     difficulty = Column(Float, default=0.5)
     question_summary = Column(String(200), nullable=True)
+    
+    # 涉及的知识点(JSON列表)
+    concepts_involved = Column(JSON, default=list)
     
     # 结果信息
     is_correct = Column(Boolean, nullable=True)
