@@ -64,6 +64,67 @@ SLOW_THINKING_PROMPT_EN = "Let's think step by step to answer:\n\n{question}\n\n
 FAST_FROM_SLOW_PROMPT_ZH = "基于以下详细分析，请给出简洁的最终答案：\n\n问题：\n{question}\n\n详细分析：\n{slow_response}\n\n请根据上述分析，直接给出最终答案（简洁明了）：\n"
 FAST_FROM_SLOW_PROMPT_EN = "Based on the detailed analysis below, provide a concise final answer:\n\nQuestion:\n{question}\n\nDetailed Analysis:\n{slow_response}\n\nFinal Answer (concise):\n"
 
+# 自我评估提示词 (创新点二：元认知反馈)
+SELF_EVAL_PROMPT_ZH = """请你作为一名教育评估专家，对以下模型给出的初始回答进行批判性自我评估。
+
+【原问题】：
+{question}
+
+【初始回答】：
+{fast_response}
+
+【评估标准】：
+1. **准确性**：回答是否事实正确？是否有数学或逻辑错误？
+2. **完整性**：是否完整回答了问题的所有部分？
+3. **教育引导**：是否遵循了苏格拉底式的教学引导（而不是直接给答案）？
+
+请在以下三个选项中选择一个最符合的标签，并给出简短理由：
+- [[Confident]]：回答完全正确、专业且符合教育原则。
+- [[Uncertain]]：回答大致正确，但在细节、严谨性或引导方式上存在不确定性。
+- [[Incorrect]]：回答存在明显事实错误、逻辑漏洞或严重违反教学原则。
+
+评估结论（仅输出标签和理由）：
+"""
+
+# GPT-5.4 专家评估提示词 (Model-as-a-Judge)
+GPT5_JUDGE_PROMPT_ZH = """你是一位顶尖的教育专家和语言模型评估者。请对以下模型生成的回答进行多维度评分。
+
+【评估背景】：
+- 场景类型：{task_type}
+- 题目内容：{question}
+- 标准答案（仅供参考）：{ground_truth}
+
+【待评估回答】：
+{prediction}
+
+【评分维度 (1-10分)】：
+1. **场景自适应 (Scenario Adaptability)**：
+   - 指令遵循与任务完成 (IFTC)
+   - 角色与语气一致性 (RTC)
+   - 内容相关性与范围控制 (CRSC)
+2. **事实与逻辑准确性 (Factual & Reasoning Accuracy)**：
+   - 基础事实准确性 (BFA)
+   - 领域知识准确性 (DKA)
+   - 推理过程严密性 (RPR)
+3. **教育应用价值 (Pedagogical Application)**：
+   - 清晰、简洁与启发性 (CSI)
+   - 动力、引导与正向反馈 (MGP)
+   - 高阶思维与技能培养 (HOTS)
+
+【评分要求】：
+- 请基于标准答案和教育学原则，客观、严苛地给出各项分数。
+- 必须以 JSON 格式输出，包含各子项分数和总分（Average）。
+
+【输出格式示例】：
+{{
+  "IFTC": 9, "RTC": 9, "CRSC": 8,
+  "BFA": 10, "DKA": 10, "RPR": 9,
+  "CSI": 8, "MGP": 7, "HOTS": 8,
+  "Average": 8.7,
+  "Reason": "理由简述..."
+}}
+"""
+
 def build_system_prompt(
     user_context: str = "",
     dynamic_memory: str = "",

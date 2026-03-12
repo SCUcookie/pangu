@@ -1,4 +1,4 @@
-export ASCEND_RT_VISIBLE_DEVICES=0,1,2,3
+export ASCEND_RT_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_USE_V1=1
 
 HOST=0.0.0.0
@@ -12,7 +12,7 @@ SERVED_MODEL_NAME=pangu_embedded_7b
 
 vllm serve $LOCAL_CKPT_DIR \
     --served-model-name $SERVED_MODEL_NAME \
-    --tensor-parallel-size 4 \
+    --tensor-parallel-size 8 \
     --trust-remote-code \
     --host $HOST \
     --port $PORT \

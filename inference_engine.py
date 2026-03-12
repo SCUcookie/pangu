@@ -10,6 +10,7 @@ from config import (
     MAX_NEW_TOKENS_FAST, MAX_NEW_TOKENS_SLOW,
     TEMPERATURE_FAST, TEMPERATURE_SLOW, TOP_P
 )
+from core.prompts import SELF_EVAL_PROMPT_ZH, FAST_THINKING_PROMPT_ZH
 
 
 class InferenceEngine:
@@ -98,6 +99,69 @@ class InferenceEngine:
             "fast_answer": fast_response
         }
     
+    def self_evaluate(self, data_item: Any, fast_response: str) -> Dict[str, str]:
+        """
+        元认知自我评估 (创新点二)
+        评估快思考结果的可靠性
+        """
+        question = data_item.prompt or data_item.question
+        prompt = SELF_EVAL_PROMPT_ZH.format(
+            question=question,
+            fast_response=fast_response
+        )
+        
+        eval_output = self._call_vllm(
+            prompt=prompt,
+            max_tokens=200,
+            temperature=TEMPERATURE_FAST
+        )
+        
+        # 解析标签
+        label = "Uncertain"  # 默认值
+        if "[[Confident]]" in eval_output:
+            label = "Confident"
+        elif "[[Incorrect]]" in eval_output:
+            label = "Incorrect"
+        elif "[[Uncertain]]" in eval_output:
+            label = "Uncertain"
+            
+        return {
+            "label": label,
+            "reason": eval_output.replace(f"[[{label}]]", "").strip()
+        }
+
+    def infer_dynamic(self, data_item: Any) -> Dict[str, Any]:
+        """
+        动态认知路由 (AgentV3 核心逻辑)
+        Fast -> Evaluate -> Slow (if needed)
+        """
+        # 1. 快思考
+        fast_response = self.infer_fast(data_item)
+        
+        # 2. 自我评估
+        eval_result = self.self_evaluate(data_item, fast_response)
+        
+        # 3. 动态路由决策
+        is_slow_triggered = False
+        final_answer = fast_response
+        slow_thinking = None
+        
+        if eval_result["label"] in ["Uncertain", "Incorrect"]:
+            is_slow_triggered = True
+            # 触发慢思考
+            slow_result = self.infer_slow_then_fast(data_item)
+            final_answer = slow_result["fast_answer"]
+            slow_thinking = slow_result["slow_thinking"]
+            
+        return {
+            "final_answer": final_answer,
+            "fast_response": fast_response,
+            "slow_thinking": slow_thinking,
+            "eval_label": eval_result["label"],
+            "eval_reason": eval_result["reason"],
+            "is_slow_triggered": is_slow_triggered
+        }
+
     def _build_fast_prompt(self, data_item: Any) -> str:
         """构建快思考的Prompt"""
         lang = data_item.lang

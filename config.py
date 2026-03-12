@@ -12,13 +12,18 @@ MODEL_NAME = "pangu_embedded_7b"
 VLLM_API_URL = "http://172.17.0.1:8000/v1/completions"
 VLLM_MODELS_URL = "http://172.17.0.1:8000/v1/models"
 
+# GPT-5.4 Evaluation API (OpenAI SDK Compatible)
+GPT5_API_KEY = "sk-ant-api03-uR2uIrHLFa-V0frM_YGWrYRZWPf2StrK3JEpxw1xh5z41KK69Iz2ZYMeFjypAnbXctKdCcDt0LzJhkrbJj0mJcg"
+GPT5_API_BASE = "https://api.aicodemirror.com/v1"
+GPT5_MODEL_NAME = "gpt-5.3"
+
 # 数据集路径
-DATA_DIR = "/opt/pangu/ldh/EduBench/data/all_data"
+DATA_DIR = "/opt/pangu/EduBench/data/all_data"
 ZH_DATA_DIR = os.path.join(DATA_DIR, "zh_data")
 EN_DATA_DIR = os.path.join(DATA_DIR, "en_data")
 
 # 输出路径
-OUTPUT_DIR = "/opt/pangu/ldh/agentv2/results"
+OUTPUT_DIR = "/opt/pangu/pangu/results"
 
 # 推理参数
 MAX_NEW_TOKENS_FAST = 512      # 快思考最大生成token数
@@ -29,7 +34,7 @@ TOP_P = 0.9
 
 # 调试模式
 DEBUG_MODE = True
-DEBUG_SAMPLE_SIZE = 3  # 调试模式下每种任务类型的样本数
+DEBUG_SAMPLE_SIZE = 112  # 调试模式下每种任务类型的样本数 (9 tasks * 112 = ~1008 samples)
 
 # 任务类型映射
 TASK_TYPES = {
