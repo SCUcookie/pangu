@@ -1,29 +1,58 @@
 """
-配置文件 - AgentV2
-包含模型路径、数据集路径、推理参数等配置
+配置文件 - AgentV4 工作目录整理版
+包含模型路径、数据集路径、推理参数与本地运行目录配置。
 """
 import os
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+WORKSPACE_ROOT = PROJECT_ROOT.parent
+DOCS_DIR = PROJECT_ROOT / "docs"
+SCRIPTS_DIR = PROJECT_ROOT / "scripts"
+OUTPUT_ROOT = PROJECT_ROOT / "outputs"
+OUTPUT_DIR_PATH = OUTPUT_ROOT / "results"
+RUNTIME_DIR = PROJECT_ROOT / "runtime"
+RUNTIME_DB_DIR = RUNTIME_DIR / "db"
+RUNTIME_LOG_DIR = RUNTIME_DIR / "logs"
+RUNTIME_SECRET_DIR = RUNTIME_DIR / "secrets"
+LEGACY_SECRET_FILE = PROJECT_ROOT / "GPT-key"
+
+for path in (OUTPUT_DIR_PATH, RUNTIME_DB_DIR, RUNTIME_LOG_DIR, RUNTIME_SECRET_DIR):
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def _read_secret_file(path: Path) -> str:
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8").strip()
+
 
 # 模型配置
-MODEL_PATH = "/opt/pangu/openPangu-Embedded-7B-V1.1"
+MODEL_PATH = str(WORKSPACE_ROOT / "openPangu-Embedded-7B-V1.1")
 MODEL_NAME = "pangu_embedded_7b"
 
 # vLLM 服务配置
 VLLM_API_URL = "http://172.17.0.1:8000/v1/completions"
 VLLM_MODELS_URL = "http://172.17.0.1:8000/v1/models"
 
-# GPT-5.4 Evaluation API (OpenAI SDK Compatible)
-GPT5_API_KEY = "sk-ant-api03-uR2uIrHLFa-V0frM_YGWrYRZWPf2StrK3JEpxw1xh5z41KK69Iz2ZYMeFjypAnbXctKdCcDt0LzJhkrbJj0mJcg"
+# GPT Evaluation API (OpenAI SDK Compatible)
+GPT5_API_KEY_FILE = Path(os.getenv("GPT5_API_KEY_FILE", str(RUNTIME_SECRET_DIR / "GPT-key")))
+GPT5_API_KEY = (
+    os.getenv("GPT5_API_KEY")
+    or _read_secret_file(GPT5_API_KEY_FILE)
+    or _read_secret_file(LEGACY_SECRET_FILE)
+)
 GPT5_API_BASE = "https://api.aicodemirror.com/v1"
 GPT5_MODEL_NAME = "gpt-5.3"
 
 # 数据集路径
-DATA_DIR = "/opt/pangu/EduBench/data/all_data"
+DATA_DIR = str(WORKSPACE_ROOT / "EduBench" / "data" / "all_data")
 ZH_DATA_DIR = os.path.join(DATA_DIR, "zh_data")
 EN_DATA_DIR = os.path.join(DATA_DIR, "en_data")
 
 # 输出路径
-OUTPUT_DIR = "/opt/pangu/pangu/results"
+OUTPUT_DIR = str(OUTPUT_DIR_PATH)
 
 # 推理参数
 MAX_NEW_TOKENS_FAST = 512      # 快思考最大生成token数
@@ -77,8 +106,9 @@ API_PREFIX = "/api/v1"
 CORS_ORIGINS = ["*"]
 
 # 数据库配置
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite+aiosqlite:///{os.path.join(BASE_DIR, 'agentv2.db')}")
+BASE_DIR = str(PROJECT_ROOT)
+DATABASE_FILE = Path(os.getenv("DATABASE_FILE", str(RUNTIME_DB_DIR / "agentv2.db")))
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite+aiosqlite:///{DATABASE_FILE}")
 DATABASE_ECHO = False  # SQL日志，调试时可设为True
 
 # 会话配置

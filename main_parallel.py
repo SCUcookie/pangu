@@ -143,7 +143,7 @@ def main():
     print("\n检查vLLM实例状态...")
     ready = check_all_instances()
     if not ready:
-        print("\n⚠ 没有可用的vLLM实例！请先运行 run_service_7b_4x2.sh")
+        print("\n⚠ 没有可用的vLLM实例！请先运行 scripts/run_service_7b_4x2.sh")
         return
     print(f"\n可用实例: {len(ready)}/4")
 

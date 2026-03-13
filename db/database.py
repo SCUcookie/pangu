@@ -1,11 +1,17 @@
 """
 数据库连接和会话管理
 """
+from pathlib import Path
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base
 from typing import AsyncGenerator
 
 from config import DATABASE_URL, DATABASE_ECHO
+
+# 确保 SQLite 数据库目录存在，方便在干净分支上直接启动。
+if DATABASE_URL.startswith("sqlite+aiosqlite:///"):
+    db_path = DATABASE_URL.replace("sqlite+aiosqlite:///", "", 1)
+    Path(db_path).expanduser().parent.mkdir(parents=True, exist_ok=True)
 
 # 创建异步引擎
 engine = create_async_engine(
