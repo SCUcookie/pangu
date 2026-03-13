@@ -34,7 +34,7 @@ TOP_P = 0.9
 
 # 调试模式
 DEBUG_MODE = True
-DEBUG_SAMPLE_SIZE = 112  # 调试模式下每种任务类型的样本数 (9 tasks * 112 = ~1008 samples)
+DEBUG_SAMPLE_SIZE = 400  # 调试模式下每种任务类型的样本数 (9 tasks * 112 = ~1008 samples)
 
 # 任务类型映射
 TASK_TYPES = {
