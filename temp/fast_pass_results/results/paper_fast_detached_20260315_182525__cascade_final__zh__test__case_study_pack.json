@@ -1,0 +1,2455 @@
+{
+  "generated_at": "2026-03-15T15:17:25.583838",
+  "prediction_file": "/opt/pangu/pangu/outputs/predictions/cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751.jsonl",
+  "trace_file": "/opt/pangu/pangu/outputs/traces/cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751.jsonl",
+  "run_name": "cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751",
+  "selected_counts": {
+    "1b_direct_success": 20,
+    "7b_refinement_success": 20,
+    "cascade_failure": 10,
+    "extra_manual_audit_shortlist": 50
+  },
+  "cases": {
+    "1b_direct_success": [
+      {
+        "sample_id": "zh_PCC_00030_0b5420c710a9",
+        "task_key": "PCC",
+        "task_family": "planning",
+        "question": "{\n  \"学习习惯\": \"喜欢通过多媒体工具学习，经常忘记复习已学过的知识\",\n  \"学习目标\": \"理解基础化学概念并开始尝试简单实验\",\n  \"年级\": 5,\n  \"年龄\": 10,\n  \"当前能力水平\": \"掌握了一些基本化学名词如分子、元素；对化学实验表现出浓厚兴趣，但缺乏安全意识\",\n  \"知识薄弱点\": \"对元素的分布和性质理解不够深刻，化学反应的基本规律不理解\"\n}",
+        "gold_answer": {
+          "learning_path_planning": [
+            "开始学习简单的化学实验安全指导，理解实验的重要安全规则。",
+            "逐步介绍化学基本概念，如原子、分子结构，重点从视觉化教材入手。",
+            "理解元素周期表的基础知识，主要学习如何查找元素，知道几个常见元素的特性。",
+            "引导学习几种基本化学反应，如氧化和燃烧，通过视频示范进一步理解。",
+            "安排定期复习已学知识，结合互动游戏帮助记忆，比如元素周期表的记忆卡片。"
+          ],
+          "personalized_recommendations": {
+            "练习题推荐": [
+              {
+                "题目": "以下选项中哪些是化学元素？",
+                "选项": [
+                  "水",
+                  "氢",
+                  "碳",
+                  "石头"
+                ],
+                "答案": [
+                  "氢",
+                  "碳"
+                ]
+              },
+              {
+                "题目": "选择能发生燃烧反应的物质",
+                "选项": [
+                  "木材",
+                  "水",
+                  "铁",
+                  "氧气"
+                ],
+                "答案": [
+                  "木材",
+                  "氧气"
+                ]
+              }
+            ],
+            "阅读材料推荐": [
+              "《趣味化学入门》这本书专门为小学生设计，图文并茂，有针对性地解释基本化学概念。",
+              "《元素周期表的故事》，用故事形式讲述元素的性质和发现。",
+              "科学实验安全手册：通过简单图示，让学生了解实验室安全的基本常识。"
+            ]
+          }
+        },
+        "one_b_draft": {
+          "learning_path": [
+            "1. 理解基础化学概念",
+            "2. 尝试简单化学实验",
+            "3. 巩固元素分布和性质",
+            "4. 复习化学反应规律"
+          ],
+          "personalized_suggestions": [
+            "加强安全意识教育",
+            "利用多媒体工具进行化学学习"
+          ]
+        },
+        "final_output": {
+          "learning_path": [
+            "1. 理解基础化学概念",
+            "2. 尝试简单化学实验",
+            "3. 巩固元素分布和性质",
+            "4. 复习化学反应规律"
+          ],
+          "personalized_suggestions": [
+            "加强安全意识教育",
+            "利用多媒体工具进行化学学习"
+          ]
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.15000000000000002,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.15000000000000002 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00004_4732c0594ab5",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "根据下面的句子，选择最适合的解释：“他满脸春风，走进了房间。”\nA. 他满脸潮湿，刚从外面进来。\nB. 他面目憔悴，显得很疲倦。\nC. 他面带喜悦，心情愉快。\nD. 他面带疑惑，心事重重。",
+        "gold_answer": {
+          "guidance": "首先，我们了解语言中 '春风' 是一种比喻手法，通常用于形容人的表情或心情愉快，所以应该联想与快乐或满意相关的选项。可以从语境和常用语法中进行推断，有助于理解原句的深层含义。"
+        },
+        "one_b_draft": "根据句子描述，'他满脸春风'通常用来形容人心情愉悦、面带笑容。因此，最合适的解释是面带喜悦，心情愉快。",
+        "final_output": {
+          "hints": "根据句子描述，'他满脸春风'通常用来形容人心情愉悦、面带笑容。因此，最合适的解释是面带喜悦，心情愉快。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00006_7b206b6d5089",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣爱好\": \"阅读科幻小说\",\n  \"姓名\": \"张三\",\n  \"学习目标\": \"提升词汇量，理解复杂句型\",\n  \"学习风格\": \"视觉学习者\",\n  \"年级\": \"初二\",\n  \"英语水平\": \"中等\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "阅读材料": [
+              {
+                "标题": "The Martian",
+                "种类": "小说节选",
+                "难度": "中等",
+                "任务": "张三需要找到并记录书中5个新单词，并尝试用这些单词造句。在阅读每节后，张三应尝试总结该节的主要内容，并用几句话表达自己的观点。"
+              }
+            ],
+            "练习题": [
+              {
+                "类型": "词汇匹配",
+                "描述": "配对新单词与其定义，使用每个单词造句",
+                "词汇": [
+                  "astronaut",
+                  "solitude",
+                  "survival",
+                  "innovation",
+                  "resourcefulness"
+                ],
+                "造句任务": "用每个单词造一个不同的句子，尽量将刚阅读的材料结合进来"
+              },
+              {
+                "类型": "阅读理解",
+                "描述": "回答与文本相关的多项选择题和开放式问题",
+                "题目示例": [
+                  {
+                    "题目": "故事的背景是什么？",
+                    "选项": [
+                      "地球",
+                      "火星",
+                      "月球",
+                      "金星"
+                    ],
+                    "正确答案": "火星"
+                  },
+                  {
+                    "开放题": "你认为故事主人公在困境中最值得学习的品质是什么？"
+                  }
+                ],
+                "检测方式": "每次练习后提供反馈，帮助张三理解错误，并提供类似题目标记重点"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "personalized_learning_content": "draft_answer"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.1,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.1 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00008_f355fd592f2a",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "以下表达体现了高考作文中常用的文学修辞手法，请选择所有正确的选项：\nA. 比喻\nB. 拟人\nC. 夸张\nD. 反问\nE. 排比",
+        "gold_answer": {
+          "guidance": "要解答这个问题，不妨先回忆一下高考作文中常用的几种文学修辞手法。比喻是将一种事物比作另一种事物，以增强表达效果；拟人赋予无生命物体以人的特征或行为；夸张是故意夸大事物的性质或程度以加强效果；反问是以设问的方式来强化观点；排比是把结构相似、意义相关的短语或句子连续使用以形成增强气势或渲染效果。考虑这些定义来选择所有符合高考作文常用的修辞手法的选项。"
+        },
+        "one_b_draft": "请根据任务输入，分析高考作文中常用的文学修辞手法，并输出所有正确的选项。",
+        "final_output": {
+          "hints": "请根据任务输入，分析高考作文中常用的文学修辞手法，并输出所有正确的选项。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00010_8a4c506b42dc",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"优点\": \"公式记忆力强，动手实验操作能力优秀\",\n  \"兴趣爱好\": \"喜欢动手实验和科学类纪录片\",\n  \"姓名\": \"李华\",\n  \"学习风格\": \"视觉型学习者\",\n  \"年级\": \"高二\",\n  \"弱点\": \"对抽象概念理解较慢，需要更多实例辅助\",\n  \"目标\": \"计划参加物理竞赛，提升问题解决能力\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "专属练习题": [
+              "设计并描述一个实验来验证动能定理的应用场景，并计算实验中的动能变化。",
+              "通过实例分析重力与弹力的综合运用问题，应用实例发现解决的常用策略。"
+            ],
+            "阅读材料": [
+              {
+                "书籍": "《从爱因斯坦到霍金：经典物理学的大思维》",
+                "内容重点": "理解历史上的物理学家如何通过实验和理论解决复杂问题。"
+              },
+              {
+                "网站": "科学美国人（Scientific American）",
+                "推荐内容": "物理学创新和实际应用的文章，帮助扩展物理思维模式。"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "personalized_learning_content": "draft_answer"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.1,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.1 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00009_d7de2ce5e99e",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "结合文本，分析“月亮”这一意象在古诗词中的象征意义。",
+        "gold_answer": {
+          "guidance": "首先，通过文本识别与月亮关联的感情或画面，如思乡、怀人、孤独、永恒等。其次，考虑这些情感如何与古人的生活与自然哲学观相结合，例如月亮的周期变化如何象征生命的循环或不变的思念。再者，注意诗人的时代背景与个人境遇，对其使用‘月亮’意象有何影响。最后，总结‘月亮’在古诗词中多层次、多样化的象征意义。"
+        },
+        "one_b_draft": "月亮在古诗词中常被用作象征，如'海上生明月，天涯共此时'中的月亮象征团圆和思念。",
+        "final_output": {
+          "hints": "月亮在古诗词中常被用作象征，如'海上生明月，天涯共此时'中的月亮象征团圆和思念。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00012_b1f34a420074",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣领域\": \"对化学反应和物质变化过程感兴趣\",\n  \"姓名\": \"李明\",\n  \"学习偏好\": \"喜欢实验和动手实践\",\n  \"年级\": \"初二\",\n  \"当前化学水平\": \"基础知识扎实，但对复杂概念理解较为困难\",\n  \"挑战\": \"较难将理论知识应用于实际问题解决\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "阅读材料": [
+              {
+                "类型": "实验手册",
+                "主题": "简单化学实验：酸碱反应探究",
+                "内容": "详细步骤和注意事项，鼓励动手实验来更好理解酸碱中和反应"
+              },
+              {
+                "类型": "科普文章",
+                "主题": "化学在日常生活中的应用",
+                "内容": "如何利用化学原理解释日常现象，例如厨房中的化学变化"
+              }
+            ],
+            "练习题": [
+              {
+                "类型": "应用题",
+                "难度": "中等",
+                "题目": "某酸性溶液与某碱性溶液混合后观察到的变化，请用化学方程式表示并解释发生了什么反应"
+              },
+              {
+                "类型": "选择题",
+                "难度": "基础",
+                "题目": "以下哪一个是中和反应的正确描述？",
+                "选项": [
+                  "酸与碱反应生成盐和水",
+                  "酸与金属反应生成氢气",
+                  "碱与金属反应生成沉淀"
+                ]
+              }
+            ]
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "personalized_learning_content": "draft_answer"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.1,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.1 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00013_26771b26dd71",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "设一个梯形的上底为4厘米，下底为8厘米，高为5厘米，求梯形的面积。选择下面正确的答案：\nA. 30平方厘米\nB. 25平方厘米\nC. 40平方厘米\nD. 60平方厘米",
+        "gold_answer": {
+          "guidance": "计算梯形的面积可以使用面积公式：面积 = 1/2 × (上底 + 下底) × 高。这里，上底 = 4厘米，下底 = 8厘米，高 = 5厘米。将这些值代入公式进行计算，得到梯形面积。然后选出正确的答案。"
+        },
+        "one_b_draft": "梯形面积公式为（上底+下底）×高÷2，代入上底4厘米、下底8厘米、高5厘米计算。",
+        "final_output": {
+          "hints": "梯形面积公式为（上底+下底）×高÷2，代入上底4厘米、下底8厘米、高5厘米计算。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00013_e10077a22882",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣\": \"对有机化学和实验非常感兴趣，希望能进一步探索化学在日常生活中的应用\",\n  \"化学水平\": \"中等偏上\",\n  \"姓名\": \"小明\",\n  \"学习风格\": \"视觉学习者，喜欢通过图表和实验来理解概念\",\n  \"年级\": \"高二\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "一对一": {
+              "阅读材料": [
+                "《有机化学原理与应用》——包括图示和案例分析",
+                "“化学与日常生活”，根据便携实验展现化学原理"
+              ],
+              "练习题": [
+                {
+                  "题目": "根据实验图表分析某化学反应速率变化。",
+                  "类型": "数据分析",
+                  "难度": "中等"
+                },
+                {
+                  "题目": "设计一个简单的实验，通过观察颜色变化来检测酸碱性。",
+                  "类型": "实验设计",
+                  "难度": "高"
+                }
+              ]
+            },
+            "分层教学": {
+              "教学目标": "理解有机化学的基本概念并能够应用常见有机化学反应",
+              "教学方法": "通过视频演示有机化学实验，结合小组讨论促进理解",
+              "学习结果检测方式": "利用学习平台提交在线测验，反馈多层次问题解答",
+              "课下作业布置": [
+                "完成一份实验报告，展示实验过程和结果",
+                "提交一篇关于化学在日常用品中的应用的短文"
+              ]
+            },
+            "其他": {
+              "学习小组": {
+                "小组类型": "兴趣驱动的有机化学专项组",
+                "能力评测设计": "通过小组合作展开专题研讨，评估创新思维和跨学科整合能力"
+              },
+              "班级": {
+                "能力评测设计": "通过期末模拟实验展示，评估整体实验动手能力与协作水平"
+              }
+            }
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "personalized_learning_content": "draft_answer"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.1,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.1 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00015_695e819bdbc0",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "求解方程：2x + 5 = 15。",
+        "gold_answer": {
+          "guidance": "可以从方程中找到x的值。首先，观察方程。为了找到x，先减去等式右边的常数项5。然后，等式变为2x = 10。接下来，将方程两边除以2以解决系数问题，从而找出x的值。"
+        },
+        "one_b_draft": "step-by-step solution to the equation 2x + 5 = 15",
+        "final_output": {
+          "hints": "step-by-step solution to the equation 2x + 5 = 15"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00002_4b37542d70be",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"姓名\": \"李小明\",\n  \"学习习惯\": \"喜欢绘图和动手操作，视觉记忆较强\",\n  \"学习兴趣\": \"对应用题较有兴趣，对运算题较为抵触\",\n  \"年级\": 3,\n  \"年龄\": 8,\n  \"数学能力\": \"中等偏下\",\n  \"注意力水平\": \"容易分心，需要持续引导\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "一对一": {
+              "专属练习题": [
+                "用于提高运算能力的简单加减题，并结合生活中的应用场景",
+                "应用题，以购物或简单的交换为背景，增强逻辑推理能力"
+              ],
+              "阅读材料": [
+                "《趣味数学故事》，讲述日常生活中的数学应用"
+              ]
+            },
+            "分层教学": {
+              "教学目标": "提高简单加减运算的准确性和应用题理解能力",
+              "教学方法": "通过小组讨论和互动游戏增加参与感，每周绘制一个应用题场景",
+              "学习结果检测方式": "通过口头反馈和简单的应用题检测理解水平和运算准确率",
+              "课下作业布置": "完成每周一幅数学应用题绘图，并在家模拟解决实际问题，如购物计算"
+            },
+            "其他": {
+              "单一学生": "定期观察注意力时长，建议安排数学学习时段在其最佳注意力水平时间内",
+              "学习小组": "与其他同学组建数学兴趣项目小组，共同探索简单的数学应用项目，如小市场活动",
+              "班级": "开展周末数学活动课，从生活场景出发，引导各层次学生参与，多种形式的结业展示设计"
+            }
+          }
+        },
+        "one_b_draft": "根据李小明的情况，数学学习应注重应用题和动手操作，例如通过画图和实际问题解决。",
+        "final_output": {
+          "personalized_learning_content": "根据李小明的情况，数学学习应注重应用题和动手操作，例如通过画图和实际问题解决。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.15000000000000002,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.15000000000000002 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00017_0ab3fd6b7b5a",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "以下函数中哪些是偶函数？\nA. f(x) = x^2 - 3x\nB. g(x) = cos(x)\nC. h(x) = e^x\nD. j(x) = |x|",
+        "gold_answer": {
+          "guidance": "一个偶函数的定义是对于所有x，满足f(x) = f(-x)。为了判断一个函数是否为偶函数，可以尝试把-x代入到函数中，然后与原函数比较是否相等。逐项进行这个验证即可：\n- 对于f(x) = x^2 - 3x，检查f(-x)是否等于f(x)。\n- 对于g(x) = cos(x)，检查cos(-x)是否等于cos(x)。\n- 对于h(x) = e^x，检查e^(-x)是否等于e^x。\n- 对于j(x) = |x|，检查|-x|是否等于|x|。"
+        },
+        "one_b_draft": "请逐步分析每个函数，判断其是否为偶函数。偶函数的定义是f(-x) = f(x)。然后逐一验证每个函数是否满足这一条件。",
+        "final_output": {
+          "hints": "请逐步分析每个函数，判断其是否为偶函数。偶函数的定义是f(-x) = f(x)。然后逐一验证每个函数是否满足这一条件。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00007_ff73b6201bc0",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣爱好\": \"喜欢历史、文学作品\",\n  \"姓名\": \"李华\",\n  \"学习目标\": \"提高英语口语能力，对英文名著的兴趣增加\",\n  \"年级\": \"高中二年级\",\n  \"当前挑战\": \"在课堂上积极表达自己，进行流利的口语交流\",\n  \"特点\": \"理解能力较好，口语表达较弱，喜欢阅读故事类的文章\",\n  \"英语水平\": \"中等偏下\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "一对一": {
+              "阅读材料": "选择《Pride and Prejudice》中的简化章节进行阅读，以趣味故事促进理解",
+              "练习题": "设计角色扮演练习，通过对话题提升口语表达能力"
+            },
+            "分层教学": {
+              "课程内容": "口语交流课",
+              "教学目标": "使用英语进行日常生活交流，增强情境对话能力",
+              "教学方法": "角色扮演和趣味活动相结合，培养自信表达",
+              "学习结果检测方式": "录制短对话视频，由教师进行反馈和指导",
+              "课下作业布置": "每天完成一篇50词的日记，侧重于事件描述和感受表达"
+            },
+            "其他": {
+              "单一学生": {
+                "能力评测设计": "以定期口语测验及课后反馈为主，每月汇总学习进步"
+              },
+              "学习小组": {
+                "能力评测设计": "进行小组对话活动，采用互评和教师评估相结合的方式"
+              },
+              "班级": {
+                "能力评测设计": "班级英语角活动，通过观察学生的参与度和表达能力整体评估"
+              }
+            }
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "personalized_learning_content": "draft_answer"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.15000000000000002,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.15000000000000002 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00020_d4ea4b9b51a2",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "选择下列词汇中不是水果的选项： \nA) Apple \nB) Rabbit \nC) Banana \nD) Cherry",
+        "gold_answer": {
+          "guidance": "首先，了解每个词汇的含义。A、C和D是常见的水果。关注B选项，它并不属于水果类。在选择答案时，选择一个明显不是水果的词汇。通过这种方式，能够区分日常食物和其他类别的常见词汇。考虑使用关联记忆，例如，回想起平时吃的或见过的水果，以帮助找出哪个词汇不属于这个类别。"
+        },
+        "one_b_draft": "步骤1明确词汇的分类，水果和蔬菜的区别是什么？步骤2观察选项中的词汇，哪些是水果，哪些不是？步骤3根据步骤1和步骤2的结论，判断哪个选项不是水果。",
+        "final_output": {
+          "hints": "步骤1明确词汇的分类，水果和蔬菜的区别是什么？步骤2观察选项中的词汇，哪些是水果，哪些不是？步骤3根据步骤1和步骤2的结论，判断哪个选项不是水果。"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00016_c855fb032641",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣领域\": \"对古代建筑和文化比较感兴趣\",\n  \"姓名\": \"李华\",\n  \"学习偏好\": \"喜欢通过影视剧了解历史事件\",\n  \"学习困难\": \"对战争史感到枯燥\",\n  \"学习风格\": \"喜欢通过视觉资料学习\",\n  \"年级\": \"初二\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "阅读材料": [
+              "《中国建筑百年史》",
+              "《文明的历史：从创始到商业帝国》"
+            ],
+            "影视推荐": [
+              "纪录片《万里长城》",
+              "电视剧《唐宫美人天下》"
+            ],
+            "练习题": [
+              "解释古长城沿线重要的历史事件，包括文化交流及军事防御。",
+              "描述唐代建筑风格的特点，并与现代建筑进行对比。"
+            ],
+            "课后任务": {
+              "小组讨论": {
+                "任务": "与同学分享对历史文化交流的看法",
+                "目标": "通过讨论理解古代建筑的文化影响"
+              },
+              "个人项目": {
+                "主题": "设计一个古代风格的建筑模型",
+                "目标": "应用学习知识，展示对古建筑的理解"
+              }
+            }
+          }
+        },
+        "one_b_draft": "初中",
+        "final_output": {
+          "personalized_learning_content": "初中"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.2,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.2 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00022_167865da5412",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "Which of the following sentences use the past perfect tense correctly?",
+        "gold_answer": {
+          "guidance": "The past perfect tense is used to describe actions that were completed before another point in time in the past. Look for sentences where an action is indicated as having been completed before another past action or time reference. Check the verb forms; the past perfect tense typically uses 'had' followed by the past participle of the verb."
+        },
+        "one_b_draft": "To determine if a sentence uses the past perfect tense correctly, follow these steps: 1. Identify the main verb in the sentence. 2. Check if the main verb is in the past perfect tense (e.g., 'had already done', 'had not done', 'had been doing'). 3. Compare the time reference to the main verb. 4. Ensure the subject and verb agree in number. 5. Verify that the tense is correctly formed with 'had' before the main verb. For example, 'She has finished her homework before dinner' uses the past perfect correctly. If the sentence does not match these criteria, it may not use the past perfect tense correctly.",
+        "final_output": {
+          "hints": "To determine if a sentence uses the past perfect tense correctly, follow these steps: 1. Identify the main verb in the sentence. 2. Check if the main verb is in the past perfect tense (e.g., 'had already done', 'had not done', 'had been doing'). 3. Compare the time reference to the main verb. 4. Ensure the subject and verb agree in number. 5. Verify that the tense is correctly formed with 'had' before the main verb. For example, 'She has finished her homework before dinner' uses the past perfect correctly. If the sentence does not match these criteria, it may not use the past perfect tense correctly."
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_PLS_00004_97ad61bbb642",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣爱好\": \"喜欢几何图形的视觉化分析\",\n  \"姓名\": \"李明\",\n  \"学习风格\": \"概念理解好，计算能力略弱\",\n  \"年级\": \"高二\",\n  \"数学水平\": \"中等偏上\",\n  \"课程目标\": \"掌握基础函数知识并提高计算技巧\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "练习题": [
+              {
+                "类型": "函数图形分析",
+                "题目": "请通过绘图分析函数 y = 2x² - 4x + 1 的图像特征，并说明其对称轴、顶点和截距。",
+                "难度": "中等"
+              },
+              {
+                "类型": "计算题",
+                "题目": "请计算 y = x² + 3x - 2 在 x = -1, 0, 2 处的函数值。",
+                "难度": "略难"
+              }
+            ],
+            "阅读材料": [
+              {
+                "标题": "探索二次函数的视觉特征",
+                "内容链接": "https://mathworld.com/quadratic-functions",
+                "重点": "理解二次函数图像中顶点的计算与意义"
+              },
+              {
+                "标题": "提高你的计算技巧",
+                "内容链接": "https://mathproblems.com/computation-tips",
+                "重点": "提高计算精度和效率的技巧"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "高中数学",
+        "final_output": {
+          "personalized_learning_content": "高中数学"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.25,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "1B stayed below the frozen threshold (0.25 < 0.4) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00027_c42db5ba3181",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "在写英语作文时，如何有效使用连接词来提高条理性和流畅性？请提供一些连接词，并简述其使用情况。",
+        "gold_answer": {
+          "guidance": "要提高英语作文的条理性和流畅性，可以通过使用连接词来创建句子和段落之间的逻辑关系。首先，了解连接词的分类，包括：并列关系的连接词（如：and, furthermore, moreover）、转折关系的连接词（如：but, however, on the other hand）、因果关系的连接词（如：because, therefore, thus）、条件关系的连接词（如：if, provided that）以及时间关系的连接词（如：when, after, before）。在写作中，选择合适的连接词来体现句子间的逻辑关系。例如，想要表达因果关系时，可以使用 'because' 或 'therefore' 来帮助读者理解一个事件或行动的原因或结果。尝试根据作文的主题和方向选择连接词，并在写作中多加练习，不断提高使用的准确性和自然流畅性。"
+        },
+        "one_b_draft": "步骤1: 确定任务类型和目标。\n步骤2: 选择连接词类型。\n步骤3: 根据上下文选择合适的连接词。\n步骤4: 练习使用连接词。\n步骤5: 检查文章结构是否连贯。",
+        "final_output": {
+          "hints": [
+            "步骤1: 确定任务类型和目标。",
+            "步骤2: 选择连接词类型。",
+            "步骤3: 根据上下文选择合适的连接词。",
+            "步骤4: 练习使用连接词。",
+            "步骤5: 检查文章结构是否连贯。"
+          ]
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00031_15dedc1a009f",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "当我们吹气到一个气球里时，气球变大的原因是什么？",
+        "gold_answer": {
+          "guidance": "气球变大的原因可以从气压和体积的角度来分析。通过吹气，气球内部的气体分子数量增加，导致内部气体的压力增大。根据物理学中的气体性质，压力的增加会导致体积的膨胀。因此，考虑气压、体积和分子的关系，会对这个问题有更清楚的理解。"
+        },
+        "one_b_draft": "Step 1: Understand the effect of air pressure on the balloon. Step 2: Observe the behavior of air when it is blown into the balloon. Step 3: Analyze the relationship between the force of the air and the surface area of the balloon. Step 4: Conclude that the balloon inflates due to the increased air pressure inside it. Step 5: Verify the conclusion by observing the balloon's expansion when air is blown into it.",
+        "final_output": {
+          "hints": "Step 1: Understand the effect of air pressure on the balloon. Step 2: Observe the behavior of air when it is blown into the balloon. Step 3: Analyze the relationship between the force of the air and the surface area of the balloon. Step 4: Conclude that the balloon inflates due to the increased air pressure inside it. Step 5: Verify the conclusion by observing the balloon's expansion when air is blown into it."
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      },
+      {
+        "sample_id": "zh_IP_00033_055823c8b45b",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "一个静止的小球受到了10牛顿的水平推力，一段时间后以2米/秒的速度开始移动。想想这个过程中有哪些力在作用，并解释它们是如何影响小球运动的。",
+        "gold_answer": {
+          "guidance": "首先，考虑小球受到了10牛顿的水平推力，这个力是让小球开始运动的主要外力。由于小球从静止开始运动，我们需要考虑在这段过程中可能还有其他力，例如摩擦力或阻力。请思考摩擦力的方向和它如何与推力相互作用。记住，力的平衡和合力的分析是这个问题的关键。如果摩擦力的大小小于推力，小球将加速；如果摩擦力等于推力，小球将匀速运动。此外，要考虑牛顿的第二定律如何应用于小球的受力分析。通过合力计算和运动学公式可以进一步探讨小球的最终速度和加速度。"
+        },
+        "one_b_draft": "请思考一个静止的小球受到10牛顿的水平推力后，开始以2米/秒的速度移动的过程。在这个过程中，有哪些力在作用？它们是如何影响小球运动的？",
+        "final_output": {
+          "hints": "请思考一个静止的小球受到10牛顿的水平推力后，开始以2米/秒的速度移动的过程。在这个过程中，有哪些力在作用？它们是如何影响小球运动的？"
+        },
+        "route_decision": "1b_accept",
+        "quality_value": 1.0,
+        "risk_score": 0.04000000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "1B stayed below the frozen threshold (0.04000000000000001 < 0.45) and the saved output passed the available offline quality check without invoking 7B."
+      }
+    ],
+    "7b_refinement_success": [
+      {
+        "sample_id": "zh_PCC_00007_3c335d37e595",
+        "task_key": "PCC",
+        "task_family": "planning",
+        "question": "{\n  \"姓名\": \"李华\",\n  \"学习习惯\": \"复习时间较少，偏向于通过写作练习提升表达能力\",\n  \"学习目标\": \"提高文学作品鉴赏能力和写作水平\",\n  \"年级\": \"高二\",\n  \"知识薄弱点\": \"诗词鉴赏和文言文阅读理解较弱\",\n  \"语文水平\": \"中等偏下\"\n}",
+        "gold_answer": {
+          "learning_path_planning": [
+            "第一阶段（基础夯实）：集中进行文言文常用词汇和句式的学习，每周两篇文言文文本阅读练习。建议选择《左传》《论语》中的经典篇章。",
+            "第二阶段（技能强化）：逐步增加诗词鉴赏练习，每周一篇诗词详细分析，学习不同的诗词风格与表达手法。推荐阅读《唐诗三百首》并进行赏析笔记记录。",
+            "第三阶段（写作提升）：每周一篇命题作文训练，着重于主题拓展和文学表达能力。参与作文辅导课程，学习优秀作文的结构和用词技巧。",
+            "第四阶段（模拟考试实践）：完成高考模拟题中的语文试题，每月全套练习至少两次，以巩固综合性应用能力和时间管理。"
+          ],
+          "personalized_recommendations": [
+            "针对诗词鉴赏薄弱情况，建议李华阅读《诗词曲库》并通过软件助手进行语境分析，培养通过意象理解诗意的能力。",
+            "文言文方面，可以订阅某公众号以每日微课程形式接触，进行文本的翻译和人物性格分析，增强文言文理解。",
+            "推荐李华使用APP来定时进行学习打卡，每日记录自己的学习过程，以便于回顾和反思。",
+            "建议李华参加学校组织的文学社团活动，通过与同学交流观点和分享作品增加文学思维的深度。"
+          ]
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "learning_path": [
+            {
+              "step": "基础分析训练",
+              "description": "每日精读一首短诗，使用思维导图拆解诗词结构（意象层、情感层、手法层），重点标注修辞手法及典故。推荐《唐诗三百首（白话译文版）》配合‘诗歌结构分析’专栏视频（B站/网易公开课）",
+              "duration": "每周3次，每次40分钟"
+            },
+            {
+              "step": "对比鉴赏强化",
+              "description": "每周完成两首同主题不同朝代诗词的对比分析（如李白《静夜思》vs苏轼《水调歌头》），制作对比表格包含：意象选择、情感表达、用典程度三个维度",
+              "duration": "每周2次，配合‘诗词对比赏析’练习册"
+            },
+            {
+              "step": "文言文能力突破",
+              "description": "每日完成1篇《古代散文选读》（人教版选修）的句式分析，重点标注实词虚词及特殊句式，使用‘文言文语法树’APP辅助记忆",
+              "duration": "每日晨读30分钟+晚间20分钟"
+            },
+            {
+              "step": "写作迁移训练",
+              "description": "每周完成1篇融合古典诗词元素的现代散文，要求：①引用2处诗词意象 ②运用1种古典修辞 ③附300字创作思路说明",
+              "duration": "每周日提交至‘作文批改平台’获取AI反馈"
+            }
+          ],
+          "personalized_suggestions": {
+            "时间管理": "采用‘番茄工作法’：每日早晨专注诗词分析（25分钟），午休后完成文言文精读（20分钟），晚间进行写作训练（40分钟）",
+            "资源推荐": [
+              "微信读书APP《唐诗鉴赏辞典》（可试读）",
+              "‘古诗文网’小程序（含真题解析功能）",
+              "‘作文智能批改’公众号（每日推送精修建议）"
+            ],
+            "反馈机制": "每周日19:00前上传本周作业至班级云盘，由语文委员进行同伴互评；重点标注3处以上病句由教师视频讲解修改思路"
+          }
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.30000000000000004,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_PLS_00014_bb87727d9321",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣\": [\n    \"观察自然\",\n    \"阅读科普书籍\"\n  ],\n  \"姓名\": \"小明\",\n  \"学习风格\": \"动手实践型\",\n  \"年级\": \"小学四年级\",\n  \"性格特点\": \"好奇心强，喜欢提出问题\",\n  \"能力水平\": \"理解力较强，但记忆力和专注度需要加强\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "阅读材料": [
+              "《昆虫世界奇观》- 聚焦不同昆虫的特性和习性",
+              "《植物的秘密》- 介绍植物生长过程中的一些有趣现象"
+            ],
+            "实践任务": [
+              "观察自家花园或公园中的植物及昆虫，并记录每天的变化",
+              "制作一个简易的生物观察笔记本，记录发现的生物及其特征"
+            ],
+            "练习题": [
+              "绘制自己观察到的某种昆虫，标出其主要部位",
+              "设计一个简单的实验，比较不同环境下植物的生长变化"
+            ],
+            "课外活动建议": [
+              "加入当地的自然观察小组，与其他孩子一起分享观察经验",
+              "参加周末的科学博物馆活动，以增加更多的实践机会"
+            ]
+          }
+        },
+        "one_b_draft": "predicted_task_family: reasoning | assessment | planning, predicted_subject: biological, draft_answer: draft answer, confidence_label: high, confidence_score: 0.85, format_signals: {\\",
+        "final_output": {
+          "personalized_learning_content": "{\"content\": string, \"explanation\": string, \"confidence\": 0.85, \"format_signals\": \"JSON\"}\n\n```\n{\"content\": \"学生姓名：小明\\n年级：小学四年级\\n兴趣：观察自然，阅读科普书籍\\n学习风格：动手实践型\\n能力水平：理解力较强，但记忆力和专注度需要加强\\n性格特点：好奇心强，喜欢提出问题\\n\\n学习目标：\\n1. 理解并记忆生物多样性概念\\n2. 观察并记录不同植物的生长环境\\n3. 提升提问能力与科学探究兴趣\\n\\n学习内容：\\n1. 生物多样性定义与重要性\\n2. 植物生长的基本条件（光照、水分、土壤）\\n3. 植物生长周期（种子萌发、发芽、开花、结果）\\n\\n教学方法：\\n1. 实验探究：设计并执行“植物生长条件实验”\\n2. 变量控制：学习控制变量法\\n3. 种植观察日记：记录植物生长变化\\n4. 教学工具：图片、实物展示、小组讨论\\n\\n评估方式：\\n1. 学习目标1：通过实验报告与观察日记评估理解程度\\n- 学习目标2：通过观察记录评估观察能力\\n- 学习目标3：通过提问次数与质量评估提问能力\\n\\n时间安排：\\n- 第1天：介绍概念与基本条件\\n- 第2天：分组实验\\n- 第3天：观察日记撰写\\n- 第2周：实验总结与展示\\n\\n所需材料：\\n- 豆类种子、花盆、土壤、水、不同光照条件（阳光、散射光、阴影）\\n- 实验记录表\\n- 同一品种植物作为对照\\n- 四组学生共享的投影仪与图片\\n\\n注意事项： [unused16] [unused16] 好的，我现在需要帮用户补足这个1B草稿，生成更可靠的最终答案。首先，我得仔细看看用户提供的原始任务和现有的1B草稿。用户要求输出一个符合特定JSON格式的personalized_learning_content，包含content、explanation、confidence和format_signals。现有的草稿已经有一些内容，但需要结构、细节和教学实用性方面的补充。\n\n首先，我需要分析用户的需求。用户是负责学习规划、内容生成和教学设计的，所以最终的答案需要专业且实用。学生小明是四年级学生，动手实践型，喜欢观察自然和阅读科普书籍，但记忆力和专注力需要加强，性格好奇，喜欢提问。这些信息很重要，需要在设计学习内容时考虑进去。\n\n接下来看现有的1B草稿。学习目标有三个：理解生物多样性、观察记录植物生长环境、提升提问能力。学习内容有生物多样性定义、植物生长条件、生长周期。教学方法包括实验、变量控制、观察日记、教学工具。评估方式有时间安排和材料需求。但可能有些地方需要细化，比如如何具体实施实验，如何确保学生记忆和专注，如何评估他们的提问能力。\n\n用户要求补足结构、细节和教学实用性。所以，我需要检查现有内容是否结构完整，是否有遗漏的部分，比如是否明确了每个学习目标的具体活动，是否提供了足够的细节让教师执行，是否考虑了学生的注意力和记忆力问题，比如是否有复习或巩固记忆的方法。\n\n例如，在教学方法中，实验探究和变量控制是好的，但可能需要更详细的步骤，比如如何分组，实验的具体操作，如何控制变量。观察日记的记录格式是否需要模板？如何确保学生每天记录？评估方式中的学习目标1、2、3是否对应具体的评估标准？比如，理解程度如何量化，观察记录的评估标准是什么？\n\n另外，时间安排是四天，但第2周还有总结和展示，可能需要更详细的时间分配，比如每天的具体时间段，或者更明确的活动步骤。所需材料部分已经列了一些，但可能需要更多细节，比如每组需要的材料数量，如何分配，是否有备用材料等。\n\n还要注意学生的性格特点，喜欢提问，所以在教学方法中是否鼓励提问，比如在实验中设置提问环节，或者在观察日记中设置问题引导。针对记忆力和专注力的问题，可能需要复习环节，比如通过游戏或复习活动来巩固知识。\n\n在解释部分，需要说明为什么选择这些内容和方法，如何针对小明的个人特点和能力水平，比如动手实践型学生适合实验，观察日记帮助他们实践，分组讨论促进互动，符合他们的学习风格。\n\n可能还需要考虑如何确保评估方式的有效性，比如实验报告和观察日记的具体评分标准，提问次数和质量如何评估，是否有同伴互评或教师评价。\n\n现在，我需要将这些思考整合到JSON结构中，确保每个部分都详细且实用。可能需要调整学习目标，使其更具体，比如将“理解并记忆生物多样性概念”细化为“能够解释生物多样性的三个重要性”或类似的具体指标。教学方法中的实验步骤需要更详细，比如如何设计变量控制，比如光照、水分等变量如何分配。\n\n另外，时间安排可能需要更具体，比如每天的活动时间，是否需要准备时间，材料准备的时间等。所需材料部分可以补充更多细节，比如每组需要多少种子，花盆的大小，土壤的类型等。\n\n最后，确保整个结构符合用户提供的契约，键名正确，没有语法错误，并且confidence和format_signals正确。可能需要将现有内容重新组织，使其更清晰，比如分点更明确，使用标题或子标题，但JSON中可能需要用字符串表示，所以需要用文字描述结构。\n\n总结来说，我需要补充更多细节，确保每个部分都针对小明的个人特点，结构更清晰，步骤更具体，评估方式更明确，材料更详细，时间安排更合理，同时保持JSON格式的正确性。 [unused17] ```json\n{\n  \"content\": \"学生姓名：小明\\n年级：小学四年级\\n兴趣：观察自然，阅读科普书籍\\n学习风格：动手实践型\\n能力水平：理解力较强，但记忆力和专注度需要加强\\n性格特点：好奇心强，喜欢提出问题\\n\\n学习目标：\\n1. 理解并记忆生物多样性概念\\n2. 观察并记录不同植物的生长环境\\n3. 提升提问能力与科学探究兴趣\\n\\n学习内容：\\n1. 生物多样性定义与重要性（含本地物种案例）\\n2. 植物生长的基本条件（光照、水分、土壤pH值）\\n3. 植物生长周期（种子萌发、发芽、开花、结果）\\n\\n教学方法：\\n1. 实验探究：设计并执行\\\"植物生长条件实验\\\"\\n   - 分组设置4组变量（光照/水分/土壤类型）\\n   - 使用对照组（同一品种绿豆种子）\\n2. 变量控制：通过实验日志学习控制变量法\\n3. 种植观察日记：使用模板记录每日生长数据\\n4. 教学工具：实物植物标本、pH试纸、生长周期图表\\n\\n评估方式：\\n1. 学习目标1：通过实验报告（含数据图表）评估理解程度\\n2. 学习目标2：通过观察记录评估观察能力（使用评分量表）\\n3. 学习目标3：通过提问次数与问题深度评估（教师+同伴互评）\\n\\n时间安排：\\n- 第1天（2课时）：概念导入+实验设计\\n- 第2-3天（各1课时）：分组实验执行\\n- 第4-6天（各30分钟）：观察日记撰写\\n- 第7天：实验总结会（含问题墙展示）\\n\\n所需材料：\\n- 每组：绿豆种子20粒、透明培养皿5个、pH试纸、温湿度计\\n- 共享资源：植物生长周期视频、生物多样性地图\\n- 记录工具：带刻度观察表、彩色标签贴纸\\n\\n记忆强化策略：\\n1. 每日实验前进行5分钟概念快问快答\\n2. 每周制作知识卡片（图文结合）\\n3. 建立植物生长微信群进行成果分享\\n\\n特别设计：\\n- 设置\\\"最佳观察员\\\"流动红旗\\n- 鼓励用思维导图整理实验疑问\\n- 预留1课时进行户外实地观察（校园/社区公园）\",\n  \"explanation\": \"本方案针对小明的学习特点设计：\\n1. 通过多感官实验（视觉观察+触觉操作）强化理解\\n2. 结构化观察日记培养系统性思维\\n3. 同伴互评机制提升提问质量\\n4. 周期性复习机制（每周知识卡片）改善记忆\\n5. 户外实践满足自然观察兴趣\\n6. 变量控制实验培养科学思维方法\\n7. 即时反馈机制（实验日志批注）保持专注度\\n8. 多媒体工具支持符合阅读偏好\",\n  \"confidence\": 0.92,\n  \"format_signals\": \"JSON\"\n}\n```"
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.30000000000000004,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_QG_00007_ae178c07d69b",
+        "task_key": "QG",
+        "task_family": "generation",
+        "question": "中国现当代文学作品鉴赏",
+        "gold_answer": {
+          "question": "以下哪部作品不是鲁迅的作品？",
+          "guidance": "了解鲁迅的主要创作作品及其文学风格是理解现当代文学的一个重要方面。对比答案选项，可以识别出不同作者的风格和作品名，从而判断哪个选项不是属于鲁迅的。",
+          "answer": "C. 《骆驼祥子》"
+        },
+        "one_b_draft": "The answer to the generated question is: ...",
+        "final_output": {
+          "generated_question": "下列对鲁迅《祝福》中祥林嫂形象的分析正确的是（ ）\nA. 祥林嫂是一个被动接受封建礼教压迫的顺从女性\nB. 祥林嫂捐门槛的行为体现了对封建礼教的反抗意识\nC. 祥林嫂的形象通过她的三次微笑展现其精神世界的变化\nD. 作品通过她的悲剧命运揭示了封建礼教对妇女的吃人本质",
+          "answer": "D",
+          "rationale": "正确答案D。祥林嫂的悲剧本质是封建礼教'吃人'的具象化体现，鲁迅通过她被礼教吞噬的过程深刻揭露了封建伦理对人性的摧残。A项'被动接受'未能体现其反抗性，B项与文本中'捐门槛赎罪'的悲剧性本质相悖，C项三次微笑确实展现变化，但非核心分析点。"
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.31000000000000005,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_TMG_00035_f489d2bcd124",
+        "task_key": "TMG",
+        "task_family": "generation",
+        "question": "运动学中的匀速直线运动",
+        "gold_answer": {
+          "teaching_materials": {
+            "教学目标": [
+              "理解匀速直线运动的基本概念。",
+              "能够应用匀速直线运动公式进行相关计算。",
+              "培养学生的逻辑思维能力及应用公式解决实际问题的能力。"
+            ],
+            "重点难点": [
+              "重点：匀速直线运动的定义及其公式应用。",
+              "难点：结合公式 u = s/t 进行实际问题分析与解决。"
+            ],
+            "课堂活动设计": [
+              {
+                "活动名称": "实验数据分析",
+                "活动描述": "通过实际实验，例如使用小车沿笔直轨道移动，测量不同时间下的小车位置，记录运动数据并分析小车是否遵循匀速运动规律。",
+                "活动步骤": [
+                  "准备一辆可移动小车和一条笔直的轨道。",
+                  "使用秒表记录小车在不同时间下的位置。",
+                  "计算不同时间间隔的平均速度，判断是否为匀速运动。",
+                  "讨论实验结果与理论公式的一致性。"
+                ]
+              },
+              {
+                "活动名称": "公式应用练习",
+                "活动描述": "提供一系列匀速运动问题，让学生应用公式 u = s/t 进行解答。",
+                "活动步骤": [
+                  "提供问题描述，例如：一辆自行车以10 m/s的速度行驶了5秒，距离是多少？",
+                  "引导学生列出已知量与未知量，选择适当公式。",
+                  "计算并验证答案，讨论列出问题的不同解决策略。"
+                ]
+              }
+            ]
+          }
+        },
+        "one_b_draft": "{",
+        "final_output": {
+          "objectives": "掌握匀速直线运动定义与特征，理解公式推导逻辑，能分析实际场景中的运动类型，培养科学建模与数据处理能力。",
+          "key_points": "1. 定义：匀速直线运动三要素（速度恒定、轨迹直线、方向不变）\n2. 核心公式：v=v0+v*t；x=v0*t+(1/2)*a*t²（当v0=0时简化）\n3. 关键特征：位移与时间成正比（s/t=常数）\n4. 平均速度与瞬时速度关系：Δt趋近于0时Δx/Δt趋近于v\n5. 典型应用：斜面匀速运动、传送带问题、天体运动等\n6. 易错点：混淆速度矢量与速率标量概念",
+          "classroom_activity_design": "1. 实验探究：分组用打点计时器测量纸带物体运动，验证s-t图像斜率恒定\n2. 情境讨论：分析电梯匀速上升/下降时的加速度与速度关系\n3. 问题链设计：\n   - 基础题：计算已知位移求时间（s=60m,v=2m/s）\n   - 进阶题：判断汽车刹车过程中的运动阶段\n   - 挑战题：设计斜面传送带的受力分析模型\n4. 错题诊断：通过典型多选题解析（如：关于速度方向与位移方向关系）\n5. 拓展应用：结合航天器轨道运动案例，讨论匀速直线运动在太空航行中的特殊性"
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.41000000000000003,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_IP_00005_78e26ab6d183",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "以下选项中哪些是《红楼梦》中主要的女性角色？（请选择多个）",
+        "gold_answer": {
+          "guidance": "《红楼梦》中有许多重要的女性角色，她们在故事的发展中扮演着重要的角色。可以从贾府的主要人物开始考虑，包括贾母、王夫人等。接下来，想想故事的核心人物，以及她们与贾宝玉之间的关系，比如林黛玉和薛宝钗等。请回忆她们在书中出现的场景、对情节推进的重要性，以及她们的主要性格特点。选择那些能对整部小说产生影响的人物角色。"
+        },
+        "one_b_draft": "your draft answer",
+        "final_output": {
+          "hints": [
+            "提示应引导用户逐步思考，最终形成完整答案。",
+            "输出格式：",
+            "{",
+            "\"hints\": [",
+            "\"step_1：...\",",
+            "\"step_黛玉在小说中出现的频率和深度\",",
+            "\"step_2：...\",",
+            "\"step_...等等\"",
+            "]",
+            "}",
+            "注意：不要包含任何额外文本，仅输出 JSON。不要输出任何解释，仅输出 JSON。",
+            "```json",
+            "{",
+            "\"hints\": [",
+            "\"step_1：回忆《红楼梦》的主要情节和人物关系，确定哪些女性角色贯穿全书。\",",
+            "\"step_2：分析每个候选女性角色的戏份分布和重要性，如林黛玉、薛宝钗、王熙凤等。\",",
+            "step_3：考虑次要女性角色如史湘云、贾探春等，评估其在故事中的作用。\",",
+            "\"step_4：综合以上分析，筛选出最具代表性和主要性的女性角色。\"",
+            "]",
+            "}",
+            "[unused16] 好的，我现在需要处理用户的这个任务。用户希望我作为7B推理专家，负责高风险的教育推理与纠错任务。原始任务是关于《红楼梦》中主要女性角色的多选题，而1B草稿已经给出了一些提示，但需要我按照输出契约来改写并提升答案质量。",
+            "首先，我需要理解用户的具体要求。用户要求以推理专家的身份改写并提升答案质量，同时必须匹配特定的输出契约。输出需要是合法的JSON，键为hints，每个提示是分步骤的引导，避免直接给出答案，而是引导用户逐步思考。同时，不能包含任何额外文本，仅输出JSON。",
+            "接下来，我需要分析原始草稿中的hints。原来的hints有四个步骤，但可能不够详细或者结构不够清晰。比如，第一步是回忆主要情节和人物关系，第二步分析候选角色，第三步考虑次要角色，第四步综合筛选。这些步骤已经不错，但可能需要更具体的指导，以确保用户能够逐步深入思考。",
+            "然后，我要考虑如何优化这些步骤。可能需要将每个步骤分解得更细致，加入更多引导性的问题或思考方向。例如，在第一步，可以强调识别核心线索，如家族兴衰和情感主线。在第二步，可以具体提到关键角色如林黛玉、薛宝钗、王熙凤，并询问他们的戏份和关系。第三步可以引导用户思考次要角色如何推动情节或反映主题，比如史湘云、贾探春等。最后一步需要综合评估角色的影响力和象征意义，而不仅仅是筛选。",
+            "同时，要注意避免直接给出答案，而是通过提问或提示让用户自己推导出结论。例如，使用“如何评估”、“分析其作用”等措辞，而不是直接列出角色名字。此外，每个步骤应逐步深入，从整体到局部，再到综合分析，确保用户能够系统性地思考。",
+            "还需要检查是否符合输出格式要求，确保JSON结构正确，没有语法错误，并且每个hint都是字符串数组中的元素。另外，要确保没有遗漏任何契约中的要求，比如避免直接答案，只提供提示。",
+            "最后，验证改写后的hints是否有效引导用户逐步形成完整答案。例如，用户通过四个步骤，能够逐步回忆、分析、扩展和综合，最终确定主要女性角色，而不会直接得到答案。这样既满足了用户的需求，又符合高风险教育任务中的推理与纠错要求。",
+            "总结来说，我需要将原始hints进行细化和优化，增加引导性问题，确保每个步骤都促进深入思考，同时保持结构清晰，符合JSON格式要求。这样用户就能通过这些提示自己推导出答案，而不会直接看到结果，符合教育推理任务的设计目标。 [unused17] ```json",
+            "{",
+            "\"hints\": [",
+            "\"step_1：回忆《红楼梦》的核心叙事框架，思考哪些女性角色与贾、史、王、薛四大家族的兴衰紧密关联。\",",
+            "\"step_2：列举至少三位贯穿全书的女性角色，分析其与核心男性角色（如贾宝玉、贾母）的情感纽带及命运关联。\",",
+            "\"step_3：评估这些女性角色在关键情节中的决策影响力，例如王熙凤协理宁国府、黛玉葬花等经典场景。\",",
+            "\"step_4：对比次要女性角色（如袭人、晴雯）与主要角色的戏份分配，思考其对主题表达的辅助作用。\",",
+            "\"step_5：综合角色在诗词创作、社会关系网构建及象征意义（如木石前盟与金玉良缘）中的表现，判断其是否符合'主要'标准。\"",
+            "]",
+            "}",
+            "```"
+          ]
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 1.0,
+        "risk_score": 0.24000000000000002,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_Q&A_00053_4432d30be465",
+        "task_key": "Q&A",
+        "task_family": "answering",
+        "question": "以下哪一位是美国的第一任总统？",
+        "gold_answer": "乔治·华盛顿",
+        "one_b_draft": "草稿答案",
+        "final_output": {
+          "direct_answer": "乔治·华盛顿",
+          "short_explanation": "他领导美国独立战争并担任1789年首任总统。"
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 1.0,
+        "risk_score": 0.13,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "7B refinement was triggered because the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_AG_00008_a1d45330c4aa",
+        "task_key": "AG",
+        "task_family": "grading",
+        "question": "以下选项中，哪些是写作应用文时需要注意的事项？（多选）\nA. 语言要简洁明了\nB. 格式要符合规范\nC. 细节尽量多描述\nD. 一定要使用诗意的语言\nE. 主题要突出",
+        "gold_answer": {
+          "score": 3,
+          "score_detail": "学生选择了A、B、E三个选项。A、B、E都是写作应用文时需要注意的事项，因此正确答案为A、B、E。学生选择正确的选项，取得满分3分。",
+          "personalized_feedback": "你的选择很准确，显示出你对应用文写作的理解。但是，在应用文中，细节描述应该根据具体情况，尽量简洁，不需要过多冗余信息。这一点你理解的不错，可以继续保持这个思路。建议你在以后的练习中多关注应用文中的格式规范和主题突出，更好地掌握应用文的写作技巧。"
+        },
+        "one_b_draft": "- predicted_task_key: 字符串\n\n请按以下顺序输出:\npredicted_task_family: \ndraft_answer: \nconfidence_label: \nconfidence_score: \nformat_signals: \ntool_hint: \npredicted_task_key: \n\n### 示例:\n\n```json\n{\n  \"score\": 0.8,\n  \"evidence\": [\n    {\n      \"task\": \"writing\",\n      \"evidence\": \"A\"\n    }\n  ],\n  \"feedback\": \"A. 语言要简洁明了。\"\n}\n```\n\n```json\n{\n  \"predicted_task_family\": \"planning\",\n  \"predicted_task_key\": \"AG\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"教育任务自动评分\"\n}\n```\n\n```json\n{\n  \"score\": 1,\n  \"evidence\": [\n    {\n      \"task\": \"A\",\n      \"evidence\": \"A\"\n    }\n  ],\n  \"feedback\": \"A. 语言要简洁明了。\"\n}\n```\n\n```json\n{\n  \"predicted_task_family\": \"grading\",\n  \"predicted_task_key\": \"AG\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"教育任务自动评分\"\n}\n```\n\n```json\n{\n  \"predicted_task_family\": \"grading\",\n  \"predicted_task_key\": \"AG\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"教育任务自动评分\"\n}\n```\n\n```json\n{\n  \"predicted_task_family\": \"planning\",\n  \"predicted_task_key\": \"AG\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"教育任务自动评分\"\n}\n```\n\n```json\n{\n  \"predicted_task_family\": \"grading\",\n  \"predicted_task_key\": \"AG\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },",
+        "final_output": {
+          "score": 3,
+          "evidence": [
+            "正确选项分析：A（语言简洁性是应用文核心要求）、B（格式规范是专业性的基础）、E（主题突出决定文章有效性）",
+            "学生作答验证：学生准确选择了全部正确选项（A/B/E），未遗漏任何有效选项",
+            "错误选项排除：C（细节堆砌会降低应用文效率）、D（诗意语言与实用文体不符）未被选择符合写作规范"
+          ],
+          "feedback": {
+            "优势": [
+              "正确识别了应用文的核心要素（简洁性/格式/主题）",
+              "准确排除文学性干扰项（诗意语言）",
+              "对细节描述的实用性认知正确"
+            ],
+            "改进建议": [
+              "可补充说明格式规范的具体标准（如公文格式/书信结构等）",
+              "可增加对'主题突出'的判断方法示例",
+              "在排除C选项时提及应用文'精准性优先于细节丰富度'"
+            ]
+          }
+        },
+        "route_decision": "1b_to_7b:assessment",
+        "quality_value": 1.0,
+        "risk_score": 0.39000000000000007,
+        "risk_threshold": 0.35,
+        "specialist_name": "assessment",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_EC_00004_acd7946ba522",
+        "task_key": "EC",
+        "task_family": "correction",
+        "question": "以下选项中哪些是典型的中国古典文学作品？（多选题）\nA. 《红楼梦》\nB. 《哈利·波特》\nC. 《西游记》\nD. 《百年孤独》\nE. 《水浒传》",
+        "gold_answer": {
+          "corrected_answer": "A, C, E",
+          "correction_explanation": "《红楼梦》、《西游记》和《水浒传》都是中国古典文学的经典作品。而《哈利·波特》是现代英国小说，《百年孤独》是哥伦比亚作家加西亚·马尔克斯的作品，属于拉丁美洲文学。因此，选项B和D不属于中国古典文学作品，正确的答案应为A, C, E。"
+        },
+        "one_b_draft": "A, C, E",
+        "final_output": {
+          "error_list": [
+            {
+              "error_type": "incorrect_answer",
+              "message": "原答案错误地选择了《哈利·波特》(B)和《百年孤独》(D)，这两部作品分别属于英国魔幻现实主义和拉丁美洲文学，均非中国古典文学范畴。"
+            }
+          ],
+          "corrected_answer": "A, C, E",
+          "explanation": "中国古典文学作品需满足三个核心特征：中国本土创作、文言/古典白话文写作、反映封建社会历史。A《红楼梦》（18C）、C《西游记》（16C）、E《水浒传》（14C）均符合这些标准：\n- B《哈利·波特》为英国当代奇幻小说\n- D《百年孤独》属哥伦比亚魔幻现实主义文学\n错误分析显示原答案混淆了文学流派与地域特征，需通过作者国籍（曹雪芹/吴承恩/施耐庵）和创作年代（14-18世纪）进行准确区分。"
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 1.0,
+        "risk_score": 0.15000000000000002,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "7B refinement was triggered because the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_PCC_00013_bb038e39975e",
+        "task_key": "PCC",
+        "task_family": "planning",
+        "question": "{\n  \"姓名\": \"李明\",\n  \"学习习惯\": \"每天学习1小时，喜欢视觉化学习和实践题\",\n  \"学习目标\": \"希望在期末考试中达到优良（90分以上）\",\n  \"年级\": \"初二\",\n  \"当前能力水平\": \"中等\",\n  \"知识薄弱点\": [\n    \"几何\",\n    \"代数中的因式分解\"\n  ]\n}",
+        "gold_answer": {
+          "learning_path_planning": [
+            {
+              "阶段": 1,
+              "课程名称": "代数基础与应用",
+              "建议顺序": [
+                "了解代数概念",
+                "因式分解技巧",
+                "代数应用题训练"
+              ],
+              "预计时间": "4周"
+            },
+            {
+              "阶段": 2,
+              "课程名称": "几何图形与性质",
+              "建议顺序": [
+                "基本几何图形认知",
+                "几何性质与证明",
+                "综合几何问题练习"
+              ],
+              "预计时间": "6周"
+            },
+            {
+              "阶段": 3,
+              "课程名称": "综合训练与模拟考试",
+              "建议顺序": [
+                "综合练习题训练",
+                "模拟考试练习",
+                "错题解析与针对性训练"
+              ],
+              "预计时间": "2周"
+            }
+          ],
+          "personalized_recommendations": {
+            "练习题推荐": [
+              {
+                "内容": "因式分解初级练习题",
+                "难度": "中等",
+                "来源": "《初中代数练习册》"
+              },
+              {
+                "内容": "几何图形性质多选题",
+                "难度": "中等",
+                "来源": "《几何专项能力训练》"
+              }
+            ],
+            "阅读材料推荐": [
+              {
+                "标题": "几何与视觉化学习",
+                "作者": "数学教学杂志",
+                "链接": "/geometry-visual-learning"
+              },
+              {
+                "标题": "代数巧解法",
+                "作者": "数学研究干货",
+                "链接": "/algebra-efficient-methods"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "learning_path": [
+            {
+              "day": 1,
+              "topic": "几何基础强化",
+              "activities": [
+                "观看10分钟几何图形性质动画（推荐：Khan Academy几何入门）",
+                "完成5道基础几何图形面积计算题（使用方格纸辅助）",
+                "绘制三角形、四边形、五边形的结构图并标注关键属性"
+              ],
+              "assessment": "正确完成80%的基础题后进入第二天"
+            },
+            {
+              "day": 2,
+              "topic": "代数因式分解入门",
+              "activities": [
+                "观看因式分解分解公式动画演示（推荐：B站“一数”系列）",
+                "完成3道简单二项式因式分解题（如x²-9）",
+                "用彩色笔在草稿纸上画出因式分解过程示意图"
+              ],
+              "assessment": "掌握分解x²±a²类题型"
+            },
+            {
+              "day": 3,
+              "topic": "几何综合应用",
+              "activities": [
+                "完成2道几何证明题（使用图形辅助标注辅助线）",
+                "观看几何定理推导视频（推荐：GeoGebra动态演示）",
+                "制作几何公式卡片（正面写公式，背面写例题）"
+              ],
+              "assessment": "能独立完成1道综合证明题"
+            },
+            {
+              "day": 4,
+              "topic": "代数进阶分解",
+              "activities": [
+                "学习三项式因式分解技巧（分组分解法）",
+                "完成4道中等难度分解题（如x²+5x+6）",
+                "用思维导图整理不同分解方法（如提公因式、公式法）"
+              ],
+              "assessment": "正确率需达70%以上"
+            },
+            {
+              "day": 5,
+              "topic": "错题分析与强化",
+              "activities": [
+                "整理过去3次作业中的错误题目",
+                "用不同颜色标注错误原因（红色：概念错误，蓝色：计算错误）",
+                "针对薄弱点重做3道同类题"
+              ],
+              "assessment": "确保错题本更新完整"
+            },
+            {
+              "day": 6,
+              "topic": "综合应用训练",
+              "activities": [
+                "完成1道几何+代数综合题（如用代数法解几何问题）",
+                "观看综合题解题策略视频（推荐：YouTube“MathWithSteps”）",
+                "与同学组队进行15分钟解题挑战"
+              ],
+              "assessment": "能独立完成跨学科综合题"
+            },
+            {
+              "day": 7,
+              "topic": "模拟测试与复习",
+              "activities": [
+                "完成1套期末模拟卷（限时40分钟）",
+                "用红笔批改并分析得分点",
+                "制作知识图谱总结所有核心概念"
+              ],
+              "assessment": "模考成绩需达到85分以上"
+            }
+          ],
+          "personalized_suggestions": [
+            "建议每天使用彩色便签纸制作知识树：左侧贴几何图形，右侧写对应定理，中间画连接线",
+            "推荐使用GeoGebra软件动态演示几何变换（如旋转、对称），增强空间想象能力",
+            "建议准备'分解技巧'速查卡：将常用分解方法（如十字相乘法）写成卡片随身携带",
+            "每周日晚上花20分钟用思维导图复习本周内容，重点标注易混淆点",
+            "遇到难题时尝试'5分钟法则'：先独立思考5分钟，再查阅资料或提问",
+            "建议与学习伙伴组成学习小组，每周交换错题本并讲解易错点",
+            "推荐使用Anki记忆卡制作几何公式和分解公式，利用间隔重复强化记忆"
+          ]
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.30000000000000004,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_PLS_00017_bd6b8cf6ebe2",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"姓名\": \"李华\",\n  \"学习兴趣\": \"喜欢历史故事，特别是战争历史\",\n  \"学习目标\": \"提升对历史事件的细节记忆能力，增加对历史分析的兴趣\",\n  \"学习风格\": \"视觉学习者\",\n  \"年级\": \"高二\",\n  \"年龄\": 16,\n  \"当前学习水平\": \"中等，能够理解时代背景，但对于细节记忆稍显不足\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "阅读材料": [
+              {
+                "题目": "《第二次世界大战的关键战役》",
+                "类型": "图文并茂的历史读物"
+              },
+              {
+                "题目": "《历史背后的故事：探究战争的深层原因》",
+                "类型": "专题分析类读物"
+              }
+            ],
+            "练习题": [
+              {
+                "类型": "填空题",
+                "题目": "请描述诺曼底登陆的关键步骤，并指出为什么它是二战的转折点。"
+              },
+              {
+                "类型": "选择题",
+                "题目": "以下哪个因素不是导致二战爆发的原因？A. 经济不稳定 B. 地理因素 C. 政治动荡 D. 动物灭绝"
+              },
+              {
+                "类型": "短问答题",
+                "题目": "从个人视角分析二战对普通士兵的生活产生了怎样的影响？"
+              }
+            ],
+            "课下作业": "完成一份关于关键战役的视频剪辑，结合图片和自己对历史事件的理解进行创作，时长3分钟。",
+            "学习结果检测方式": {
+              "即时反馈": "通过课堂测试了解历史事件细节记忆的改善情况",
+              "长效评估": "观察其历史分析能力在期末考试中的表现，并进行口头历史事件复述测试"
+            }
+          }
+        },
+        "one_b_draft": "draft answer",
+        "final_output": {
+          "personalized_learning_content": "值为一个包含以下键的字典:\n- \"content\": 包含学习内容，用中文写。\n  -  [unused16] 好的，我现在需要帮李华制定一个学习计划，提升他对历史事件细节的记忆能力，同时增加他对历史分析的兴趣。首先，我得考虑他的背景：高二学生，视觉学习者，喜欢战争历史，当前水平中等，能理解时代背景但细节记忆不足。\n\n首先，结构方面，可能需要分阶段进行，从基础到应用，逐步深入。视觉学习者适合图表、思维导图、时间轴等工具，所以内容中要包含这些元素。然后，细节记忆方面，可能需要重复和联想记忆的方法，比如故事串联、关键词记忆。分析兴趣方面，可以加入讨论、案例分析和批判性思维的问题。\n\n接下来，学习目标分解。第一阶段是基础巩固，可能需要复习重要战役的时间地点人物，用时间轴和地图来可视化。第二阶段是细节强化，用思维导图和案例分析，比如诺曼底登陆的细节，结合视觉元素。第三阶段是综合应用，通过模拟辩论和创作，提升分析能力。\n\n然后，教学策略部分，要具体说明如何实施，比如每日任务、每周任务，使用哪些工具（Anki、XMind），以及评估方式，比如测验和作品展示。还要考虑李华的学习风格，视觉化内容如信息图、视频，可能更吸引他。\n\n需要确保内容实用，比如推荐具体的资源，如纪录片、书籍，以及练习方法，如闪卡和小组讨论。同时，保持语言简洁，结构清晰，符合JSON格式要求。最后检查是否符合输出契约，确保所有键都存在，内容用中文，结构正确。 [unused17] ```json\n{\n  \"personalized_learning_content\": {\n    \"content\": {\n      \"learning_strategy\": {\n        \"stage_1_foundationConsolidation\": {\n          \"objective\": \"建立核心事件时空框架\",\n          \"methods\": [\n            \"制作交互式时间轴：用不同颜色标注全球主要战役的起止时间（如诺曼底登陆1944年6月6日）\",\n            \"空间认知地图：在空白世界地图用贴纸标注关键战场位置（如斯大林格勒战役的莫斯科红场位置）\",\n            \"视觉闪卡制作：使用Canva制作包含关键人物肖像+3个核心数据的双面卡片（如隆美尔的装甲师数量、斯大林格勒战役冬季气温等）\"\n          ],\n          \"tool_recommendation\": \"Timeline JS（时间轴工具）、Google Earth（地理定位）、Anki（记忆卡片）\"\n        },\n        \"stage_2_detail_enrichment\": {\n          \"objective\": \"强化关键细节记忆\",\n          \"methods\": [\n            \"故事化记忆法：将战役进程改编为漫画分镜（如斯大林格勒战役可设计攻防战场景的连续分格）\",\n            \"细节对比表制作：创建战役前后对比表格（如阿拉曼战役前英国与德军补给线对比）\",\n            \"关键决策分析：用思维导图拆解战略转折点（如中途岛战役中美军破译密码的逻辑链）\"\n          ],\n          \"tool_recommendation\": \"Xmind（思维导图）、Padlet（协作白板）、军事历史纪录片（BBC《二战全彩画册》）\"\n        },\n        \"stage_3_analysis_application\": {\n          \"objective\": \"发展批判性思维\",\n          \"methods\": [\n            \"辩论模拟：分组讨论'如果斯大林格勒战役德军补给提前获得增援'等假设性问题\",\n            \"多视角日记：以战俘视角、平民视角、指挥官视角撰写同一战役的日记片段\",\n            \"历史证据链练习：从原始档案（如丘吉尔战时演讲）中提取关键论据\"\n          ],\n          \"tool_recommendation\": \"Kahoot!（实时测验）、Flipgrid（视频辩论）、美国大屠杀纪念馆数字档案\"\n        }\n      },\n      \"assessment_method\": {\n        \"formative_assessment\": [\n          \"每周细节测验（通过Quizlet测试关键数据记忆）\",\n          \"思维可视化评估（检查思维导图逻辑完整性）\",\n          \"课堂观察记录（分析学生在小组讨论中的观点深度）\"\n        ],\n      },\n      \"resource_list\": [\n        {\n          \"type\": \"视觉教材\",\n          \"items\": [\n            \"《World at War》3D立体书（重点标注战役剖面图）\",\n            \"National WWII Museum的360度战场复原影像\"\n          ]\n        },\n        {\n          \"type\": \"分析工具\",\n          \"items\": [\n            \"军事决策模拟器（Culminating Resources的战役推演程序）\",\n            \"历史证据分析工作表（包含原始文件扫描件）\"\n          ]\n        }\n      ],\n      \"motivationBoosters\": {\n        \"interaction\": [\n          \"历史谜题挑战（如通过战场照片线索推理战役信息）\",\n          \"虚拟博物馆探索（Google Arts & Culture的战争史特展）\",\n          \"军事史主题桌游（如《战争小镇》历史策略游戏）\"\n        ]\n      }\n    }\n  }\n}\n```"
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.35000000000000003,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_QG_00014_b7d292cf97dc",
+        "task_key": "QG",
+        "task_family": "generation",
+        "question": "勾股定理",
+        "gold_answer": {
+          "question": "在直角三角形中，已知两条直角边的长度分别为3和4，那么下列选项中正确的是哪些？（多选题）\nA. 斜边的长度为5\nB. 斜边的长度为7\nC. 斜边的平方为25\nD. 斜边的平方为49",
+          "guidance": "根据勾股定理，直角三角形的斜边的平方等于两条直角边的平方和。可以计算得到斜边的平方的值，再求斜边的长度。具体为：(3^2 + 4^2 = 斜边^2)，因此斜边的平方为9 + 16 = 25，取斜边长为√25。",
+          "answer": [
+            "A",
+            "C"
+          ]
+        },
+        "one_b_draft": "1. 在直角三角形中，两条直角边的平方和等于斜边的平方。2. 勾股定理的公式为 a² + b² = c²，其中a和b是直角边，c是斜边。3. 例如，一个直角边为3和4的三角形，斜边长度为5。4. 勾股定理可用于计算直角三角形的边长。",
+        "final_output": {
+          "generated_question": "在直角三角形中，如果直角边 a = 3 和 b = 4，斜边 c 的长度是多少？",
+          "answer": [
+            "B"
+          ],
+          "rationale": "题目解析与解释：根据勾股定理，直角三角形中两条直角边的平方和等于斜边的平方，即 a² + b² = c²。代入 a = 3 和 b = 4，计算得 3² + 4² = 9 + 16 = 25，因此 c = √25 = 5。选项 A (3) 和 C (9) 是常见错误，选项 D (15) 错误地将公式误解为乘法运算。选项 B (5) 是正确答案。"
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.31000000000000005,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_TMG_00037_4cde99f77f2f",
+        "task_key": "TMG",
+        "task_family": "generation",
+        "question": "化学物质的基本性质",
+        "gold_answer": {
+          "teaching_materials": {
+            "教学目标": {
+              "知识目标": "了解常见化学物质的基本性质，如颜色、气味、形态等。",
+              "能力目标": "能够通过观察和实验识别简单化学物质的基本性质。",
+              "情感目标": "激发学生对化学物质多样性的兴趣，提高科学观察能力。"
+            },
+            "重点难点": {
+              "教学重点": "识别和描述化学物质的基本物理性质。",
+              "教学难点": "理解化学物质性质之间的差异以及运用观察结果进行简单区分。"
+            },
+            "课堂活动设计": [
+              {
+                "活动名称": "化学物质观察实验",
+                "活动目标": "通过实验观察不同的化学物质，记录并讨论其基本性质。",
+                "活动步骤": [
+                  "准备各种常见的化学物质样本，如水、食盐、糖等。",
+                  "让学生分别观察每种物质的颜色、气味和形态，并记录在实验表格中。",
+                  "小组讨论观察结果，学生们交流对各物质特征的发现。",
+                  "教师引导总结实验中发现的共同特征和差异。"
+                ],
+                "预期结果": "学生能够明确辨认每种物质的基本性质，并理解观察记录的重要性。"
+              },
+              {
+                "活动名称": "性质猜谜游戏",
+                "活动目标": "通过游戏形式巩固对化学物质基本性质的认识。",
+                "活动步骤": [
+                  "教师准备不同物质的图片，并给出性质提示（颜色、气味、形态）。",
+                  "学生根据所给提示猜测图片中的物质是什么。",
+                  "讨论猜测理由，加深对各物质特性的理解。"
+                ],
+                "预期结果": "学生能积极参与游戏，展示其对化学物质性质的理解和记忆。"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "- predicted_task_family: reasoning | assessment | planning\n\n请按以下格式输出:\n```json\n{\n  \"objectives\": \"objectives\",\n  \"key_points\": \"key_points\",\n  \"classroom_activity_design\": \"classroom_activity_design\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": \"confidence_score\",\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"brief notes about the design\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n请按照上述格式输出你的答案。\n\n```json\n{\n  \"objectives\": \"determine the basic properties of substances, design activities to reinforce learning, and assess understanding through quizzes\",\n  \"key_points\": [\n    \"Identify common chemical substances and their properties\",\n    \"Explain the differences between substances\",\n    \"Apply knowledge to solve real-life scenarios\",\n    \"Evaluate understanding through quizzes\",\n    \"Encourage critical thinking through open-ended questions\"\n  ],\n  \"classroom_activity_design\": [\n    \"Use hands-on experiments with household items to demonstrate chemical properties\",\n    \"Create a science journal where students record observations and experiments\",\n    \"Organize a quiz game to test knowledge\",\n    \"Discuss real-life examples of chemical substances\",\n    \"Encourage students to create their own chemical reactions\"\n  ],\n  \"predicted_task_family\": \"reasoning | assessment | planning\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"The design includes objectives, key points, and activities that align with the expected output format.\"\n  },\n  \"tool_hint\": \"Use simple, safe materials for experiments and ensure activities are age-appropriate.\"\n}\n```\n\n```json\n{\n  \"objectives\": \"Develop foundational knowledge of chemical substances and their properties, assess understanding through quizzes, and reinforce learning through interactive activities.\",\n  \"key_points\": [\n    \"Understand the basic properties of common substances\",\n    \"Compare different substances based on their properties\",\n    \"Apply knowledge to solve practical problems\",\n    \"Evaluate understanding through quizzes\",\n    \"Encourage creativity in chemical experiments\"\n  ],\n  \"classroom_activity_design\": [\n    \"Use everyday items to demonstrate chemical changes (e.g., vinegar and baking soda)\",\n    \"Create a science fair",
+        "final_output": {
+          "objectives": [
+            "能够识别常见化学物质的基本物理性质与化学性质的区别",
+            "能够通过实验现象区分物质物理性质与化学性质的判定标准",
+            "理解化学物质性质与日常生活的关联性"
+          ],
+          "key_points": [
+            "物理性质：颜色、状态、气味、熔点沸点等可直接观测的特性",
+            "化学性质：可燃性、氧化性、酸碱性等需要通过化学变化才能表现的性质",
+            "水的性质示例：液态（物理）、电解生成氢氧（化学）",
+            "氧气性质：支持燃烧（化学）、无色无味（物理）",
+            "二氧化碳性质：能使澄清石灰水变浑浊（化学）、易溶于水（物理）"
+          ],
+          "classroom_activity_design": [
+            "导入环节（5分钟）：展示水、氧气瓶、小苏打溶液，提问：哪些特性能直接看到？哪些需要实验验证？",
+            "实验探究（15分钟）：",
+            "1. 物理性质观察：触摸不同温度的水、观察氧气瓶颜色、闻小苏打溶液气味",
+            "2. 化学性质验证：用蜡烛测试氧气可燃性，滴加醋观察二氧化碳与小苏打反应",
+            "小组讨论（10分钟）：列举生活中利用物质性质的实例（如灭火器原理、净水处理）",
+            "巩固练习（5分钟）：单选题测试（如：下列属于化学性质的是？A.水的颜色 B.铁生锈 C.冰的熔点 D.酒精气味）",
+            "总结（5分钟）：强调性质与用途的关系（如：氧气性质→呼吸支持燃烧→医疗急救）"
+          ]
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.41000000000000003,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_IP_00002_79a8a8299477",
+        "task_key": "IP",
+        "task_family": "guidance",
+        "question": "以下关于文章的主题句，哪几种说法是正确的？（多选）\nA. 主题句只可能在段首\nB. 主题句明确表达段落的中心思想\nC. 一个段落可以有多个主题句\nD. 有时候需要结合上下文理解主题句",
+        "gold_answer": {
+          "guidance": "首先可以考虑主题句的作用和位置。通常，主题句会在段落的开始或结尾明确表达段落的中心思想，但并不绝对。理解一段文字的主题句有时需要结合上下文来判断，因此在阅读文章时，可以看看其他句子是否也支持相同的观点，或者是否有其他位置的句子在关键时刻揭示主题思路。"
+        },
+        "one_b_draft": "- hints: 分步骤提示\n\n请仔细思考，然后输出你的答案。\n\n```json\n{\n  \"predicted_task_family\": \"reasoning\",\n  \"predicted_subject\": \"语文\",\n  \"draft_answer\": \"\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"请确保你的提示符合目标输出契约，特别是键名和格式要求。\"\n  },\n  \"tool_hint\": \"请分步骤生成提示，避免直接给出完整答案。\",\n  \"hints\": [\n    \"任务要求判断关于文章主题句的说法是否正确，因此需要理解主题句的定义和特点。\",\n    \"主题句通常出现在段落的开头，明确表达段落的中心思想。\",\n    \"一个段落通常只有一个主题句，但有时可能有多个主题句。\",\n    \"理解主题句需要结合上下文，因为主题句可能依赖于段落中的其他信息。\",\n    \"根据选项，需要逐一分析每个说法是否符合主题句的定义。\",\n    \"小学阶段的语文教育通常强调基础概念的理解，因此答案应基于基础教育知识。\"\n  ]\n}\n```",
+        "final_output": {
+          "hints": [
+            "提示应引导用户逐步思考，避免直接给出最终答案。",
+            "输出中不能包含任何除 JSON 以外的字符。",
+            "```json",
+            "{",
+            "\"step_1\": \"首先，仔细阅读题目要求，明确任务是判断关于主题句的几种说法哪些是正确的。\",",
+            "\"step_2\": \"接下来，回顾主题句的定义：主题句是段落的中心思想，通常位于段首，但并非绝对位置。\",",
+            "\"step_3\": \"分析选项A：主题句只可能在段首——错误，主题句位置可灵活，不一定在段首。\",",
+            "\"step_4\": \"分析选项B：主题句明确表达段落的中心思想——正确，这是主题句的核心功能。\",",
+            "step_5\": \"分析选项C：一个段落可以有多个主题句——通常段落有单一主题句，但有时可存在多个，需结合语境判断。\",",
+            "\"step_6\": \"分析选项D：有时候需要结合上下文理解主题句——正确，尤其在复杂段落中，主题句可能隐含或需推理。\",",
+            "\"step_7\": \"综合以上分析，确定正确选项。\"",
+            "}",
+            "```",
+            "```json",
+            "{",
+            "\"step_1\": \"首先，仔细阅读题目要求，明确任务是判断关于主题句的几种说法哪些是正确的。\",",
+            "\"step_2\": \"回顾主题句的定义：主题句是段落的中心思想，通常位于段首，但并非绝对位置。\",",
+            "\"step_7\": \"综合以上分析，确定正确选项。\"",
+            "}",
+            "```",
+            "```json",
+            "{",
+            "\"step_1\": \"首先，仔细阅读题目要求，明确任务是判断关于主题句的几种说法哪些是正确的。\",",
+            "\"step_2\": \"回顾主题句的定义：主题句是段落的中心思想，通常位于段首，但并非绝对位置。\",",
+            "\"step_3\": \"分析选项A：主题句只可能在段首——错误，主题句位置可灵活，不一定在段首。\",",
+            "\"step_4\": \"分析选项B：主题句明确表达段落的中心思想——正确，这是主题句的核心功能。\",",
+            "\"step_5\": \"分析选项C：一个段落可以有多个主题句——通常段落有单一主题句，但有时可存在多个，需结合语境判断。\",",
+            "\"step_6\": \"分析选项D：有时候需要结合上下文理解主题句——正确，尤其在复杂段落中，主题句可能隐含或需推理。\",",
+            "\"step_7\": \"综合以上分析，确定正确选项。\"",
+            "}",
+            "```",
+            "```json",
+            "{",
+            "\"step_1\": \"首先，仔细阅读题目要求，明确任务是判断关于主题句的几种说法哪些是正确的。\",",
+            "\"step_2\": \"回顾主题句的定义：主题句是段落的中心思想，通常位于段首，但并非绝对位置。\",",
+            "\"step_3\": \"分析选项A：主题句只可能在段首——错误，主题句位置可灵活，不一定在段首。\",",
+            "\"step_4\": \"分析选项B：主题句明确表达段落的中心思想——正确，这是主题句的核心功能。\",",
+            "\"step_6\": \"分析选项D：有时候需要结合上下文理解主题句——正确，尤其在复杂段落中，主题句可能隐含或需推理。\",",
+            "\"step_5\": \"分析选项C：一个段落可以有多个主题句——通常段落有单一主题句，但有时可存在多个，需结合语境判断。\",",
+            "\"step_7\": \"综合以上分析，确定正确选项。\"",
+            "}",
+            "```",
+            "```json",
+            "{",
+            "\"step_1\": \"首先，引导用户理解题目要求：多选题目，需判断每个选项描述是否符合主题句的实际情况。\",",
+            "\"step_2\": \"回顾主题句的基本概念：主题句是段落的中心思想，通常位于段首，但并非固定位置。\",",
+            "\"step_3\": \"分析选项A：主题句只可能在段首——不符合实际，主题句位置可变。\",",
+            "\"step_4\": \"分析选项B：主题句明确表达段落的中心思想——正确，这是主题句的基本特征。\",",
+            "\"step_7\": \"综合以上分析，确定正确选项。\"",
+            "}",
+            "```",
+            "```json",
+            "{",
+            "\"step_1\": \"首先，仔细阅读题目要求，明确任务是判断关于主题句的几种说法是正确的。\",",
+            "\"每个选项需独立分析，避免遗漏。\",",
+            "\"step_2\": \"回顾主题句的定义：主题句是段落的中心思想，通常位于段首，但并非绝对位置。\",",
+            "\"step_3\": \"分析选项A：主题句只可能在段首——错误，主题句位置可灵活，不一定在段首。\",",
+            "\"step_4\": \"分析选项B：主题句明确表达段落的中心思想——正确，这是主题句的核心功能。\",",
+            "\"step_5\": [unused16] 嗯，用户给了一个任务，需要判断关于主题句的四个选项中哪些是正确的。首先，我得仔细分析每个选项是否符合主题句的定义和特点。",
+            "首先看选项A：“主题句只可能在段首”。根据我所了解的，主题句虽然通常出现在段首，但并不是绝对的位置。有些段落可能会把主题句放在段中甚至段尾，尤其是在结构复杂的段落里。所以A应该是错误的。",
+            "然后是选项B：“主题句明确表达段落的中心思想”。这应该是正确的，因为主题句的作用就是概括段落的核心内容，让读者快速抓住重点。所以B正确。",
+            "选项C：“一个段落可以有多个主题句”。一般来说，一个段落有一个中心思想，所以通常只有一个主题句。不过，在某些情况下，比如复合段落或者分论点段落，可能会有多个主题句，但这种情况比较少见，需要结合上下文判断。所以C是否正确可能需要具体情况具体分析，但通常认为C是错误的，因为标准结构中段落主题句是单一的。",
+            "选项D：“有时候需要结合上下文理解主题句”。这个是对的，特别是当主题句不明显或者位置不固定时，需要上下文来辅助理解。比如主题句可能在段尾，或者被隐含在上下文中，这时候必须结合上下文才能准确把握。",
+            "现在需要检查用户提供的JSON结构是否符合要求。用户希望分步骤的推理提示，避免直接给出答案，而是引导用户自己分析每个选项。之前的草稿中，步骤可能有些混乱，比如步骤编号重复或者顺序不对。需要确保每个步骤都清晰，并且覆盖所有选项的分析。",
+            "比如，正确的步骤应该是先理解题目，回顾主题句定义，然后逐一分析每个选项，最后综合判断。用户提供的示例中，有的步骤编号跳号，比如step_5之后直接到step_7，这可能让读者困惑。应该保持连续的编号，确保逻辑连贯。",
+            "另外，需要确保每个步骤都引导用户思考，而不是直接给出结论。例如，在分析选项C时，应该说明通常情况和特殊情况，而不是直接说正确与否。这样用户能自己推断出结论。",
+            "最后，综合所有分析，正确的选项应该是B和D。但用户的问题是多选，所以需要确认是否还有其他正确选项。根据分析，C是否正确存在争议，但根据常规教学标准，通常认为段落只有一个主题句，所以C错误。因此正确选项是B和D。",
+            "现在需要将这些思考整理成符合要求的JSON格式，确保步骤正确，没有遗漏选项，并且引导用户逐步分析。 [unused17] ```json",
+            "{",
+            "\"step_1\": \"首先，明确题目要求：判断关于主题句的四个选项中哪些说法正确，需逐一分析每个选项的合理性。\",",
+            "\"step_2\": \"回顾主题句的核心特征：主题句是段落的中心思想，通常位于段首，但并非绝对位置；其功能是明确表达段落主旨。\",",
+            "\"step_3\": \"分析选项A：主题句只可能在段首——错误，主题句位置可灵活调整（如段中或段尾），此说法过于绝对。\",",
+            "\"step_4\": \"分析选项B：主题句明确表达段落的中心思想——正确，这是主题句的核心功能，符合定义。\",",
+            "\"step_5\": \"分析选项C：一个段落可以有多个主题句——通常段落有单一主题句，但复杂段落可能包含分论点主题句，需结合语境判断。\",",
+            "\"step_6\": \"分析选项D：有时候需要结合上下文理解主题句——正确，尤其在主题句隐含或位置不明确时，需通过上下文推理。\",",
+            "\"step_7\": \"综合以上分析，确定正确选项为B和D。\"",
+            "}",
+            "```"
+          ]
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 1.0,
+        "risk_score": 0.3400000000000001,
+        "risk_threshold": 0.45,
+        "specialist_name": "reasoning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_Q&A_00010_8f0e2df48351",
+        "task_key": "Q&A",
+        "task_family": "answering",
+        "question": "一个篮球比赛中，李丽得到了12分，小强得到了15分，小明得到了8分。三人总共得到了多少分？",
+        "gold_answer": "35分",
+        "one_b_draft": "- predicted_task_family: reasoning | assessment | planning\n\n请按以下格式输出:\n```json\n{\n  \"direct_answer\": \"draft_answer\",\n  \"short_explanation\": \"short_explanation\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"format_signals\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n请按以下格式输出:\n```json\n{\n  \"direct_answer\": \"draft_answer\",\n  \"short_explanation\": \"short_explanation\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"notes\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n请严格按照上述格式输出，不要添加其他内容。\n\n```json\n{\n  \"direct_answer\": \"draft_answer\",\n  \"short_explanation\": \"draft_answer\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"draft_answer: draft of answer\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n```json\n{\n  \"direct_answer\": \"predicted_task_family\",\n  \"short_explanation\": \"predicted_task_family\",\n  \"predicted_task_family\": \"reasoning | assessment | planning\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"draft_answer: draft of answer\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n```json\n{\n  \"direct_answer\": \"reasoning | assessment | planning\",\n  \"short_explanation\": \"reasoning | assessment | planning\",\n  \"predicted_task_family\": \"reasoning | assessment | planning\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"draft_answer: draft of answer\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n```json\n{\n  \"direct_answer\": \"",
+        "final_output": {
+          "direct_answer": "35分",
+          "short_explanation": "根据题目描述，李丽得分为12分，小强得分为15分，小明得分为8分。三人得分总和为12 + 15 + 8 = 35分。所有原始信息均被完整包含且计算过程符合数学逻辑。"
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 1.0,
+        "risk_score": 0.33000000000000007,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_AG_00037_668d09eaae90",
+        "task_key": "AG",
+        "task_family": "grading",
+        "question": "下面哪些物质是酸性物质？请选择所有正确选项。\nA. 醋\nB. 大蒜\nC. 柠檬汁\nD. 牛奶",
+        "gold_answer": {
+          "score": 2,
+          "score_detail": {
+            "A": "正确，醋是酸性物质。",
+            "B": "错误，大蒜通常不认为是酸性物质。",
+            "C": "正确，柠檬汁是酸性物质。",
+            "D": "错误，牛奶通常被认为是中性或微酸性，但不如醋或柠檬汁酸性明显。"
+          },
+          "personalized_feedback": "总体来说，你识别酸性物质的能力很好。你正确选择了醋和柠檬汁。请注意，大蒜一般不属于酸性物质，牛奶虽然可以是微酸性，但不会像醋或柠檬汁那样明显。你可以尝试更多了解日常生活中常见的酸性物质，以及它们在化学中的性质。"
+        },
+        "one_b_draft": "- predicted_task_family: string | \"assessment\" | \"planning\"\n\n请理解任务:\n学生需要判断哪些物质是酸性物质。醋和柠檬汁是常见的酸性物质，而大蒜和牛奶不是。学生给出了部分正确答案，但需要验证。\n\n已知任务信息中，task_family为\"grading\"，意味着这是一个评估任务。学生答案中，A和C是正确的，但D和B是错误的。需要评估学生的答案是否正确，并给出反馈。\n\n根据化学知识，酸性物质是指在水溶液中能释放出H+离子的物质。醋（乙酸）和柠檬汁（主要成分是柠檬酸）是酸性物质，而大蒜和牛奶是中性或碱性物质。\n\n预测答案:\n- draft_answer: [\"A\", \"C\"]\n- confidence_score: 0.9\n- format_signals: { \"contract_ok\": true, \"notes\": \"The draft answer contains the correct options A and C. However, the student may need to verify the chemical properties of the other options (B and D) to ensure accuracy.\" }\n- tool_hint: \"Chemical properties of common substances\"\n- predicted_task_family: \"grading\"\n\npredicted_task_family: \"grading\"\n\npredicted_subject: \"化学\"\n\ndraft_answer: [\"A\", \"C\"]\n\nconfidence_label: high\n\nconfidence_score: 0.9\n\nformat_signals: {\n  \"contract_ok\": true,\n  \"notes\": \"The draft answer contains the correct options A and C. However, the student may need to verify the chemical properties of the other options (B and D) to ensure accuracy.\"\n}\n\ntool_hint: \"Chemical properties of common substances\"\n\npredicted_task_family: \"grading\"\n\npredicted_subject: \"化学\"\n\ndraft_answer: [\"A\", \"C\"]\n\nconfidence_label: high\n\nconfidence_score: 0.9\n\nformat_signals: {\n  \"contract_ok\": true,\n  \"notes\": \"The draft answer contains the correct options A and C. However, the student may need to verify the chemical properties of the other options (B and D) to ensure accuracy.\"\n}\n\ntool_hint: \"Chemical properties of common substances\"\n\npredicted_task_family: \"grading\"\n\npredicted_subject: \"化学\"\n\ndraft_answer: [\"A\", \"C\"]\n\nconfidence_label: high\n\nconfidence_score: 0.9\n\nformat_signals: {\n  \"contract_ok\": true,\n  \"notes\": \"The draft answer contains the correct options A and C. However, the student may need to verify the chemical prop",
+        "final_output": {
+          "score": 2,
+          "evidence": [
+            {
+              "evidence_source": "学生答案",
+              "evidence_content": "学生选择了A和C。",
+              "conclusion": "正确"
+            },
+            {
+              "evidence_source": "化学知识",
+              "evidence_content": "醋是酸性物质，柠檬汁是酸性物质。",
+              "conclusion": "正确"
+            },
+            {
+              "evidence_source": "化学知识",
+              "evidence_content": "大蒜不是酸性物质，牛奶不是酸性物质。",
+              "conclusion": "正确"
+            }
+          ],
+          "feedback": {
+            "correct_rate": "2/4",
+            "scoring_criteria": [
+              "A: 正确",
+              "B: 错误",
+              "C: 正确",
+              "D: 错误"
+            ],
+            "summary": "学生正确识别了两个酸性物质（A和C），但未选择其他非酸性物质（B和D）。正确率50%。建议学生复习酸性物质定义及常见物质的化学性质。"
+          }
+        },
+        "route_decision": "1b_to_7b:assessment",
+        "quality_value": 1.0,
+        "risk_score": 0.64,
+        "risk_threshold": 0.35,
+        "specialist_name": "assessment",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B confidence was low. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_EC_00012_a66017f7ca5b",
+        "task_key": "EC",
+        "task_family": "correction",
+        "question": "如果一个直角三角形的两条直角边长分别是3和4，那么它的斜边长度是多少？",
+        "gold_answer": {
+          "corrected_answer": "5",
+          "correction_explanation": "这是一个典型的可以应用勾股定理（Pythagorean Theorem）的题目。勾股定理指出，对于一个直角三角形，斜边的平方等于两条直角边的平方和。因此，我们计算斜边时有: sqrt(3^2 + 4^2) = sqrt(9 + 16) = sqrt(25) = 5。所以斜边的正确长度应该是5，而不是5.5。"
+        },
+        "one_b_draft": 5,
+        "final_output": {
+          "error_list": [
+            {
+              "error": "原答案数值错误",
+              "category": [
+                "数学计算错误"
+              ]
+            }
+          ],
+          "corrected_answer": 5,
+          "explanation": "对于一个直角三角形，两条直角边分别为3和4，根据勾股定理（即直角三角形的斜边平方等于两直角边平方和），斜边长度为√(3² + 4²) = √(9 + 16) = √25 = 5。原答案5.5是错误的，可能源于计算错误或误解。"
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 1.0,
+        "risk_score": 0.35000000000000003,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_PCC_00016_63665de60aac",
+        "task_key": "PCC",
+        "task_family": "planning",
+        "question": "{\n  \"姓名\": \"李明\",\n  \"学习习惯\": \"习惯于通过刷题提高成绩，但仍需掌握概念和方法\",\n  \"学习目标\": \"提高高考数学成绩，提高推理能力\",\n  \"年级\": \"高一\",\n  \"数学水平\": \"中等\",\n  \"知识薄弱点\": [\n    \"数列\",\n    \"函数的应用\",\n    \"解题速度\"\n  ]\n}",
+        "gold_answer": {
+          "learning_path_planning": {
+            "课程安排顺序": [
+              "基本概念复习与巩固：集合与函数（强调函数概念）",
+              "重点突破：数列与递推公式，强化解题方法与技巧",
+              "专项练习：函数及其应用，深入讨论二次函数与反函数",
+              "锻炼思维：概率与统计，培养数据分析能力",
+              "模拟考试训练：提升解题速度与应试技巧"
+            ],
+            "每个阶段时间": {
+              "复习阶段": "2周",
+              "突破阶段": "2周",
+              "练习阶段": "3周",
+              "思维训练": "2周",
+              "模拟考试": "每月1次，进行持续"
+            }
+          },
+          "personalized_recommendations": {
+            "练习题推荐": [
+              "《五三高考数学》：选择题与填空题的刷题，重点是数列题型",
+              "函数专题训练：二次函数的基本运算及应用题",
+              "提升解题速度：历年高考真题专项训练"
+            ],
+            "推荐阅读材料": [
+              "《怎样解题：数学思维方法的艺术》",
+              "《高中数学同步提高》",
+              "教育类网站如：Coursera的高中数学专题课程"
+            ]
+          }
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": {
+          "learning_path": {
+            "目标": "通过系统性训练提升高考数学推理能力，重点突破数列与函数应用难点，实现成绩提升15%以上",
+            "阶段": [
+              {
+                "阶段": "基础巩固阶段（第1-2周）",
+                "阶段描述": "重建数列与函数知识框架，建立概念-例题-解题模板三位一体的知识体系",
+                "具体任务": [
+                  "数列：完成等差/等比数列通项公式20道变式题（每日5题）",
+                  "函数：掌握二次函数图像性质与参数关系（每日3道专题突破）",
+                  "速度训练：限时15分钟完成基础题型（每日10题）"
+                ]
+              },
+              {
+                "阶段": "解题技巧提升（第3-4周）",
+                "阶段描述": "培养多知识点融合的解题思维，建立错题分析机制",
+                "具体任务": [
+                  "数列函数综合题训练（每周2套综合卷）",
+                  "错题重做分析（每周日进行错题归因）",
+                  "思维导图构建（每周整理1个知识模块思维导图）"
+                ]
+              },
+              {
+                "阶段": "高考应用强化（第5-6周）",
+                "阶段描述": "全真模拟训练，培养应试策略与快速推理能力",
+                "具体任务": [
+                  "近5年高考真题限时训练（每周2套完整试卷）",
+                  "命题规律分析（每周总结高频考点）",
+                  "应急策略训练（针对卡壳问题的快速处理方案）"
+                ]
+              }
+            ]
+          },
+          "personalized_suggestions": [
+            "概念强化建议：每日课前10分钟使用费曼学习法讲解当日概念，通过教同学巩固理解",
+            "刷题策略：建立四色错题本（红-概念错误/蓝-计算错误/绿-技巧错误/黄-创新题型）",
+            "时间管理：采用番茄工作法（45分钟专注+5分钟数数列函数专项休息）",
+            "资源推荐：使用《高考数学重难点解析》+可汗学院函数专题课双轨学习",
+            "心理建设：设置每周小目标（如：突破3个薄弱题型），达成后进行知识图谱可视化奖励"
+          ]
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.30000000000000004,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_PLS_00001_548e82eef7c2",
+        "task_key": "PLS",
+        "task_family": "personalized_content",
+        "question": "{\n  \"兴趣爱好\": [\n    \"文学\",\n    \"历史\",\n    \"写作\"\n  ],\n  \"姓名\": \"李明\",\n  \"学习风格\": \"视觉型学习者\",\n  \"年级\": \"高二\",\n  \"目标\": \"提升语文写作能力，掌握古诗词鉴赏技巧\",\n  \"语文成绩\": \"中等偏上\"\n}",
+        "gold_answer": {
+          "personalized_learning_content": {
+            "阅读材料": [
+              {
+                "类型": "小说",
+                "书名": "《红楼梦》",
+                "任务": "分析主要人物性格与故事发展"
+              },
+              {
+                "类型": "诗词",
+                "书名": "《唐诗三百首》",
+                "任务": "每日品读一首，写出心得体会"
+              }
+            ],
+            "练习题": [
+              {
+                "类型": "作文题",
+                "题目": "以“青春”为主题写一篇1200字的议论文",
+                "要求": "使用至少三种修辞手法"
+              },
+              {
+                "类型": "古诗词鉴赏",
+                "题目": "赏析杜甫的《月夜忆舍弟》",
+                "要求": "从情感表达和诗词结构两个角度分析"
+              }
+            ],
+            "课下作业": {
+              "阅读笔记": "每周提交一次，记录阅读中的心得、疑问和学习的重点",
+              "写作练习": "每月一次主题写作练习，关注逻辑结构和语言运用"
+            },
+            "学习结果检测方式": {
+              "作文评价": "通过班级内部互评和老师评分双重评价体系进行",
+              "古诗词鉴赏能力评价": "阶段性测试与课堂互动结合"
+            }
+          }
+        },
+        "one_b_draft": "- predicted_task_type: 从给定的四个选项中选择\n- predicted_task_family: reasoning | assessment | planning\n- predicted_learning_target: 从给定的四个选项中选择\n- predicted_learning_target: 从给定的四个选项中选择\n- predicted_learning_target: 从给定的四个选项中选择\n- predicted_task_type: 从给定的四个选项中选择\n- predicted_task_family: reasoning | assessment | planning\n- predicted_learning_target: 从给定的四个选项中选择\n- predicted_learning_target: 从给定的四个选项中选择\n- predicted_learning_target: 从给定的四个选项中选择\n\n根据学生画像和已知任务信息，填写上述字段。\n\n### 输出 JSON\n\n```json\n{\n  \"predicted_task_family\": \"planning\",\n  \"predicted_subject\": \"语文\",\n  \"predicted_task_type\": \"personalized_learning\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_learning_target\": \"掌握古诗词鉴赏技巧\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_task_family\": \"planning\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_learning_target\": \"掌握古诗词鉴赏技巧\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_task_type\": \"personalized_learning\",\n  \"predicted_task_family\": \"planning\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_learning_target\": \"掌握古诗词鉴赏技巧\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_task_family\": \"planning\",\n  \"predicted_task_type\": \"personalized_learning\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_learning_target\": \"掌握古诗词鉴赏技巧\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_task_family\": \"planning\",\n  \"predicted_task_type\": \"personalized_learning\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_learning_target\": \"掌握古诗词鉴赏技巧\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_task_family\": \"planning\",\n  \"predicted_task_type\": \"personalized_learning\",\n  \"predicted_learning_target\": \"提升语文写作能力\",\n  \"predicted_learning_target\": \"掌握古诗词鉴赏技巧\",\n  \"predicted_learning",
+        "final_output": {
+          "personalized_learning_content": {
+            "student_profile": {
+              "name": "李明",
+              "grade": "高二",
+              "interests": [
+                "文学",
+                "历史",
+                "写作"
+              ],
+              "learning_style": "视觉型学习者",
+              "academic_level": "语文中等偏上",
+              "goals": [
+                "提升语文写作能力",
+                "掌握古诗词鉴赏技巧"
+              ]
+            },
+            "learning_strategy": {
+              "task_type": "personalized_learning",
+              "task_family": "planning",
+              "visual aids": [
+                "思维导图梳理写作结构",
+                "诗词意象视觉图谱",
+                "历史背景时间轴",
+                "写作技巧概念图"
+              ]
+            },
+            "content_plan": {
+              "phase_1": {
+                "focus": "写作能力提升",
+                "activities": [
+                  {
+                    "task": "视觉化写作训练",
+                    "method": "使用色彩标注写作提纲图",
+                    "resource": "文学大师作品结构分解图"
+                  },
+                  {
+                    "task": "历史题材微写作",
+                    "method": "结合历史事件时间轴创作短文",
+                    "resource": "重要历史事件视觉年表"
+                  }
+                ]
+              },
+              "phase_2": {
+                "focus": "古诗词鉴赏",
+                "activities": [
+                  {
+                    "task": "意象匹配游戏",
+                    "method": "将诗词片段与对应历史图像配对",
+                    "resource": "唐诗宋词意象库"
+                  },
+                  {
+                    "task": "情感色彩图谱分析",
+                    "method": "用不同颜色标注诗词情感变化",
+                    "resource": "诗词情感分析视觉模型"
+                  }
+                ]
+              }
+            },
+            "assessment": {
+              "visual_rubric": "写作结构可视化评分表",
+              "progress_tracking": "诗词鉴赏能力雷达图",
+              "feedback_system": "同伴互评视觉化报告"
+            },
+            "resource_library": {
+              "writing": [
+                "经典文学作品结构拆解图",
+                "高考作文思维导图模板",
+                "历史题材写作灵感墙"
+              ],
+              "poetry": [
+                "唐诗宋词意象对照表",
+                "诗词格律视觉记忆卡",
+                "历史背景诗词解读手册"
+              ]
+            },
+            "learning_boosters": [
+              "每周文学沙龙视觉分享会",
+              "历史与诗词主题手账制作",
+              "AI诗词意象生成器"
+            ]
+          }
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.44999999999999996,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B confidence was low. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_QG_00026_033c5fc31956",
+        "task_key": "QG",
+        "task_family": "generation",
+        "question": "词汇量扩展与记忆",
+        "gold_answer": {
+          "question": "以下哪些词可以用来描述一个人的性格特征？（多选题）\nA) Optimistic\nB) Cylinder\nC) Compassionate\nD) Fervent\nE) Geological\nF) Innovative",
+          "guidance": "考察学生对词汇的理解，尤其是能够描述性格特征的词汇。先识别每个词的词性和基本意思，然后判断其是否常用于形容人的性格。通常用来描述人的性格特征的词是形容词。",
+          "answer": [
+            "A) Optimistic",
+            "C) Compassionate",
+            "D) Fervent",
+            "F) Innovative"
+          ]
+        },
+        "one_b_draft": "draft answer",
+        "final_output": {
+          "generated_question": "Which of the following strategies are effective for expanding vocabulary and improving long-term retention in a high school ESL context?\nA) Repeating words immediately without review\nB) Using word roots and affixes to analyze word meanings\nC) Memorizing words in isolation without context\nD) Employing spaced repetition systems (SRS)",
+          "answer": [
+            "B",
+            "D"
+          ],
+          "rationale": "正确选项B通过词根词缀分析帮助学生理解词汇结构，建立关联记忆；选项D利用间隔重复技术（如Anki）强化长期记忆。错误选项A的机械重复缺乏间隔效应，选项C的孤立记忆忽略语境关联，均不符合科学记忆原则。"
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.31000000000000005,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check. The final saved output then passed the available offline quality check."
+      },
+      {
+        "sample_id": "zh_TMG_00039_754416a0a009",
+        "task_key": "TMG",
+        "task_family": "generation",
+        "question": "酸碱性物质的基本概念",
+        "gold_answer": {
+          "teaching_materials": {
+            "教学目标": [
+              "理解酸性物质和碱性物质的基本概念。",
+              "能够区分常见物质的酸碱性。",
+              "掌握简单的pH值判断方法。"
+            ],
+            "重点难点": {
+              "重点": "引导学生认识酸性和碱性物质的特点，并记忆常见的酸性和碱性物质。",
+              "难点": "理解pH值在酸碱性判断中的作用和其有效范围。"
+            },
+            "课堂活动设计": [
+              {
+                "活动名称": "酸碱物质观察实验",
+                "步骤": [
+                  "准备一些常见物质，如柠檬汁、肥皂水、食盐水等。",
+                  "让学生观察这些物质的颜色、闻气味，并尝试用pH试纸测试它们的pH值。",
+                  "记录结果并讨论哪些物质是酸性，哪些是碱性，并总结它们的特点。"
+                ],
+                "预期结果": "学生通过观察和试验能够对酸性和碱性有初步理解，尝试积极参与探索。"
+              },
+              {
+                "活动名称": "酸碱分类游戏",
+                "步骤": [
+                  "教师准备一组物质的卡片，上面标注常见生活用品及其酸碱性属性。",
+                  "让学生分成小组，并将这些卡片分类到‘酸性’或‘碱性’篮子中。",
+                  "进行分组讨论，讨论物质分类的正确性及其原因。"
+                ],
+                "预期结果": "学生能够正确分类物质的酸碱性，并在交流互动中巩固概念。"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "- predicted_task_family: reasoning | assessment | planning\n\n请理解任务要求，然后输出符合要求的 JSON 对象。\n\n```{\n  \"objectives\": \"简要描述任务目标\",\n  \"key_points\": \"关键知识点或任务要素\",\n  \"classroom_activity_design\": \"课堂活动设计\",\n  \"predicted_task_family\": \"推理、评估或规划\",\n  \"predicted_subject\": \"学科\",\n  \"confidence_label\": \"高 | 中 | 低\",\n  \"confidence_score\": 0.85,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"确保输出符合目标输出契约\"\n  },\n  \"tool_hint\": \"简短提示\"\n}\n```\n\n### 任务理解:\n- 任务类型：小学化学的简答题任务\n- 知识点：酸碱性物质的基本概念\n- 学制级别：小学\n- 题型：简答题\n\n### 输出契约：\n- 预测任务家族：推理、评估或规划\n- 预测学科：化学\n- 草稿答案：根据知识点和小学学段，简答题答案应简明扼要，适合小学生理解。\n- 置信度：高（因为知识点明确，小学学段适用）\n- 课堂活动设计：小学阶段可以结合生活实例，如区分酸、碱和中性物质。\n\n### 输出 JSON：\n```json\n{\n  \"objectives\": \"教授酸碱性物质的基本概念，包括酸、碱和中性物质的区别。\",\n  \"key_points\": \"1. 酸碱性物质的基本概念。2. 酸、碱和中性物质的区别。\",\n  \"classroom_activity_design\": \"通过生活实例（如柠檬酸、肥皂水）让学生区分酸、碱和中性物质。\",\n  \"predicted_task_family\": \"planning\",\n  \"predicted_subject\": \"化学\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.85,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"确保输出符合目标输出契约\"\n  },\n  \"tool_hint\": \"确保答案简明，课堂活动设计贴近小学生活经验。\"\n}\n```\n\n### 修正后的输出：\n```json\n{\n  \"objectives\": \"简要描述小学化学中酸碱性物质的基本概念，包括酸、碱和中性物质的区别。\",\n  \"key_points\": [\n    \"酸碱性物质的基本概念\",\n    \"酸、碱和中性物质的区别\"\n  ],\n  \"classroom_activity_design\": [",
+        "final_output": {
+          "objectives": [
+            "掌握酸与碱的定义及其基本性质",
+            "能够区分常见物质酸碱性并举例说明",
+            "培养科学探究中的观察与比较能力",
+            "激发对生活中化学现象的兴趣与科学探究意识"
+          ],
+          "key_points": [
+            "酸的定义：在水溶液中能释放H+离子的物质（如食醋、柠檬汁）",
+            "碱的定义：在水溶液中能释放OH-离子的物质（如肥皂水、纯碱）",
+            "酸碱性质：酸遇指示剂变红/蓝，碱遇指针对比呈碱性（酚酞/石蕊）",
+            "生活应用：酸用于制作肥料（醋酸），碱用于清洁（氢氧化钠）",
+            "酸碱中和反应：酸+碱→盐+水的基础概念"
+          ],
+          "classroom_activity_design": [
+            {
+              "环节": "导入（5分钟）",
+              "设计": "通过「猜谜游戏」引入：'尝不出味道却能让石头发黑的是？'（酸）'能让紫色石蕊试纸变蓝的是？'（碱）"
+            },
+            {
+              "环节": "概念讲解（10分钟）",
+              "设计": "使用「酸碱家族的聚会」比喻：酸像活泼的'小H爱好者'（强调H+释放），碱像'OH-小分队'（强调OH-释放），配合动画演示酸碱中和反应"
+            },
+            {
+              "环节": "实验探究（15分钟）",
+              "设计": "分组实验：用紫甘蓝汁作为天然指示剂，测试白醋（酸）、肥皂水（碱）、矿泉水（中性）的变色现象，记录颜色变化"
+            },
+            {
+              "环节": "生活应用讨论（10分钟）",
+              "设计": "情景讨论：'为什么醋能除水垢但肥皂能去油污？'引导学生联系酸碱性质分析生活现象"
+            },
+            {
+              "环节": "总结与作业（5分钟）",
+              "设计": "制作「酸碱物质身份证」：学生选择3种常见物品（如柠檬、洗衣粉、矿泉水），绘制其酸碱属性卡片"
+            }
+          ]
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 1.0,
+        "risk_score": 0.41000000000000003,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "7B refinement was triggered because the 1B draft failed the format check; the 1B draft length looked abnormal. The final saved output then passed the available offline quality check."
+      }
+    ],
+    "cascade_failure": [
+      {
+        "sample_id": "zh_Q&A_00012_c0fa11a2467d",
+        "task_key": "Q&A",
+        "task_family": "answering",
+        "question": "如果小明和小红一共摘了20个苹果，小明摘了7个苹果，小红摘了多少个苹果？",
+        "gold_answer": "小红摘了20 - 7 = 13个苹果。",
+        "one_b_draft": "draft answer",
+        "final_output": {
+          "direct_answer": {
+            "answer": 13,
+            "explanation": {
+              "problem_analysis": "题目要求计算小红摘的苹果数量，已知总苹果数和小明摘的数量。",
+              "step_1": "确认总苹果数为20个，小明摘了7个。",
+              "step_2": "用总苹果数减去小明摘的数量：20 - 7 = 13。"
+            }
+          },
+          "short_explanation": ""
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 0.0,
+        "risk_score": 0.28,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "The cascade route `1b_to_7b:reasoning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_EC_00028_e75e726c96b6",
+        "task_key": "EC",
+        "task_family": "correction",
+        "question": "一个物体以10米每秒的速度在平地上滚动，经过5秒钟后，滚动的距离是多少？",
+        "gold_answer": {
+          "corrected_answer": "这个物体滚动了50米。",
+          "correction_explanation": "物体的速度是10米每秒，所以在5秒钟内滚动的距离可以通过公式：距离 = 速度 × 时间 来计算。正确的计算应该是 10米/秒 × 5秒 = 50米。原答案中忽略了正确的计算步骤，因此需要修改。"
+        },
+        "one_b_draft": "- predicted_task_family: 同上\n- predicted_subject: 字符串\n- predicted_task_type: 同上\n- predicted_task_key: 同上\n- predicted_task_type: 同上\n- predicted_task_family: 同上\n\n请按照以下格式输出:\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"草稿答案\",\n  \"explanation\": \"草稿答案的解释\",\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"简短提示\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"predicted_task_type\": \"predicted_task_type\",\n  \"predicted_task_key\": \"predicted_task_key\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  }\n}\n```\n\n请按照以下格式输出:\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"草稿答案\",\n  \"explanation\": \"草稿答案的解释\",\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"简短提示\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"predicted_task_type\": \"predicted_task_type\",\n  \"predicted_task_key\": \"predicted_task_key\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  }\n}\n```\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"草稿答案\",\n  \"explanation\": \"草稿答案的解释\",\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  },\n  \"tool_hint\": \"简短提示\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"predicted_task_type\": \"predicted_task_type\",\n  \"predicted_task_key\": \"predicted_task_key\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"\"\n  }\n}\n```\n\n```json\n{\n  \"error_list\": [],\n  \"",
+        "final_output": {
+          "error_list": [
+            "计算错误：距离计算应为速度乘以时间（10 m/s × 5 s = 50 m），但原答案错误地计算为20米"
+          ],
+          "corrected_answer": "50米",
+          "explanation": null
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 0.0,
+        "risk_score": 0.7500000000000001,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "The cascade route `1b_to_7b:reasoning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_PCC_00026_f91d63a5b53c",
+        "task_key": "PCC",
+        "task_family": "planning",
+        "question": "{\n  \"姓名\": \"李华\",\n  \"学习习惯\": \"偏好视觉化学习，习惯通过视频和图示理解概念，学习时间较为灵活但对计划执行能力强\",\n  \"学习目标\": \"能够熟练应用基本物理公式解决问题并提升实验设计与数据分析能力\",\n  \"年级\": \"初二\",\n  \"当前能力水平\": \"物理基础知识掌握较好，公式的应用能力一般，实验设计和数据分析能力较弱\",\n  \"知识薄弱点\": \"实验设计和数据分析，尤其在处理实验数据并得出结论方面存在困难\"\n}",
+        "gold_answer": {
+          "learning_path_planning": [
+            "首先复习初中物理基本概念，如力、能量、运动等，确保对核心概念的理解。",
+            "接着深入学习公式的应用，通过题目训练来提升公式运用能力。",
+            "安排一些简单实验观察，学习实验设计的基本步骤和注意事项。",
+            "进行数据分析学习，推荐使用图表工具（如Excel）进行基本数据处理和分析。",
+            "逐步增加实验复杂度，最终能够独立设计实验并分析数据得出结论。"
+          ],
+          "personalized_recommendations": {
+            "推荐阅读材料": [
+              "《物理基础知识》初二教材",
+              "《新编初中物理实验指导书》，可帮助理解实验设计",
+              "观看物理教学视频网站的动力与能量部分，特别关注视频演示的实验操作和数据分析"
+            ],
+            "推荐练习题": [
+              {
+                "题目": "一个物体在水平面上以70N的力拉动产生加速度，请计算运动的加速度并讨论影响因素。",
+                "难度": "适中",
+                "目的": "帮助掌握力与加速度之间的关系"
+              },
+              {
+                "题目": "设计一个简单的实验来验证牛顿第二定律，并记录实验数据。分析数据后得出结论。",
+                "难度": "中等",
+                "目的": "提升实验设计能力与数据分析能力"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "- predicted_task_key: 推理 | 评估 | 规划 | 行动 | 反思 | 诊断 | 学习 | 评估 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 | 个性化 |",
+        "final_output": "其中 learning_path 应包含以下键： [unused16] 好的，我现在需要处理用户提供的这个任务，补足结构、细节和教学实用性，输出符合要求的JSON。首先，我得仔细理解用户的需求。用户给了一个学生李华的详细画像，包括他的年级、能力水平、学习目标、薄弱点和学习习惯。然后用户提供了一个1B草稿，里面有很多重复的“个性化”键，看起来可能是一个未完成的框架，需要我补足。\n\n首先，我需要明确用户的具体要求。用户希望我作为7B规划专家，根据学生的情况，完善学习路径，并提供个性化的建议。输出必须是JSON格式，包含learning_path和personalized_suggestions两个键。learning_path需要包含指定的键，而personalized_suggestions需要包含针对学生薄弱点和学习习惯的建议。\n\n接下来，我需要分析李华的情况。他目前物理基础知识较好，但公式应用和实验设计、数据分析较弱。学习目标是要熟练应用公式并提升实验设计和数据分析能力。薄弱点是实验设计和数据分析，尤其是处理数据并得出结论。学习习惯是视觉化学习，喜欢视频和图示，学习时间灵活但计划执行能力强。\n\n现在看1B草稿，里面的learning_path部分有很多重复的键，比如多次出现“个性化”，这可能是个错误，需要整理。根据用户提供的输出契约，learning_path应该包含：推理、评估、规划、行动、反思、诊断、学习、评估、个性化、资源推荐、进度跟踪、反馈循环、可视化工具、协作学习、元认知策略、长期目标对齐、技术整合、情感支持、文化适应、健康平衡、扩展挑战、跨学科联系、家长沟通。这些键都需要在最终的JSON中体现。\n\n首先，我需要构建learning_path的结构，确保每个键都有对应的内容，并且内容符合李华的学习需求。例如，在“诊断”部分，需要针对他的薄弱点，设计实验设计和数据分析的诊断任务。在“个性化”部分，可能需要分阶段的学习计划，结合他的学习习惯，比如视觉化工具和灵活的学习时间。\n\n然后，personalized_suggestions需要具体建议，比如推荐使用哪些工具、资源，如何结合他的学习习惯，如何安排学习计划，以及如何提供反馈和调整策略。例如，建议使用PhET模拟实验，或者使用图表工具来帮助数据分析，同时安排每周的实验设计练习，并利用视频资源进行学习。\n\n需要注意的是，用户提供的1B草稿中的键有很多重复的“个性化”，这可能是在草稿中未正确整理的部分，我需要将其整合到正确的键下，比如将个性化学习计划放在“个性化学习计划”中，资源推荐放在“资源推荐”里，等等。\n\n另外，用户可能希望学习路径中的每个键都有具体的内容，而不仅仅是键名。例如，“推理”部分可能需要设计一些推理问题，帮助学生应用公式解决实际问题；“评估”部分可能需要设计自我评估表或同伴互评等。\n\n在处理过程中，我需要确保每个部分都针对李华的具体情况，比如他的薄弱点和学习习惯。例如，在“可视化工具”中推荐使用图表和模拟软件，符合他视觉化学习的习惯；在“协作学习”中建议小组合作，利用他的计划执行能力。\n\n可能遇到的挑战是确保所有键都有合适的内容，并且内容之间连贯，符合逻辑。需要逐一检查每个键，确保没有遗漏，并且每个部分都针对学生的具体情况。同时，要避免重复，比如在“个性化学习计划”和“资源推荐”中不要重复推荐相同的资源。\n\n最后，需要确保输出的JSON格式正确，键名正确，没有语法错误，并且内容符合用户的要求。可能需要多次检查，确保每个部分都正确无误，并且教学实用性高，能够帮助李华提升实验设计和数据分析能力。 [unused17] ```json\n{\n  \"learning_path\": {\n    \"推理\": {\n      \"目标\": \"通过逻辑推导强化公式应用场景的理解\",\n      \"活动示例\": [\n        \"设计阶梯式问题链：从已知公式推导未知量关系（如通过自由落体公式推导重力加速度）\",\n        \"可视化思维导图：用流程图展示公式间的逻辑关联\"\n      ]\n    },\n    \"评估\": {\n      \"诊断工具\": [\n        \"实验设计自评量表（包含假设验证、变量控制等维度）\",\n        \"数据分析能力测试（含图表解读、误差分析等模块）\"\n      ],\n      \"反馈机制\": \"每周进行15分钟同伴互评工作坊\"\n    },\n    \"规划\": {\n      \"阶段划分\": [\n        {\n          \"阶段\": \"基础巩固期（2周）\",\n          \"重点\": \"掌握3-5个核心实验模板\",\n          \"成果物\": \"实验设计检查清单\"\n        },\n        {\n          \"阶段\": \"综合应用期（3周）\",\n          \"重点\": \"跨章节问题解决\",\n          \"成果物\": \"实验报告模板（含数据分析模板）\"\n        }\n      ]\n    },\n    \"行动\": {\n      \"实验设计工具箱\": [\n        \"变量控制训练：提供常见错误案例库\",\n        \"数据可视化模板：包含箱线图、散点图等基础图表\"\n      ],\n      \"数据分析训练\": \"使用Python/Jupyter进行基础统计分析（配备教师指导手册）\"\n    },\n    \"反思\": {\n      \"结构化日志\": [\n        \"实验设计日志（记录迭代过程）\",\n        \"数据解读日记（使用双栏格式：数据vs结论）\"\n      ],\n      \"元认知检查\": \"每周进行5分钟学习策略回顾\"\n    },\n    \"诊断\": {\n      \"能力雷达图\": \"初始评估与月度对比分析\",\n      \"错误类型分析\": \"建立常见错误数据库（含解决方案）\"\n    },\n    \"学习\": {\n      \"个性化学习计划\": [\n        {\n          \"模块\": \"公式应用\",\n          \"资源\": \"PhET交互式仿真实验\",\n          \"时间分配\": \"每周3次，每次20分钟\"\n        },\n        {\n          \"模块\": \"实验设计\",\n          \"资源\": \"Khan Academy实验设计课程\",\n          \"时间分配\": \"每周2次，含视频学习+实践\"\n        }\n      ]\n    },\n    \"评估\": {\n      \"形成性评估\": \"实验设计过程性评分表\",\n      \"总结性评估\": \"模拟物理竞赛式项目考核\"\n    },\n    \"个性化\": {\n      \"学习风格适配\": [\n        \"视频讲解与图文指南双版本材料\",\n        \"可调节难度实验设计任务包\"\n      ],\n      \"时间管理方案\": \"弹性时间块规划模板（含缓冲时间建议）\"\n    },\n    \"资源推荐\": {\n      \"可视化工具\": [\n        \"GeoGebra物理模拟平台\",\n        \"Excel数据可视化插件\"\n      ],\n      \"进阶资源\": \"《物理实验设计思维》电子书（章节试读版）\"\n    },\n    \"进度跟踪\": {\n      \"里程碑系统\": [\n        {\n          \"节点\": \"完成5个基础实验模板\",\n          \"奖励\": \"解锁专家级实验设计指南\"\n        }\n      ],\n      \"自适应调整\": \"基于周测结果动态调整后续任务难度\"\n    },\n    \"反馈循环\": {\n      \"即时反馈\": \"使用语音助手进行实验步骤校验\",\n      \"长期反馈\": \"每月与教师进行15分钟学习复盘\"\n    },\n    \"可视化工具\": {\n      \"概念图工具\": \"Miro协作白板模板\",\n      \"数据可视化\": \"自动生成图表的Excel宏工具\"\n    },\n    \"协作学习\": {\n      \"小组角色分配\": \"实验记录员/数据分析员/报告撰写员轮岗制\",\n      \"数字协作平台\": \"使用Padlet进行实验思路共享\"\n    },\n    \"元认知策略\": {\n      \"学习日志模板\": \"包含目标设定-过程记录-效果评估三栏表\",\n      \"策略库\": \"常见错误应对锦囊（含具体场景解决方案）\"\n    },\n    \"长期目标对齐\": {\n      \"能力发展矩阵\": \"将实验设计能力分解为可观测指标\",\n      \"升学衔接\": \"展示优秀实验设计案例（符合中考/会考要求）\"\n    },\n    \"技术整合\": {\n      \"AI辅助工具\": \"使用ChatGPT进行实验报告初稿生成\",\n      \"AR实验模拟\": \"通过AR眼镜进行虚拟实验操作训练\"\n    },\n    \"情感支持\": {\n      \"成长型语言框架\": \"错误分析时使用'尚未掌握'替代'不会'等表述\",\n      \"成就系统\": \"实验成功徽章体系（含3D立体奖状模板）\"\n    },\n    \"文化适应\": {\n      \"本土化案例\": \"结合本地教材的实验设计案例库\",\n      \"家庭实验项目\": \"低成本实验材料创意指南\"\n    },\n    \"健康平衡\": {\n      \"专注力管理\": \"番茄工作法改良版（物理学习专用模板）\",\n      \"运动间隔建议\": \"每45分钟学习插入5分钟肢体运动\"\n    },\n    \"扩展挑战\": {\n      \"创新实验设计\": \"提供开放性实验任务卡\",\n      \"跨学科项目\": \"物理+编程结合的智能实验设计\"\n    },\n    \"跨学科联系\": {\n      \"数学关联\": \"实验数据与函数图像的对应关系分析\",\n      \"工程思维\": \"实验装置设计中的结构优化训练\"\n    },\n    \"家长沟通\": {\n      \"家长指南\": \"家庭实验室建设建议（含安全注意事项）\",\n      \"成果展示\": \"月度学习报告可视化生成器\"\n    }\n  },\n  \"personalized_suggestions\": [\n    {\n      \"薄弱环节\": \"实验数据处理\",\n      \"干预策略\": [\n        \"使用预设的Excel数据模板（含自动图表生成功能）\",\n        \"每周进行'数据侦探'游戏（隐藏错误数据进行查找）\"\n      ]\n    },\n    {\n      \"薄弱环节\": \"结论推",
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 0.0,
+        "risk_score": 0.65,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "The cascade route `1b_to_7b:planning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_QG_00052_52a9f9261db4",
+        "task_key": "QG",
+        "task_family": "generation",
+        "question": "基因与遗传",
+        "gold_answer": {
+          "question": "下列关于DNA分子的陈述哪个是正确的？",
+          "guidance": "审题时需要注意DNA分子的结构特点。首先，DNA分子是双螺旋结构，由两条相互平行且反向的链组成。其次，DNA分子中的碱基配对遵循碱基互补原则，即由A（腺嘌呤）与T（胸腺嘧啶），C（胞嘧啶）与G（鸟嘌呤）配对。DNA中包含的是脱氧核糖而不是核糖。所以注意选择与这些特点相符的描述。",
+          "answer": "A. DNA分子由两条反向平行的脱氧核糖核苷酸链组成。"
+        },
+        "one_b_draft": "draft_answer",
+        "final_output": "注意：answer 为单选题，需用字符串形式，且必须包含在方括号中。\nrationale  [unused16] 首先，用户提供了一个任务：我需要作为1B规划专家，负责学习规划、内容生成与教学设计。任务是补足一个单选题的草稿，输出一个可靠的最终答案。\n\n原始任务信息：\n- 学科：生物\n- 学制级别：高中\n- 题型：单选题\n- 知识点：基因与遗传\n\n草稿是：1B draft_answer\n\n我需要输出一个合法的JSON，键为：generated_question（问题）、answer（答案）、rationale（理由）。答案必须是单选题，用字符串形式，包含在方括号中。\n\n首先，我需要理解“1B draft_answer”是什么意思。用户说“1B 草稿”，意思是“1B draft”，所以我需要基于这个草稿补足结构、细节和教学实用性。但草稿内容没有提供。用户说“原始任务”部分有“1B 草稿”，但它是空的。可能“1B draft_answer”是草稿的标题或占位符。\n\n回顾用户输入：\n\"1B 草稿:\ndraft_answer\"\n\n这可能意味着草稿是“draft_answer”，但内容缺失。用户说“补足结构、细节与教学实用性”，所以我需要创建完整的单选题。\n\n知识点是“基因与遗传”，学制是高中，所以问题应该围绕高中生物的基因与遗传主题。\n\n作为1B规划专家，我需要生成一个单选题。输出必须是JSON格式：\n{\n  \"generated_question\": \"问题字符串\",\n  \"answer\": \"[答案字符串]\",\n  \"rationale\": \"理由字符串\"\n}\n\n答案必须是单选题，所以只有一个正确选项。\n\n现在，我需要创建一个问题。既然是基因与遗传，我可以想一些常见的高中生物问题。例如，关于孟德尔遗传、基因突变、遗传疾病等。\n\n让我 brainstorm 一些问题：\n- 关于显性和隐性性状。\n- 关于等位基因。\n- 关于 Punnett 方格。\n- 关于基因突变的类型。\n\n确保它是单选题，所以只有一个正确选项。\n\n结构问题：\n- 问题应该清晰、简洁。\n- 选项应该有四个，其中一个是正确的。\n- 选项用字母列出，如A, B, C, D。\n\n在JSON中，generated_question 应该包含整个问题，包括选项。\n\nrationale 应该解释为什么选择那个答案。\n\n例如：\ngenerated_question: \"问题文本\"\nanswer: \"[A]\"\nrationale: \"解释\"\n\nanswer 必须是字符串，包含在方括号中，如[\"A\"]，但用户说“answer 为单选题，需用字符串形式，且必须包含在方括号中。” 所以可能是像 [\"A\"] 这样的字符串。\n\n用户说：“answer 为单选题，需用字符串形式，且必须包含在方括号中。” 所以 answer 应该是一个字符串，比如 \"A\" 或 [\"A\"]。但既然是单选题，可能是一个字母。\n\n在JSON中，它可以是字符串 \"A\"。\n\n但用户说“包含在方括号中”，所以可能是 \"A\" 或 [\"A\"]。我认为 \"A\" 就可以了，但为了安全，我会使用字符串如 \"A\"。\n\n现在，创建问题。\n\n主题：基因与遗传。\n\n问题：关于孟德尔遗传定律。\n\n例如：\n问题：在完全显性遗传中，如果父母双方都携带一个隐性等位基因，他们的孩子有50%的机会表现出显性性状。这个说法正确吗？\n\n选项：\nA. 正确\nB. 错误\nC. 部分正确\nD. 不确定\n\n正确答案：B. 错误，因为如果父母双方都携带隐性等位基因，孩子有25%的机会表现显性，50%隐性，50%隐性（假设杂合子）。\n\n更准确：如果父母都是杂合子（Aa），孩子有25% AA（显性），50% Aa（携带者），25% aa（隐性），所以表现显性的概率是50%（AA 和 Aa），但问题说“表现出显性性状”，所以是50%。\n\n问题说“有50%的机会表现出显性性状”，这是正确的。\n\n所以，如果我说错误，那就不对。\n\n更好选择一个标准问题。\n\n另一个问题：关于基因突变。\n\n例如：基因突变可以发生在哪个DNA分子上？\n\n选项：\nA. 核糖体RNA\nB. DNA\nC. mRNA\nD. tRNA\n\n正确答案：B. DNA\n\nrationale：基因突变通常指DNA序列的改变。\n\n是的。\n\n或者关于等位基因。\n\n问题：在人类遗传中，ABO血型系统是由哪个基因控制的？\n\n选项：\nA. HLA基因\nB. ABO基因\nC. CFTR基因\nD. TP53基因\n\n正确答案：B. ABO基因\n\n但ABO是由多个等位基因控制，但通常说ABO基因。\n\n更准确：ABO血型由三个基因决定，但选项可以简化。\n\n现在，我需要输出JSON。\n\n首先，定义问题。\n\ngenerated_question: 应该是一个字符串，包含问题、选项和指令。\n\n例如：\"以下哪项描述了基因突变的正确特征？\\nA. 基因突变发生在DNA序列的随机改变\\nB. 基因突变只影响表型\\nC. 基因突变通常对生物有害\\nD. 基因突变不能遗传给后代\"\n\nanswer: \"[B]\"\nrationale: \"基因突变是DNA序列的随机改变，可以遗传给后代，并且不总是影响表型。\"\n\nanswer 应该是字符串，所以 \"B\" 或 [\"B\"]？用户说“需用字符串形式”，所以可能是 \"B\"。\n\n在JSON中，它可以是字符串。\n\n现在，确保教学实用性：问题应该有助于学习，理由解释正确选项。\n\n作为1B规划专家，我需要补足草稿，但草稿是空的，所以我从零创建。\n\n用户说“补足结构、细节与教学实用性”，所以我应该使问题详细且教育性。\n\n最终输出必须是JSON。\n\n结构：\n{\n  \"generated_question\": \"完整的问题字符串\",\n  \"answer\": \"正确选项字母字符串\",\n  \"rationale\": \"解释字符串\"\n}\n\n例如：\n{\n  \"generated_question\": \"在基因显隐性关系中，如果父母双方都是杂合子，孩子表现显性性状的概率是多少？\\nA. 25%\\nB. 50%\\nC. 75%\\nD. 100%\",\n  \"answer\": \"B\",\n  \"rationale\": \"当父母双方都是杂合子（如Aa），孩子有50%的机会表现显性性状（AA或Aa），25%隐性（aa）。\"\n}\n\nanswer 是 \"B\"，但用户说“必须包含在方括号中”，所以可能是 \"[B]\"。\n\n用户说：“answer 为单选题，需用字符串形式，且必须包含在方括号中。” 所以应该是 \" [B] \" 或类似。\n\n在JSON中，它可以是 \" [B] \"。\n\n类似地，在例子中，我用了 \"B\"，但为了安全，我会用 \" [B] \"。\n\n现在，选择一个问题。\n\n让我正式定义。\n\n问题：关于基因与遗传的常见高中问题。\n\n问题：在人类遗传学中，常染色体显性遗传的特征是什么？\n\n选项：\nA. 只有男性表现\nB. 父母双方必须携带显性等位基因\nC. 女性总是表现\nD. 显性等位基因在所有细胞中表达\n\n正确答案：B. 父母双方必须携带显性等位基因\n\nrationale: 常染色体显性遗传意味着只要有一个显性等位基因，个体就会表现显性性状，父母双方都必须有至少一个显性等位基因才能传递。\n\n但选项B说“父母双方必须携带显性等位基因”，这正确，因为如果一方是纯合隐性，可能不传递。\n\n在常染色体显性遗传中，父母双方可以是携带者（杂合子），但一方可以是纯合显性。\n\n但“必须携带”可能不准确，因为纯合显性父母不“携带”隐性，但携带显性等位基因。\n\n选项B: \"父母双方必须携带显性等位基因\" – 携带显性等位基因，意思是他们有显性等位基因。\n\n在遗传中，携带者通常指杂合子，但这里说“携带显性等位基因”，所以是合理的。\n\n更好的选项：或许说“显性等位基因在杂合子中表达”。\n\n问题：以下哪项描述了常染色体显性遗传的特征？\n\nA. 仅在X染色体上\nB. 需要两个等位基因\nC. 父母双方必须携带显性等位基因\nD. 不影响后代表型\n\nC是正确。\n\n但D也部分正确，但C更直接。\n\n另一个问题：关于基因突变。\n\n问题：基因突变最可能发生在什么时期？\n\n选项：\nA. 细胞分裂后\nB. DNA复制期间\nC. 细胞分裂间期\nD. 细胞分裂期\n\n正确答案：B. DNA复制期间或C. 细胞分裂间期？DNA复制发生在间期。\n\n细胞分裂间期是G1和S期，DNA复制在S期。\n\n选项C是“细胞分裂间期”，这包括G1、S、G2。\n\nB是“DNA复制期间”，但期间是S期。\n\n通常说在间期。\n\n但选项B说“DNA复制期间”，C说“细胞分裂间期”，两者都合理，但间期更广。\n\n标准答案：基因突变通常在DNA复制期间发生，所以B。\n\n但C是“细胞分裂间期”，包括G1和G2，DNA复制只在S期。\n\n所以B更精确。\n\n或许选择B。\n\nrationale: DNA复制期间DNA",
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 0.0,
+        "risk_score": 0.7100000000000001,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "The cascade route `1b_to_7b:planning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_AG_00019_df6e6771792a",
+        "task_key": "AG",
+        "task_family": "grading",
+        "question": "选择正确的单词填空：I _____ to the store yesterday.",
+        "gold_answer": {
+          "score": 0,
+          "score_detail": {
+            "选项选择": 0,
+            "语法知识": 0
+          },
+          "personalized_feedback": "你选择了 'go'，这个用法适合于一般现在时的句子，而这里的句子是过去时，所以正确答案应是 'went'。建议你再复习一下动词的时态变化，尤其是过去时的使用规则。考虑使用一些练习题和时间轴图帮助自己更好地理解过去时的应用。"
+        },
+        "one_b_draft": "- predicted_task_family: 同上\n\n请按照以下格式输出:\n{\n  \"score\": 0.5,\n  \"evidence\": [...],\n  \"feedback\": \"草稿答案：______。请检查学生答案是否正确。\"\n}\n\n请解释你的推理过程。\n\n### 推理过程:\n1. 根据任务类型和已知信息，这是一个自动评分任务，因此 `predicted_task_family` 应为 `automatic_grading`。\n2. 从任务描述中，可以判断这是一个英语语法填空题，因此 `predicted_subject` 为 `英语`。\n3. 学生答案为 \"go\"，但正确的单词应为 \"went\"，因为这是一个过去时态的动词填空。\n4. 根据英语语法规则，动词 \"go\" 的过去式是 \"went\"，因此学生答案不正确。\n5. 由于这是一个小学水平的语法练习，`confidence_score` 设为 `high`，因为小学学生通常对时态规则的理解可能不够深入，但题目本身是明确的过去时填空。\n6. 由于学生答案 \"go\" 不符合语法规则，`evidence` 应包含正确的答案和错误原因。\n7. `format_signals` 应包含 `contract_ok` 为 `true`，因为格式是合法的，并且 `notes` 可以说明需要检查时态规则。\n\n### 草稿答案:\n\"went\"\n\n### 最终输出:\n```json\n{\n  \"score\": 0.5,\n  \"evidence\": [\n    {\n      \"label\": \"correct_answer\",\n      \"text\": \"went\"\n    },\n    {\n      \"label\": \"grammar_rule\",\n      \"text\": \"动词 'go' 的过去式是 'went'\"\n    }\n  ],\n  \"feedback\": \"草稿答案：______。请检查学生答案是否正确。正确答案应为 'went'，因为这是一个过去时态的动词填空。\"\n}\n```\n\n### 解释:\n1. 我首先识别出这是一个自动评分任务，因此 `predicted_task_family` 为 `automatic_grading`。\n2. 从任务描述中，我推断这是一个英语语法填空题，因此 `predicted_subject` 为 `英语`。\n3. 学生答案 \"go\" 不正确，因为正确的过去式是 \"went\"。\n4. 由于这是一个小学水平的语法练习，我设置了 `confidence_score` 为 `high`，因为小学学生可能对时态规则的理解有限，但题目本身是明确的。\n5. 我提供了正确的答案和语法",
+        "final_output": {
+          "score": 4,
+          "evidence": "原始任务：选择正确的单词填空：I _____ to the store yesterday.\n学生答案：go\n评分理由：学生答案时态错误，正确动词应为过去式'went'，但学生填写原形'go'。主语'I'与动词单复数一致，拼写正确，无其他语法问题。",
+          "feedback": null
+        },
+        "route_decision": "1b_to_7b:assessment",
+        "quality_value": 0.0,
+        "risk_score": 0.74,
+        "risk_threshold": 0.35,
+        "specialist_name": "assessment",
+        "short_explanation": "The cascade route `1b_to_7b:assessment` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_TMG_00003_8bc4fe7c4067",
+        "task_key": "TMG",
+        "task_family": "generation",
+        "question": "认识汉字的结构与部件",
+        "gold_answer": {
+          "teaching_materials": {
+            "教学目标": [
+              "学生能够正确辨识汉字的基本结构。",
+              "学生能够理解不同部件在汉字中的位置和作用。",
+              "学生能够运用汉字结构知识进行汉字的书写和组词。"
+            ],
+            "重点难点": [
+              "重点：熟悉常见汉字部件如偏旁、部首等的名称和位置。",
+              "难点：掌握部件组合成汉字的规律和技巧。"
+            ],
+            "课堂活动设计": [
+              {
+                "活动名称": "汉字拆分与组合",
+                "活动步骤": [
+                  "教师展示教材中的例子，如“好”字拆分为“女”和“子”。",
+                  "学生分组讨论其他汉字如何拆分并展示结果。",
+                  "每组选择一个汉字，分析它的各个部件，并试图组合成新的汉字。"
+                ],
+                "活动目标": "通过拆分与组合活动加深对汉字结构的理解，加强学生对汉字的分析能力。"
+              },
+              {
+                "活动名称": "部件认知游戏",
+                "活动步骤": [
+                  "教师准备写有常见部件的卡片，如“木”、“人”、“口”等。",
+                  "学生从卡片中选择部件并组成新汉字，可能实施拼写或者组词。",
+                  "小组分享他们组成的新汉字并解释意义。"
+                ],
+                "活动目标": "增强学生对汉字部件的熟悉度，鼓励创造性思维和团队合作。"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "- predicted_task_family: reasoning | assessment | planning\n\n请按以下格式输出:\n```json\n{\n  \"objectives\": \"objectives\",\n  \"key_points\": \"key_points\",\n  \"classroom_activity_design\": \"classroom_activity_design\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_assessment\": \"predicted_assessment\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": \"confidence_score\",\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"brief notes about the format\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n请按照以下格式输出:\n```json\n{\n  \"objectives\": \"objectives\",\n  \"key_points\": \"key_points\",\n  \"classroom_activity_design\": \"classroom_activity_design\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_assessment\": \"predicted_assessment\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": \"confidence_score\",\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"brief notes about the format\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n请按以下格式输出:\n```json\n{\n  \"objectives\": \"objectives\",\n  \"key_points\": \"key_points\",\n  \"classroom_activity_design\": \"classroom_activity_design\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_assessment\": \"predicted_assessment\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": \"confidence_score\",\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"brief notes about the format\"\n  },\n  \"tool_hint\": \"tool_hint\"\n}\n```\n\n```json\n{\n  \"objectives\": \"objectives\",\n  \"key_points\": \"key_points\",\n  \"classroom_activity_design\": \"classroom_activity_design\",\n  \"predicted_task_family\": \"predicted_task_family\",\n  \"predicted_assessment\": \"predicted_assessment\",\n  \"predicted_subject\": \"predicted_subject\",\n  \"confidence_label\": \"confidence_label\",\n  \"confidence_score\": \"confidence_score\",\n  \"format_signals\": {\n    \"contract_ok\": \"true\",\n    \"notes\": \"",
+        "final_output": {
+          "objectives": "本课旨在帮助学生理解汉字的基本结构特征，掌握象形字、会意字等常见汉字的构字原理，培养观察与分析汉字部件的能力，初步建立汉字系统的逻辑认知框架。",
+          "key_points": [
+            "（1. 结构分析：通过拆解汉字的笔画与部件，理解上下结构、左右结构等基本框架，例如‘木’由‘�木’组合构成，‘河’由‘氵’与‘也’组合而成。）",
+            "（2. 象形字与会意字：对比象形字（如‘日’‘月’）与会意字（如‘休’由‘人倚树’），分析部件组合的表意逻辑，强化形义关联。）",
+            "（3. 形声字基础：引入形声字中的意符与声符关系，如‘江’的‘氵’表水义，‘工’表读音，建立形声规律认知。）",
+            "（4. 部件功能：区分偏旁部首的表意功能（如‘氵’表水）与表音功能（如‘讠’表言），通过分类游戏强化记忆。）",
+            "（5. 教学策略：采用‘拆分-重组’互动法，让学生用磁性部件拼贴新字，结合多媒体动态演示汉字演变过程。）"
+          ],
+          "classroom_activity_design": null
+        },
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 0.0,
+        "risk_score": 0.81,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "The cascade route `1b_to_7b:planning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_Q&A_00062_a60fe2efb16b",
+        "task_key": "Q&A",
+        "task_family": "answering",
+        "question": "下面哪些是大陆的名称？请选择所有正确的选项。",
+        "gold_answer": [
+          "亚洲",
+          "欧洲",
+          "非洲",
+          "南美洲",
+          "北美洲",
+          "大洋洲",
+          "南极洲"
+        ],
+        "one_b_draft": "draft answer",
+        "final_output": {
+          "direct_answer": null,
+          "short_explanation": ""
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 0.0,
+        "risk_score": 0.28,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "The cascade route `1b_to_7b:reasoning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_EC_00018_151011944e7b",
+        "task_key": "EC",
+        "task_family": "correction",
+        "question": "选出下面句子中的正确动词形式：She _____ to the park every weekend.",
+        "gold_answer": {
+          "corrected_answer": "goes",
+          "correction_explanation": "动词 'go' 的第三人称单数形式是 'goes'，而不是 'goed'。在英语中，通常动词要根据主语的形式进行变换，'she' 是第三人称单数，所以使用 'goes'。"
+        },
+        "one_b_draft": "- predicted_task_family: 推理任务家族 | assessment task | planning task\n- predicted_subject: 字符串\n- predicted_task_type: 错误类型\n- predicted_task_key: 字符串\n- predicted_task_type: 错误类型\n- expected_output_format: 字符串\n\n请按照以下格式输出:\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"goed\",\n  \"explanation\": \"your explanation here\",\n  \"predicted_task_family\": \"reasoning | assessment | planning task\",\n  \"predicted_subject\": \"string\",\n  \"confidence_label\": \"high | medium | low\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"your notes here\"\n  },\n  \"tool_hint\": \"简短字符串\"\n}\n```\n\n请按照以下格式输出:\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"goed\",\n  \"explanation\": \"your explanation here\",\n  \"predicted_task_family\": \"reasoning | assessment | planning task\",\n  \"predicted_subject\": \"小学\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.75,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"your notes here\"\n  },\n  \"tool_hint\": \"简短字符串\"\n}\n```\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"goed\",\n  \"explanation\": \"The sentence is in the present simple tense, which is used to express habitual actions.\",\n  \"predicted_task_family\": \"reasoning | assessment | planning task\",\n  \"predicted_subject\": \"英语\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.85,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"The sentence should be in the present simple tense to indicate regular actions.\"\n  },\n  \"tool_hint\": \"Check verb tense consistency in sentences.\"\n}\n```\n\n```json\n{\n  \"error_list\": [],\n  \"corrected_answer\": \"goed\",\n  \"explanation\": \"The sentence uses the present simple tense to indicate regular actions.\",\n  \"predicted_task_family\": \"reasoning | assessment | planning task\",\n  \"predicted_subject\": \"英语\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"",
+        "final_output": {
+          "error_list": [
+            "predicted_task_family",
+            "confidence_score"
+          ],
+          "corrected_answer": "She goes to the park every weekend. The correct verb form is 'goes' because the sentence describes a habitual action (every weekend) with the third-person singular subject 'she', requiring the present tense form with '-s'. The original answer 'goed' was incorrect as it used the past tense form instead.",
+          "explanation": null
+        },
+        "route_decision": "1b_to_7b:reasoning",
+        "quality_value": 0.0,
+        "risk_score": 0.35000000000000003,
+        "risk_threshold": 0.05,
+        "specialist_name": "reasoning",
+        "short_explanation": "The cascade route `1b_to_7b:reasoning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_PCC_00011_2c47b3f08da1",
+        "task_key": "PCC",
+        "task_family": "planning",
+        "question": "{\n  \"姓名\": \"小明\",\n  \"学习目标\": \"在学期结束前提高手握计算能力，并增强应用题的解题技巧\",\n  \"年级\": \"小学四年级\",\n  \"年龄\": 10,\n  \"当前能力水平\": {\n    \"几何理解\": \"一般\",\n    \"应用题解题\": \"较弱\",\n    \"算术能力\": \"较强\"\n  }\n}",
+        "gold_answer": {
+          "learning_path_planning": {
+            "课程安排": [
+              {
+                "名称": "分数和小数的应用",
+                "重点": "理解分数和小数之间的转换，解决简单的实用问题",
+                "预计学习时间": "2周"
+              },
+              {
+                "名称": "几何基础和应用题解析",
+                "重点": "学习基本的几何图形及其特性，训练如何从图形中提取信息到应用题",
+                "预计学习时间": "3周"
+              },
+              {
+                "名称": "提升应用题解题能力",
+                "重点": "通过制定问题解决方案和步骤，逐步训练综合运用所学知识解决问题",
+                "预计学习时间": "3周"
+              }
+            ]
+          },
+          "personalized_recommendations": {
+            "练习题推荐": [
+              {
+                "题目": "一个长方形花园的长度是8米，宽度是5米。求花园的面积。",
+                "难度": "适中",
+                "题目类型": "计算题"
+              },
+              {
+                "题目": "如果一个商店出售笔记本的数量是铅笔数量的3倍，今天商店出售了27个笔记本。求出售的铅笔数量。",
+                "难度": "适中",
+                "题目类型": "应用题"
+              }
+            ],
+            "推荐阅读材料": [
+              {
+                "书名": "趣味数学故事",
+                "内容简介": "通过生动有趣的故事帮助学生理解数学概念，适合小学阶段",
+                "推荐理由": "提升学生对数学的兴趣和理解能力"
+              },
+              {
+                "书名": "简单的数学应用题解决",
+                "内容简介": "针对小学阶段的学生进行应用题解析和解决方案制定",
+                "推荐理由": "改善应用题解题能力，更好地组合和运用知识点"
+              }
+            ]
+          }
+        },
+        "one_b_draft": "- predicted_task_type: 从给定的四个选项中选择: \n  | planning | assessment | learning | \n- predicted_education_level: 字符串\n- predicted_subject: 字符串\n- predicted_task_family: reasoning | assessment | planning\n- predicted_task_type: planning | assessment | learning\n- predicted_learning_target: 从给定的四个选项中选择: \n  | improve | reduce | maintain | \n- predicted_learning_target: improve\n- predicted_learning_objective: 从给定的四个选项中选择: \n  | enhance | refine | simplify | \n- enhance\n- predicted_learning_objective: enhance\n\n请按以下格式输出:\n```json\n{\n  \"predicted_task_family\": \"reasoning | assessment | planning\",\n  \"predicted_subject\": \"小学数学\",\n  \"predicted_task_type\": \"planning | assessment | learning\",\n  \"predicted_learning_target\": \"improve\",\n  \"predicted_learning_objective\": \"enhance\",\n  \"learning_path\": \"draft_answer\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"output must be valid JSON\"\n  },\n  \"tool_hint\": \"your suggestion\"\n}\n```\n\n请确保你的输出是合法的 JSON，并且只包含上述字段，不要添加任何其他内容或解释。\n\n```json\n{\n  \"predicted_task_family\": \"reasoning | assessment | planning\",\n  \"predicted_subject\": \"小学数学\",\n  \"predicted_task_type\": \"planning | assessment | learning\",\n  \"predicted_learning_target\": \"improve\",\n  \"predicted_learning_objective\": \"enhance\",\n  \"learning_path\": \"规划学习路径，逐步提升计算能力并增强应用题解题技巧。\",\n  \"confidence_label\": \"high\",\n  \"confidence_score\": 0.95,\n  \"format_signals\": {\n    \"contract_ok\": true,\n    \"notes\": \"output must be valid JSON\"\n  },\n  \"tool_hint\": \"提供个性化学习建议\"\n}\n```\n\n```json\n{\n  \"predicted_task_family\": \"reasoning | assessment | planning\",\n  \"predicted_subject\": \"小学四年级数学\",\n  \"predicted_task_type\": \"planning | assessment | learning\",\n  \"predicted_learning_target\": \"improve\",\n  \"predicted_learning_objective\": \"enhance\",\n  \"learning_path\": \"制定阶段性学习计划，包括",
+        "final_output": "JSON 中必须包含:\n1. learning_path: 由三个或以上步骤组成，每个步骤包含 step_title, description, learning_objective, 与 step_title 匹配的 资源类型。\n2. personalized_suggestions: 通过具体建议，帮助小明在特定领域提升能力，建议至少包含两个建议。\n3. 策略说明: 在 JSON 输出前用中文说明如何构建此学习路径的逻辑。\n\n说明：学习路径应基于小明的学习目标，针对其优势与弱点，选择合适资源类型与活动设计。建议建议部分需具体、可操作，建议建议部分需具体、可操作。\n\n输出格式:\n```json\n{\n  \"learning_path\": [\n    {\n      \"step_title\": \"Step 1 Title\",\n      \"description\": \"详细描述步骤内容\",\n      \"learning_objective\": \"本步骤的学习目标\",\n      \"resource_type\": \"资源类型\"\n    },\n    {\n      \"算计能力提升\": \"描述性文本\",\n    },\n    {\n      \"应用题解题技巧\": \"描述性文本\",\n    },\n    {\n      \"算计能力提升\": \"描述性文本\",\n    },\n    {\n      \"应用题解题技巧\": \"描述 1B 草稿中未使用的资源类型\",\n    }\n  ],\n  \"personalized_suggestions\": [\n    \"建议1：...\",\n    \"建议2：...\"\n  ]\n}\n```\n\n注意：JSON 结构必须严格遵循上述格式，且每个步骤必须包含所有四个键：step_title, description, learning_objective, resource_type。\n\n注意：步骤数量为4个，每个步骤包含4个键：step_title, description, learning_objective, resource_type。\n\n注意：步骤数量为4个，每个步骤包含4个键：step_title, 步骤描述, 学习目标, 学习资源类型。\n\n注意：步骤数量为4个设计，每个步骤包含4个键：step_title, description, learning_objectishk, resource_type。\n\n首先，我需要理解原始任务的要求。小明是一个10岁的小学生，四年级，算术能力较强，但几何理解和应用题解题较弱。学习目标是提高手握计算能力和增强应用题解题技巧。\n\n输出契约要求我输出一个JSON，包含learning_path和personalized_suggestions。learning_path应该是一个数组，包含至少三个步骤，每个步骤有step_title, description, learning_objective, resource_type。personalized_suggestions是一个数组，包含至少两个具体建议。\n\n从草稿中，我看到它说\"请补足结构、细节与教学实用性，输出更可靠的最终答案。\"但草稿本身是空的，所以我需要从头构建。\n\n输出格式指定了JSON结构，我必须严格遵守。在JSON前，我需要用中文说明策略说明。\n\n策略说明：我需要解释如何构建这个学习路径的逻辑。基于小明的优势和弱点，选择资源类型和活动设计。\n\n小明的优势：算术能力较强，所以可以专注于计算练习。\n\n弱点：几何理解一般，但学习目标是计算能力和应用题解题，所以几何可能不是重点。应用题解题较弱，所以重点在解题技巧。\n\n学习目标：提高手握计算能力和增强应用题解题技巧。\"手握计算能力\"可能是个笔误，应该是\"计算能力\"或\"计算技能\"，我假设是计算能力。\n\n现在，设计learning_path。步骤数量应为4个，每个步骤包含step_title, description, learning_objective, resource_type。\n\n我需要至少三个步骤，但输出格式说\"步骤数量为4个\"，所以我会做4个步骤。\n\n资源类型：可能包括练习册、在线游戏、故事、游戏等，适合小学生。\n\npersonalized_suggestions：至少两个具体建议，帮助小明在特定领域提升能力。例如，针对计算和应用题解题。\n\n策略说明：在JSON前用中文写一个简短说明，解释逻辑。\n\n首先，brainstorm learning_path步骤。\n\n步骤1: 针对计算能力提升。既然小明算术能力强，可以设计一个强化计算的活动。\n\n步骤2: 针对应用题解题技巧。因为较弱，需要重点加强。\n\n步骤3: 结合计算和应用题，因为应用题涉及计算。\n\n步骤4: 可能一个综合活动或巩固活动。\n\n每个步骤需要匹配的资源类型。\n\n例如：\n\n- Step 1: 加强基础计算技能。资源类型：在线计算游戏。\n\n- Step 2: 学习应用题解题策略。资源类型：故事书或故事应用题集。\n\n- Step 3: 练习应用题，结合计算。资源类型：练习册。\n\n- Step 4: 评估和游戏化。资源类型：数学游戏。\n\n学习目标：每个步骤有明确的学习目标。\n\npersonalized_suggestions：具体建议，如\"每天练习10分钟计算\"或\"使用故事来理解问题\"。\n\n现在，策略说明：我需要写一个简短的中文段落，解释为什么这样设计路径。例如，基于小明的优势，利用算术能力来支持应用题解题，逐步从基础到应用。\n\n输出格式：JSON必须严格遵循。\n\n键名：learning_path, personalized_suggestions。\n\n在JSON前，输出策略说明。\n\n输出格式指定：\"在 JSON 输出前用中文说明如何构建此学习路径的逻辑。\"\n\n所以，结构应该是：\n\n[策略说明文本]\n\n然后\n\n```json\n\n...\n\n```\n\n现在，定义步骤。\n\n我需要4个步骤。\n\nStep 1: 计算技能强化\n\n- step_title: \"强化计算技能\"\n\n- description: \"通过每日短时间的计算练习，巩固算术基础。\"\n\n- learning_objective: \"提高计算速度和准确性。\"\n\n- resource_type: \"在线计算游戏或数学练习APP\"\n\nStep 2: 应用题基础理解\n\n- step_title: \"理解应用题结构\"\n\n- description: \"学习如何阅读和分解应用题，识别关键信息。\"\n\n- learning_objective: \"能够识别问题中的数字和情境。\"\n\n- resource_type: \"故事应用题书或视频教程\"\n\nStep 3: 应用题解题练习\n\n- step_title: \"应用题解题技巧\"\n\n- description: \"通过练习册中的各种应用题，应用计算技能。\"\n\n- learning_objective: \"能够独立解决简单应用题。\"\n\n- resource_type: \"应用题练习册\"\n\nStep 4: 综合应用和游戏化\n\n- step_title: \"综合应用题和计算游戏\"\n\n- description: \"使用游戏化的数学游戏，结合计算和问题解决。\"\n\n- learning_objective: \"增强计算能力和问题解决能力。\"\n\n- resource_type: \"数学游戏APP或棋盘游戏\"\n\n现在，personalized_suggestions:\n\n- \"建议1：每天花15分钟专注于计算练习，使用有趣的在线工具保持兴趣。\"\n\n- \"建议2：在解决应用题时，先大声读出问题并识别关键数字，以提高理解。\"\n\n策略说明： \"这个学习路径的设计基于小明的优势在算术能力上，因此从强化计算技能开始，逐步过渡到应用题解题。由于应用题解题较弱，重点放在理解问题结构和解题策略上。资源类型选择在线游戏和故事书，以保持趣味性和参与度，适合小学生的学习风格。\"\n\n确保JSON键正确：step_title, description, learning_objective, resource_type。在输出格式中，它说\"learning_objectishk\"，但应该是\"learning_objective\"，我假设是打字错误。\n\n在用户消息中，它说\"learning_objectishk\"，但应该是\"learning_objective\"，我会用正确的。\n\n在输出格式部分，它说：\"每个步骤必须包含所有四个键：step_title, description, learning_objectishk, resource_type\"，但\"learning_objectishk\"可能是个错误，应该是\"learning_objective\"。我会用\"learning_objective\"。\n\n同样，在草稿中，它说\"learning_object\"，但我会用\"learning_objective\"。\n\n现在，写策略说明。 [unused17] ### 策略说明\n基于小明的优势（算术能力较强）和弱点（应用题解题较弱），本学习路径的设计逻辑如下：首先强化计算能力，利用小明的算术优势建立信心和基础；其次，针对应用题解题技巧，从理解问题结构开始，逐步过渡到实践应用，以弥补弱点；最后，通过游戏化活动整合计算和解题技巧，确保学习过程趣味性和实用性。资源类型选择在线游戏、故事书和练习册，以匹配小学生的认知特点，确保活动生动、易参与。整体路径遵循“从基础到应用、从趣味到挑战”的渐进原则，帮助小明在学期结束前有效提升目标能力。\n\n```json\n{\n  \"learning_path\": [\n    {\n      \"step_title\": \"强化计算技能\",\n      \"description\": \"通过每日短时间的计算练习，巩固算术基础，提高速度和准确性。活动包括使用在线计算游戏进行快速运算，如加减乘除挑战，以保持兴趣和强化肌肉记忆。\",\n      \"learning_objective\": \"提升计算准确性和反应速度，为应用题解题提供可靠的基础。\",\n      \"resource_type\": \"在线计算游戏\"\n    },\n    {\n      \"step_title\": \"理解应用题结构\",\n      \"description\": \"学习如何阅读和分解应用题，识别关键信息（如数字、情境和问题类型）。使用故事书中的简单例子，帮助小明将文字转化为可计算的步骤，例如通过日常场景（如购物或分享）练习。\",\n      \"learning_objective\": \"能够识别应用题中的关键元素，并初步理解问题含义。\",\n      \"resource_type\": \"故事应用题书\"\n    },\n    {\n      \"step_title\": \"应用题解题技巧\",\n      \"description\": \"通过结构化练习册，应用计算技能解决简单应用题。活动包括分步解题训练，如先提取数字、再选择公式，最后验证答案，以培养逻辑思维。\",\n      \"learning_objective\": \"能够独立解决基础应用题，并使用",
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 0.0,
+        "risk_score": 0.45,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "The cascade route `1b_to_7b:planning` did not recover this sample because the final output still failed format validation."
+      },
+      {
+        "sample_id": "zh_QG_00013_488e3d67b8ee",
+        "task_key": "QG",
+        "task_family": "generation",
+        "question": "分数的基本运算 - 加减法",
+        "gold_answer": {
+          "question": "计算以下分数: \\( \\frac{3}{4} + \\frac{1}{2} \\)。结果是多少？",
+          "guidance": "要做分数的加减运算，首先需要统一分母，然后再进行加减。对于 \\( \\frac{3}{4} \\) 和 \\( \\frac{1}{2} \\)，我们需要找一个共同的分母。4和2的最小公倍数是4，因此我们将 \\( \\frac{1}{2} \\) 转化成具有相同分母的分数，即 \\( \\frac{2}{4} \\)。然后，把分子相加即可得到 \\( \\frac{3 + 2}{4} \\)。最后进行加法运算并简化。",
+          "answer": "\\( \\frac{5}{4} \\) 或 \\( 1 \\frac{1}{4} \\)"
+        },
+        "one_b_draft": "- predicted_task_family: reasoning | assessment | planning | other | other\n- predicted_education_level: 从 ['primary', 'secondary', 'tertiary', 'adult', 'other'] 中选择\n- predicted_task_type: question_generation | task_execution | task_modification | task_deletion | task_replacement | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task_replacement_with_tool | task",
+        "final_output": "注意：answer 必须为选项A或B，且必须为真，rationale 为解释。\n\n原始任务为单选题，知识点为“分数的基本运算 - 加减法”，学制级别为初中。\n\n在初中阶段，分数的基本运算包括加减法。我们需要生成一个单选题，题目应清晰，选项应合理，且正确答案必须为A或B，并给出解释。\n\n首先，我需要确定题目的具体内容。题目应涉及分数的加减运算，例如两个分数的加法或减法。选项应包括一个正确答案和三个干扰项。\n\n 任务示例：\n 问题：计算 \\(\\frac{3}{4} + \\frac{1}{6}\\) 的结果。\n选项：\n A. \\(\\frac{5}{10}\\)\n B. \\(\\frac{7}{10}\\)\n C.  [unused16] 好的，我现在需要帮用户补全一个关于分数加减法的单选题。首先，我得确保题目符合初中数学的要求，知识点是分数的基本运算中的加减法。用户提供的原始任务中，草稿部分显示正确答案是A或B，并且需要给出合理的解释。\n\n首先，我得确定题目内容。分数加减法通常需要找到共同分母，然后相加或相减。常见的错误可能包括没有找到共同分母，或者计算错误。例如，题目可以是两个分数相加，比如3/4加1/6。这时候，共同分母是12，计算后得到5/12。但选项中需要有一个正确的答案和三个干扰项。\n\n接下来，我需要设计选项。正确选项应该是正确的结果，而其他选项应该是常见的错误答案。例如，选项A是5/12，选项B可能是错误的计算，比如4/6，或者没有约分。选项C和D可以是其他常见的错误，比如将分母相加或分子相加，比如3+1=4分母还是4，或者3+6=9分母6，这些都是学生容易犯的错误。\n\n然后，我需要确保正确答案在A或B中。根据计算，3/4加1/6等于(3*3+1*2)/(12)=5/12，所以正确答案是A。选项B是4/6，可能学生没有找到共同分母，直接相加分子分母，导致错误。选项C是5/10，可能学生用了错误的共同分母，比如10，但计算错误。选项D是9/12，可能学生错误地将分母相加，4+6=10，但分子计算错误。\n\n最后，检查题目是否清晰，选项是否合理，正确答案是否正确，并且解释部分需要说明正确步骤和错误选项的原因。确保所有部分都符合用户的要求，输出正确的JSON结构。 [unused17] ```json\n{\n  \"generated_question\": \"计算 \\(\\frac{3}{4} + \\frac{1}{6}\\) 的结果。\\n选项：\\nA. \\(\\frac{5}{12}\\)\\nB. \\(\\frac{4}{6}\\)\\nC. \\(\\frac{5}{10}\\)\\nD. \\(\\frac{9}{12}\\)\",\n  \"answer\": \"A\",\n  \"rationale\": \"正确答案为A。解题步骤：1. 找共同分母（4和6的最小公倍数为12）；2. 转换分数：\\(\\frac{3}{4} = \\frac{9}{12}\\)，\\(\\frac{1}{6} = \\frac{2}{12}\\)；3. 相加得\\(\\frac{11}{12}\\)。错误选项分析：B未通分直接相加分子；C错误使用分母10且分子计算错误；D错误地将分母相加（4+6=10）。\"\n}\n```",
+        "route_decision": "1b_to_7b:planning",
+        "quality_value": 0.0,
+        "risk_score": 0.66,
+        "risk_threshold": 0.4,
+        "specialist_name": "planning",
+        "short_explanation": "The cascade route `1b_to_7b:planning` did not recover this sample because the final output still failed format validation."
+      }
+    ]
+  },
+  "extra_manual_audit_shortlist": [
+    {
+      "sample_id": "zh_TMG_00009_8ff55498747f",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_AG_00020_83bc7abba910",
+      "task_key": "AG",
+      "route_decision": "1b_to_7b:assessment",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_PLS_00015_1147d20abe34",
+      "task_key": "PLS",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_Q&A_00023_c7ecdd498248",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00025_bcfc30d0601e",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_EC_00015_0a476c19a9ef",
+      "task_key": "EC",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_Q&A_00045_675c8e8052c9",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_Q&A_00037_37f2b788d9be",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_PCC_00023_b94a81003744",
+      "task_key": "PCC",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_PLS_00011_64d05538ecf8",
+      "task_key": "PLS",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_IP_00049_51d5121e4a6e",
+      "task_key": "IP",
+      "route_decision": "1b_accept",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_IP_00053_af067180852d",
+      "task_key": "IP",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_QG_00028_ce02a5edeb57",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_IP_00011_9833eef511ba",
+      "task_key": "IP",
+      "route_decision": "1b_accept",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_QG_00053_303b41384423",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_TMG_00068_e43ce1e37266",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_PCC_00022_e6194146166a",
+      "task_key": "PCC",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00054_ecb220ff2fc3",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_TMG_00060_018756ee3d68",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_Q&A_00006_8bd4a9a059ca",
+      "task_key": "Q&A",
+      "route_decision": "1b_accept",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00044_0c25b2d05d1a",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_IP_00019_335692c9d1d8",
+      "task_key": "IP",
+      "route_decision": "1b_accept",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_QG_00047_9eee9740148f",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00053_f6d3d3fc784c",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00010_a7b51ed1f8f1",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_Q&A_00002_05c26f863e8d",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_Q&A_00057_d61f99326c0a",
+      "task_key": "Q&A",
+      "route_decision": "1b_accept",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_QG_00072_33a995a9d205",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_IP_00058_5ed06aa2c9f1",
+      "task_key": "IP",
+      "route_decision": "1b_accept",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_Q&A_00044_0a765bf8ce77",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_IP_00012_dc58c4320b6f",
+      "task_key": "IP",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_TMG_00055_ef631cdc6330",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_QG_00016_4bc944cc3462",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_QG_00040_dc93b73dbe47",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_AG_00001_a1ab0b59a9a5",
+      "task_key": "AG",
+      "route_decision": "1b_to_7b:assessment",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_Q&A_00020_86616a917c6e",
+      "task_key": "Q&A",
+      "route_decision": "1b_accept",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_Q&A_00014_88dd2f43fb60",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_QG_00065_f405c16f245d",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00043_c30454f115de",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_QG_00055_3f56e9c36778",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_Q&A_00039_3640d633a3b9",
+      "task_key": "Q&A",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_AG_00021_1e6691349c25",
+      "task_key": "AG",
+      "route_decision": "1b_to_7b:assessment",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_QG_00039_54657466a515",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_EC_00014_0260ffc34816",
+      "task_key": "EC",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00033_b63c6c24a14e",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_EC_00024_99549e71160b",
+      "task_key": "EC",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_TMG_00020_fcc90b25f50f",
+      "task_key": "TMG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 0.0
+    },
+    {
+      "sample_id": "zh_EC_00011_46a04421ba31",
+      "task_key": "EC",
+      "route_decision": "1b_to_7b:reasoning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_QG_00061_e019031040d5",
+      "task_key": "QG",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    },
+    {
+      "sample_id": "zh_PCC_00031_0e001e2312b5",
+      "task_key": "PCC",
+      "route_decision": "1b_to_7b:planning",
+      "quality_value": 1.0
+    }
+  ]
+}

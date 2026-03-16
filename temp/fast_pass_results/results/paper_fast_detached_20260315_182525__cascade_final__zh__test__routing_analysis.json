@@ -1,0 +1,105 @@
+{
+  "generated_at": "2026-03-15T15:17:24.466112",
+  "prediction_file": "/opt/pangu/pangu/outputs/predictions/cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751.jsonl",
+  "trace_file": "/opt/pangu/pangu/outputs/traces/cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751.jsonl",
+  "summary_file": "/opt/pangu/pangu/outputs/summaries/cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751.json",
+  "run_name": "cascade_final__zh__test__paper_fast_detached_20260315_182525__20260315_110751",
+  "system_name": "cascade_final",
+  "lang": "zh",
+  "split": "test",
+  "overall": {
+    "total_items": 354,
+    "accepted_by_1b_rate": 0.2288135593220339,
+    "7b_invocation_rate": 0.7711864406779662,
+    "accepted_by_1b_accuracy": 0.8024691358024691,
+    "escalated_sample_accuracy": 0.5074074074074074,
+    "accepted_by_1b_count": 81,
+    "7b_invocation_count": 273,
+    "route_counts": {
+      "1b_accept": 81,
+      "1b_to_7b:assessment": 42,
+      "1b_to_7b:planning": 155,
+      "1b_to_7b:reasoning": 76
+    }
+  },
+  "per_task_invocation_rate": {
+    "AG": {
+      "total_items": 42,
+      "7b_invocation_rate": 1.0,
+      "accepted_by_1b_rate": 0.0,
+      "quality_score": 0.1
+    },
+    "EC": {
+      "total_items": 28,
+      "7b_invocation_rate": 1.0,
+      "accepted_by_1b_rate": 0.0,
+      "quality_score": 0.25
+    },
+    "IP": {
+      "total_items": 61,
+      "7b_invocation_rate": 0.08196721311475409,
+      "accepted_by_1b_rate": 0.9180327868852459,
+      "quality_score": 1.0
+    },
+    "PCC": {
+      "total_items": 26,
+      "7b_invocation_rate": 0.9615384615384616,
+      "accepted_by_1b_rate": 0.038461538461538464,
+      "quality_score": 0.6923076923076923
+    },
+    "PLS": {
+      "total_items": 16,
+      "7b_invocation_rate": 0.5,
+      "accepted_by_1b_rate": 0.5,
+      "quality_score": 1.0
+    },
+    "Q&A": {
+      "total_items": 59,
+      "7b_invocation_rate": 0.7288135593220338,
+      "accepted_by_1b_rate": 0.2711864406779661,
+      "quality_score": 0.10344827586206896
+    },
+    "QG": {
+      "total_items": 61,
+      "7b_invocation_rate": 1.0,
+      "accepted_by_1b_rate": 0.0,
+      "quality_score": 0.8032786885245902
+    },
+    "TMG": {
+      "total_items": 61,
+      "7b_invocation_rate": 1.0,
+      "accepted_by_1b_rate": 0.0,
+      "quality_score": 0.6721311475409836
+    }
+  },
+  "latency_by_task_family": {
+    "answering": {
+      "total_items": 59,
+      "latency_avg": 23.39739203145254
+    },
+    "correction": {
+      "total_items": 28,
+      "latency_avg": 27.029219984983293
+    },
+    "generation": {
+      "total_items": 122,
+      "latency_avg": 37.70648074494751
+    },
+    "grading": {
+      "total_items": 42,
+      "latency_avg": 27.99074985870781
+    },
+    "guidance": {
+      "total_items": 61,
+      "latency_avg": 9.987747078791994
+    },
+    "personalized_content": {
+      "total_items": 16,
+      "latency_avg": 24.520106429423322
+    },
+    "planning": {
+      "total_items": 26,
+      "latency_avg": 41.11207131731611
+    }
+  }
+}

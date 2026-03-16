@@ -1,0 +1,53 @@
+{
+  "fast": {
+    "total_items": 22,
+    "quality_score": 0.1,
+    "format_validity": 0.8636363636363636,
+    "task_match_rate": 0.1,
+    "latency_avg": 6.621391905799762,
+    "latency_p50": 5.997135381563567,
+    "latency_p90": 11.596883113030344,
+    "accepted_by_1b_rate": null,
+    "accepted_by_1b_quality": null,
+    "escalated_quality": 0.1,
+    "7b_invocation_rate": 1.0,
+    "tokens_1b_avg": 0,
+    "tokens_7b_avg": 340.6363636363636,
+    "estimated_cost_proxy": 2384.4545454545455,
+    "judge_score_avg": null
+  },
+  "slow_then_fast": {
+    "total_items": 18,
+    "quality_score": 0.1875,
+    "format_validity": 0.8333333333333334,
+    "task_match_rate": 0.1875,
+    "latency_avg": 16.85356701235287,
+    "latency_p50": 11.651445502066053,
+    "latency_p90": 34.578998119104654,
+    "accepted_by_1b_rate": null,
+    "accepted_by_1b_quality": null,
+    "escalated_quality": 0.1875,
+    "7b_invocation_rate": 1.0,
+    "tokens_1b_avg": 0,
+    "tokens_7b_avg": 815.5555555555555,
+    "estimated_cost_proxy": 5708.888888888889,
+    "judge_score_avg": null
+  },
+  "slow": {
+    "total_items": 314,
+    "quality_score": 0.5132450331125827,
+    "format_validity": 0.6656050955414012,
+    "task_match_rate": 0.23376623376623376,
+    "latency_avg": 18.721254019077815,
+    "latency_p50": 15.263671023305506,
+    "latency_p90": 41.16150047793053,
+    "accepted_by_1b_rate": null,
+    "accepted_by_1b_quality": null,
+    "escalated_quality": 0.5132450331125827,
+    "7b_invocation_rate": 1.0,
+    "tokens_1b_avg": 0,
+    "tokens_7b_avg": 929.0031847133758,
+    "estimated_cost_proxy": 6503.022292993631,
+    "judge_score_avg": null
+  }
+}
