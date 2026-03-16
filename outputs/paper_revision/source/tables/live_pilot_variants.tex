@@ -1,0 +1,11 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+Variant & Samples & Quality & Format & Latency (s) & 7B rate & Cost proxy \\
+\midrule
+\rowcolor{paceTealLight}
+\texttt{cascade\_final} & 76 & \textbf{0.553} & \textbf{0.895} & 25.77 & 84.2\% & 12633 \\
+\texttt{cascade\_tuned} & 76 & 0.521 & 0.816 & 27.07 & \textbf{81.6\%} & 14022 \\
+w/o specialist prompt & 76 & 0.493 & \textbf{0.895} & \textbf{20.38} & 80.3\% & \textbf{8732} \\
+w/o draft conditioning & 76 & 0.526 & 0.868 & 23.95 & 82.9\% & 9668 \\
+\bottomrule
+\end{tabular}

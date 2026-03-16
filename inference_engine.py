@@ -29,6 +29,7 @@ SUPPORTED_SYSTEMS = (
     "1b_only",
     "7b_only",
     "cascade_final",
+    "cascade_tuned",
     "cascade_no_calibrator",
     "cascade_no_specialist_prompt",
     "cascade_no_draft_conditioning",
@@ -46,6 +47,26 @@ class InferenceEngine:
         self.client_registry = ClientRegistry()
         self.client = self.client_registry.client()
         self.risk_calibrator = RiskCalibrator(self.output_parser)
+        self.tuned_risk_calibrator = RiskCalibrator(
+            self.output_parser,
+            task_priors={
+                "IP": 0.24,
+                "AG": 0.50,
+                "PCC": 0.58,
+                "PLS": 0.58,
+                "QG": 0.60,
+                "TMG": 0.60,
+            },
+            thresholds={
+                "reasoning": 0.38,
+                "assessment": 0.28,
+                "planning": 0.32,
+            },
+            task_key_thresholds={
+                "Q&A": 0.03,
+                "EC": 0.03,
+            },
+        )
         self.rule_router = DifficultyDecision()
 
     def run_system(self, system_name: str, sample: Any) -> tuple[InferenceResult, RouteTrace, NormalizedSample]:
@@ -265,6 +286,21 @@ class InferenceEngine:
             use_calibrator=True,
             use_specialist_prompt=True,
             use_draft_conditioning=True,
+            calibrator_variant="default",
+            specialist_prompt_variant="default",
+            specialist_temperature=TEMPERATURE_SLOW,
+        )
+
+    def run_cascade_tuned(self, sample: Any) -> tuple[InferenceResult, RouteTrace, NormalizedSample]:
+        return self._run_cascade(
+            sample,
+            system_name="cascade_tuned",
+            use_calibrator=True,
+            use_specialist_prompt=True,
+            use_draft_conditioning=True,
+            calibrator_variant="tuned",
+            specialist_prompt_variant="tuned",
+            specialist_temperature=0.30,
         )
 
     def run_cascade_no_calibrator(self, sample: Any) -> tuple[InferenceResult, RouteTrace, NormalizedSample]:
@@ -274,6 +310,9 @@ class InferenceEngine:
             use_calibrator=False,
             use_specialist_prompt=True,
             use_draft_conditioning=True,
+            calibrator_variant="default",
+            specialist_prompt_variant="default",
+            specialist_temperature=TEMPERATURE_SLOW,
         )
 
     def run_cascade_no_specialist_prompt(self, sample: Any) -> tuple[InferenceResult, RouteTrace, NormalizedSample]:
@@ -283,6 +322,9 @@ class InferenceEngine:
             use_calibrator=True,
             use_specialist_prompt=False,
             use_draft_conditioning=True,
+            calibrator_variant="default",
+            specialist_prompt_variant="default",
+            specialist_temperature=TEMPERATURE_SLOW,
         )
 
     def run_cascade_no_draft_conditioning(self, sample: Any) -> tuple[InferenceResult, RouteTrace, NormalizedSample]:
@@ -292,6 +334,9 @@ class InferenceEngine:
             use_calibrator=True,
             use_specialist_prompt=True,
             use_draft_conditioning=False,
+            calibrator_variant="default",
+            specialist_prompt_variant="default",
+            specialist_temperature=TEMPERATURE_SLOW,
         )
 
     def infer_dynamic(self, data_item: Any) -> Dict[str, Any]:
@@ -322,6 +367,9 @@ class InferenceEngine:
         use_calibrator: bool,
         use_specialist_prompt: bool,
         use_draft_conditioning: bool,
+        calibrator_variant: str,
+        specialist_prompt_variant: str,
+        specialist_temperature: float,
     ) -> tuple[InferenceResult, RouteTrace, NormalizedSample]:
         normalized = self._normalize(sample)
         tracer = RouteTracer().start(normalized, system_name)
@@ -335,14 +383,15 @@ class InferenceEngine:
         )
 
         specialist_name = self.expert_router.select(normalized, router_output)
-        features = self.risk_calibrator.extract_features(normalized, router_output)
+        calibrator = self._get_calibrator(calibrator_variant)
+        features = calibrator.extract_features(normalized, router_output)
         normalized_1b = self.output_parser.repair_or_normalize(normalized, router_output.draft_answer)
 
         if use_calibrator:
-            risk_score = self.risk_calibrator.score(features)
-            risk_threshold = self.risk_calibrator.threshold_for_sample(normalized, specialist_name)
-            should_escalate = self.risk_calibrator.should_escalate(normalized, features, risk_score)
-            risk_note = "deterministic calibrated routing"
+            risk_score = calibrator.score(features)
+            risk_threshold = calibrator.threshold_for_sample(normalized, specialist_name)
+            should_escalate = calibrator.should_escalate(normalized, features, risk_score)
+            risk_note = f"deterministic calibrated routing ({calibrator_variant})"
         else:
             risk_score = self._naive_router_risk(router_output, normalized_1b)
             risk_threshold = 0.50
@@ -368,6 +417,8 @@ class InferenceEngine:
                 router_view,
                 specialist_name,
                 use_specialist_prompt=use_specialist_prompt,
+                specialist_prompt_variant=specialist_prompt_variant,
+                specialist_temperature=specialist_temperature,
             )
             tracer.record_7b(
                 latency_seconds=latency_7b,
@@ -439,12 +490,15 @@ class InferenceEngine:
         specialist_name: str,
         *,
         use_specialist_prompt: bool = True,
+        specialist_prompt_variant: str = "default",
+        specialist_temperature: float = TEMPERATURE_SLOW,
     ) -> tuple[Any, bool, Dict[str, Any], float, int]:
         if use_specialist_prompt:
             prompt, template_name = self.prompt_manager.build_7b_specialist_prompt(
                 sample,
                 router_output,
                 specialist_name,
+                variant=specialist_prompt_variant,
             )
             stage_name = "specialist_7b"
         else:
@@ -456,7 +510,7 @@ class InferenceEngine:
             endpoint=target["endpoint"],
             model_name=target["model_name"],
             max_tokens=MAX_NEW_TOKENS_SLOW,
-            temperature=TEMPERATURE_SLOW,
+            temperature=specialist_temperature,
         )
         format_valid, normalized = self.output_parser.validate_prediction(sample, generation.text)
         stage_records = {
@@ -502,6 +556,11 @@ class InferenceEngine:
                 return repaired["normalized_prediction"], True, stage_records, total_latency, total_tokens
 
         return normalized["normalized_prediction"], format_valid, stage_records, total_latency, total_tokens
+
+    def _get_calibrator(self, variant: str) -> RiskCalibrator:
+        if variant == "tuned":
+            return self.tuned_risk_calibrator
+        return self.risk_calibrator
 
     def _run_rule_prompt(
         self,

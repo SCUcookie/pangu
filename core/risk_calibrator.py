@@ -10,7 +10,7 @@ from core.schemas import NormalizedSample, RiskFeatures, RouterOutput
 class RiskCalibrator:
     """Deterministic weighted risk scorer."""
 
-    TASK_PRIORS = {
+    DEFAULT_TASK_PRIORS = {
         "Q&A": 0.15,
         "EC": 0.25,
         "IP": 0.20,
@@ -21,13 +21,13 @@ class RiskCalibrator:
         "TMG": 0.55,
     }
 
-    THRESHOLDS = {
+    DEFAULT_THRESHOLDS = {
         "reasoning": 0.45,
         "assessment": 0.35,
         "planning": 0.40,
     }
 
-    TASK_KEY_THRESHOLDS = {
+    DEFAULT_TASK_KEY_THRESHOLDS = {
         "Q&A": 0.05,
         "EC": 0.05,
     }
@@ -43,8 +43,24 @@ class RiskCalibrator:
         r"大概",
     ]
 
-    def __init__(self, output_parser: Optional[object] = None):
+    def __init__(
+        self,
+        output_parser: Optional[object] = None,
+        *,
+        task_priors: Optional[dict[str, float]] = None,
+        thresholds: Optional[dict[str, float]] = None,
+        task_key_thresholds: Optional[dict[str, float]] = None,
+    ):
         self.output_parser = output_parser
+        self.task_priors = dict(self.DEFAULT_TASK_PRIORS)
+        self.thresholds = dict(self.DEFAULT_THRESHOLDS)
+        self.task_key_thresholds = dict(self.DEFAULT_TASK_KEY_THRESHOLDS)
+        if task_priors:
+            self.task_priors.update(task_priors)
+        if thresholds:
+            self.thresholds.update(thresholds)
+        if task_key_thresholds:
+            self.task_key_thresholds.update(task_key_thresholds)
 
     def extract_features(self, sample: NormalizedSample, router_output: RouterOutput) -> RiskFeatures:
         format_error_flag = False
@@ -64,7 +80,7 @@ class RiskCalibrator:
             format_error_flag=format_error_flag,
             length_anomaly_flag=len(draft_text.strip()) < 12 or len(draft_text) > 4000,
             uncertainty_phrase_flag=any(re.search(pattern, draft_text.lower()) for pattern in self.UNCERTAINTY_PATTERNS),
-            task_prior=self.TASK_PRIORS.get(sample.task_key, 0.35),
+            task_prior=self.task_priors.get(sample.task_key, 0.35),
             subject_mismatch_flag=bool(normalized_subject and normalized_predicted_subject and normalized_subject != normalized_predicted_subject),
         )
 
@@ -85,11 +101,11 @@ class RiskCalibrator:
         return score >= threshold
 
     def threshold_for(self, specialist_name: str) -> float:
-        return self.THRESHOLDS.get(specialist_name, 0.45)
+        return self.thresholds.get(specialist_name, 0.45)
 
     def threshold_for_sample(self, sample: NormalizedSample, specialist_name: str | None = None) -> float:
-        if sample.task_key in self.TASK_KEY_THRESHOLDS:
-            return self.TASK_KEY_THRESHOLDS[sample.task_key]
+        if sample.task_key in self.task_key_thresholds:
+            return self.task_key_thresholds[sample.task_key]
         resolved_specialist = specialist_name or self._family_to_specialist(sample.task_key, sample.task_family)
         return self.threshold_for(resolved_specialist)
 

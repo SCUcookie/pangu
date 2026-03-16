@@ -24,10 +24,20 @@ class PromptManager:
         )
         return prompt, f"fast_router:{lang}"
 
-    def build_7b_specialist_prompt(self, sample, router_output, specialist_name: str) -> tuple[str, str]:
+    def build_7b_specialist_prompt(
+        self,
+        sample,
+        router_output,
+        specialist_name: str,
+        *,
+        variant: str = "default",
+    ) -> tuple[str, str]:
         contract = get_output_contract(sample.task_key)
         lang = sample.lang
-        template_name = f"specialist_{specialist_name}"
+        if variant == "default":
+            template_name = f"specialist_{specialist_name}"
+        else:
+            template_name = f"specialist_{specialist_name}_{variant}"
         template = TASK_TEMPLATE_GROUPS[template_name][lang]
         prompt = template.format(
             prompt_text=sample.prompt_text,

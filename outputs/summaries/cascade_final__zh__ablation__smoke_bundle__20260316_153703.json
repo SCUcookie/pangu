@@ -1,0 +1,64 @@
+{
+  "system_name": "cascade_final",
+  "lang": "zh",
+  "split": "ablation",
+  "generated_at": "2026-03-16T15:37:03.086376",
+  "warnings": [
+    "Judge not run. This summary is diagnostic only and must not be presented as a paper-ready result."
+  ],
+  "overall_summary": {
+    "total_items": 1,
+    "quality_score": 0.0,
+    "format_validity": 1.0,
+    "task_match_rate": 0.0,
+    "latency_avg": 17.893056561006233,
+    "latency_p50": 17.893056561006233,
+    "latency_p90": 17.893056561006233,
+    "accepted_by_1b_rate": 0.0,
+    "accepted_by_1b_quality": null,
+    "escalated_quality": 0.0,
+    "7b_invocation_rate": 1.0,
+    "tokens_1b_avg": 703,
+    "tokens_7b_avg": 798,
+    "estimated_cost_proxy": 6289,
+    "judge_score_avg": null
+  },
+  "per_task_summary": {
+    "Q&A": {
+      "total_items": 1,
+      "quality_score": 0.0,
+      "format_validity": 1.0,
+      "task_match_rate": 0.0,
+      "latency_avg": 17.893056561006233,
+      "latency_p50": 17.893056561006233,
+      "latency_p90": 17.893056561006233,
+      "accepted_by_1b_rate": 0.0,
+      "accepted_by_1b_quality": null,
+      "escalated_quality": 0.0,
+      "7b_invocation_rate": 1.0,
+      "tokens_1b_avg": 703,
+      "tokens_7b_avg": 798,
+      "estimated_cost_proxy": 6289,
+      "judge_score_avg": null
+    }
+  },
+  "per_route_summary": {
+    "1b_to_7b:reasoning": {
+      "total_items": 1,
+      "quality_score": 0.0,
+      "format_validity": 1.0,
+      "task_match_rate": 0.0,
+      "latency_avg": 17.893056561006233,
+      "latency_p50": 17.893056561006233,
+      "latency_p90": 17.893056561006233,
+      "accepted_by_1b_rate": 0.0,
+      "accepted_by_1b_quality": null,
+      "escalated_quality": 0.0,
+      "7b_invocation_rate": 1.0,
+      "tokens_1b_avg": 703,
+      "tokens_7b_avg": 798,
+      "estimated_cost_proxy": 6289,
+      "judge_score_avg": null
+    }
+  }
+}

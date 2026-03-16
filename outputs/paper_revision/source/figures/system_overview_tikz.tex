@@ -1,52 +1,150 @@
-\resizebox{0.98\linewidth}{!}{%
+\resizebox{0.985\linewidth}{!}{%
 \begin{tikzpicture}[
-  x=1cm,
-  y=1cm,
   >=Latex,
-  line/.style={-Latex, very thick, draw=paceNavy},
-  box/.style={
-    rounded corners=10pt,
+  font=\small,
+  stage/.style={
+    rounded corners=8pt,
     draw=paceInk,
     very thick,
     align=center,
-    minimum height=1.55cm,
-    text width=3.2cm,
-    inner sep=8pt,
-    fill=white
+    fill=white,
+    minimum width=3.05cm,
+    minimum height=1.95cm,
+    text width=2.6cm,
+    inner sep=7pt
   },
-  goldbox/.style={box, fill=paceGold!70},
-  tealbox/.style={box, fill=paceTealLight},
-  greenbox/.style={box, fill=paceGreenLight},
-  orangebox/.style={box, fill=paceOrangeLight, text width=3.6cm},
-  whitewide/.style={box, text width=4.1cm},
-  graybox/.style={box, fill=paceGray, text width=7.8cm, minimum height=1.0cm},
-  decision/.style={
-    diamond,
-    aspect=2.2,
+  prep/.style={
+    rounded corners=8pt,
+    draw=paceInk,
+    thick,
+    align=center,
+    fill=paceGray!28,
+    minimum width=2.8cm,
+    minimum height=0.95cm,
+    text width=2.35cm,
+    inner sep=6pt
+  },
+  branch/.style={
+    rounded corners=8pt,
     draw=paceInk,
     very thick,
-    fill=paceBlueLight,
     align=center,
-    inner sep=2pt,
-    text width=2.4cm
-  }
+    minimum width=3.35cm,
+    minimum height=1.9cm,
+    text width=2.8cm,
+    inner sep=8pt
+  },
+  panel/.style={draw=paceInk!70, rounded corners=10pt, dashed, inner sep=10pt},
+  badge/.style={
+    circle,
+    draw=paceInk,
+    line width=0.9pt,
+    fill=white,
+    minimum size=0.55cm,
+    inner sep=0pt,
+    font=\scriptsize\bfseries
+  },
+  chip/.style={
+    rounded corners=5pt,
+    draw=paceInk!55,
+    fill=white,
+    minimum height=0.42cm,
+    inner sep=2.5pt,
+    font=\scriptsize\bfseries
+  },
+  flow/.style={-Latex, very thick, draw=paceNavy},
+  support/.style={-Latex, thick, draw=paceInk!65},
+  note/.style={font=\scriptsize, text=paceInk!82}
 ]
-\node[goldbox]   (query)      at (0.0,  0.0)  {\textbf{EduBench sample}\\or user query};
-\node[box]       (norm)       at (4.3,  0.0)  {\textbf{Request normalizer}\\shared-8 schema};
-\node[tealbox]   (router)     at (8.8,  0.0)  {\textbf{1B tutor-router}\\draft answer\\task family\\confidence + risk};
-\node[decision]  (decision)   at (8.8, -3.0)  {\textbf{Risk below}\\threshold?};
-\node[greenbox]  (accept)     at (4.0, -3.0)  {\textbf{Accept 1B result}\\low-risk sample\\no specialist call};
-\node[orangebox] (specialist) at (13.6,-3.0)  {\textbf{7B specialist refinement}\\reasoning prompts\\assessment prompts\\planning prompts};
-\node[whitewide] (validator)  at (8.8, -6.0)  {\textbf{Validator + formatter}\\reject scaffolds\\repair output shape\\save normalized answer};
-\node[graybox]   (artifacts)  at (8.8, -8.0)  {\textbf{Saved artifacts:} predictions | traces | summaries | judge cache};
 
-\draw[line] (query) -- (norm);
-\draw[line] (norm) -- (router);
-\draw[line] (router) -- (decision);
-\draw[line] (decision) -- node[midway, above, font=\scriptsize\bfseries, text=paceGreen] {yes} (accept);
-\draw[line] (decision) -- node[midway, above, font=\scriptsize\bfseries, text=paceRed] {no} (specialist);
-\draw[line] (accept) -- ($(accept.south)!0.5!(validator.north)$) -- (validator);
-\draw[line] (specialist) -- ($(specialist.south)!0.5!(validator.north)$) -- (validator);
-\draw[line] (validator) -- (artifacts);
+\node[prep] (splits) at (3.7,2.5) {\textbf{Deterministic splits}\\shared-8 benchmark};
+\node[prep] (prompts) at (7.6,2.5) {\textbf{Prompt bank}\\family specialists};
+\node[prep] (freeze) at (11.5,2.5) {\textbf{Threshold freeze}\\dev calibration};
+
+\node[stage, fill=paceGold!80] (input) at (0,0)
+  {\textbf{EduBench sample}\\prompt, task, language};
+\node[badge, fill=paceGold!45] at ($(input.north west)+(0.35,-0.34)$) {E};
+\node[chip] at ($(input.south)+(0,-0.48)$) {Q\&A \quad AG \quad EC \quad QG};
+
+\node[stage] (normalize) at (3.8,0)
+  {\textbf{Request normalizer}\\task key, family, output contract};
+\node[badge, fill=paceBlueLight] at ($(normalize.north west)+(0.35,-0.34)$) {N};
+\node[chip] at ($(normalize.south)+(0,-0.48)$) {ZH / EN \quad JSON schema};
+
+\node[stage, fill=paceTealLight] (router) at (7.6,0)
+  {\textbf{1B tutor-router}\\draft answer + route cues};
+\node[badge, fill=paceTealLight!75] at ($(router.north west)+(0.35,-0.34)$) {1B};
+\node[chip] at ($(router.south)+(0,-0.48)$) {draft \quad family \quad confidence};
+
+\node[stage, fill=paceBlueLight] (risk) at (11.4,0)
+  {\textbf{Risk calibrator}\\frozen dev thresholds};
+\node[badge, fill=paceBlueLight!70] at ($(risk.north west)+(0.35,-0.34)$) {R};
+\draw[rounded corners=3pt, draw=paceInk!45, fill=white]
+  ($(risk.south west)+(0.35,0.28)$) rectangle ($(risk.south east)+(-0.35,0.72)$);
+\fill[paceGreen]  ($(risk.south west)+(0.47,0.34)$) rectangle ($(risk.south west)+(0.88,0.60)$);
+\fill[paceTeal]   ($(risk.south west)+(0.98,0.34)$) rectangle ($(risk.south west)+(1.39,0.54)$);
+\fill[paceOrange] ($(risk.south west)+(1.49,0.34)$) rectangle ($(risk.south west)+(1.90,0.66)$);
+\fill[paceRed]    ($(risk.south west)+(2.00,0.34)$) rectangle ($(risk.south west)+(2.41,0.80)$);
+\draw[paceRed, thick] ($(risk.south west)+(2.28,0.30)$) -- ($(risk.south west)+(2.28,0.84)$);
+
+\node[stage, minimum width=3.25cm, minimum height=1.95cm, text width=2.7cm] (profile) at (15.2,0)
+  {\textbf{Routing profile}\\task-dependent escalation};
+\node[badge, fill=paceOrangeLight!75] at ($(profile.north west)+(0.35,-0.34)$) {T};
+\node[anchor=west, font=\scriptsize] at ($(profile.west)+(0.35,0.25)$) {IP};
+\fill[paceGreen] ($(profile.west)+(0.88,0.10)$) rectangle ($(profile.west)+(1.95,0.38)$);
+\fill[paceNavy]  ($(profile.west)+(1.95,0.10)$) rectangle ($(profile.west)+(2.35,0.38)$);
+\node[anchor=west, font=\scriptsize] at ($(profile.west)+(0.35,-0.15)$) {PLS};
+\fill[paceGreen] ($(profile.west)+(0.88,-0.30)$) rectangle ($(profile.west)+(1.42,-0.02)$);
+\fill[paceNavy]  ($(profile.west)+(1.42,-0.30)$) rectangle ($(profile.west)+(2.35,-0.02)$);
+\node[anchor=west, font=\scriptsize] at ($(profile.west)+(0.35,-0.55)$) {QG};
+\draw[paceGreen, thick] ($(profile.west)+(0.88,-0.70)$) -- ($(profile.west)+(0.88,-0.42)$);
+\fill[paceNavy]  ($(profile.west)+(0.88,-0.70)$) rectangle ($(profile.west)+(2.35,-0.42)$);
+
+\node[branch, fill=paceGreenLight] (accept) at (8.6,-3.35)
+  {\textbf{Direct answer path}\\accept validated 1B output};
+\node[badge, fill=paceGreenLight!75] at ($(accept.north west)+(0.35,-0.34)$) {A};
+\node[chip] at ($(accept.south)+(0,-0.46)$) {fast \quad low-cost \quad valid};
+
+\node[branch, fill=paceOrangeLight, minimum width=3.6cm, text width=3.0cm] (specialist) at (12.8,-3.35)
+  {\textbf{7B specialist repair}\\reasoning, assessment, planning};
+\node[badge, fill=paceOrangeLight!85] at ($(specialist.north west)+(0.35,-0.34)$) {7B};
+\node[chip] at ($(specialist.south)+(0,-0.46)$) {reason \quad grade \quad plan};
+
+\node[stage, minimum width=4.65cm, minimum height=1.7cm, text width=4.0cm] (validator) at (10.7,-6.1)
+  {\textbf{Validation and repair}\\reject scaffolds, repair malformed fields, finalize answer};
+\node[badge, fill=paceGray!18] at ($(validator.north west)+(0.35,-0.34)$) {V};
+\node[chip] at ($(validator.south)+(0,-0.46)$) {schema \quad substance \quad trace};
+
+\node[stage, fill=paceGray!55, minimum width=6.5cm, minimum height=1.25cm, text width=5.9cm] (artifacts) at (10.7,-8.25)
+  {\textbf{Artifacts and audit trail}\\predictions \;|\; traces \;|\; summaries \;|\; judge cache};
+\node[badge, fill=paceGray!35] at ($(artifacts.north west)+(0.35,-0.32)$) {L};
+
+\draw[flow] (input) -- (normalize);
+\draw[flow] (normalize) -- (router);
+\draw[flow] (router) -- (risk);
+\draw[flow] (risk.east) -- (profile.west);
+\draw[flow] (risk.south) |- node[pos=0.28, left, font=\scriptsize\bfseries, text=paceGreen!60!black] {low risk} (accept.north);
+\draw[flow] (risk.south) |- node[pos=0.28, right, font=\scriptsize\bfseries, text=paceRed] {high risk} (specialist.north);
+\draw[flow] (accept.south) |- (validator.west);
+\draw[flow] (specialist.south) |- (validator.east);
+\draw[flow] (validator) -- (artifacts);
+
+\draw[support] (splits.south) -- (normalize.north);
+\draw[support] (prompts.south) -- (specialist.north);
+\draw[support] (freeze.south) -- (risk.north);
+
+\begin{scope}[on background layer]
+  \node[panel, fit=(input)(normalize)(router)(risk)(profile)(accept)(specialist)(validator)(artifacts)] (onlinepanel) {};
+  \node[panel, fit=(splits)(prompts)(freeze)] (offlinepanel) {};
+\end{scope}
+
+\node[anchor=south west, font=\scriptsize\bfseries, text=paceNavy]
+  at ($(onlinepanel.north west)+(0.02,0.08)$) {Online inference path};
+\node[anchor=south west, font=\scriptsize\bfseries, text=paceNavy]
+  at ($(offlinepanel.north west)+(0.02,0.08)$) {Offline preparation};
+\node[note, anchor=north west] at ($(accept.south west)+(0,-0.78)$)
+  {Routine requests stop at 1B.};
+\node[note, anchor=north west] at ($(specialist.south west)+(0,-0.78)$)
+  {Harder samples pay for 7B repair only when needed.};
 \end{tikzpicture}%
 }
