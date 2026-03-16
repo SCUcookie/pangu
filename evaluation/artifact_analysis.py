@@ -8,8 +8,9 @@ from pathlib import Path
 from statistics import mean
 from typing import Any, Dict, Iterable, List, Sequence
 
+from evaluation.metrics import MetricSuite
 
-FORMAT_ONLY_TASK_KEYS = {"IP", "PCC", "PLS", "QG", "TMG"}
+_METRIC_SUITE = MetricSuite()
 
 
 def read_json(path: Path) -> Dict[str, Any]:
@@ -46,26 +47,7 @@ def load_joined_rows(prediction_path: Path, trace_path: Path | None = None) -> L
 
 
 def normalize_prediction_row(row: Dict[str, Any]) -> Dict[str, Any]:
-    enriched = dict(row)
-    format_valid = bool(enriched.get("format_validity", enriched.get("format_valid")))
-    enriched["format_validity"] = format_valid
-
-    if "task_match" not in enriched or enriched.get("task_match") is None:
-        enriched["task_match"] = _task_match(enriched)
-    if "deterministic_quality" not in enriched or enriched.get("deterministic_quality") is None:
-        enriched["deterministic_quality"] = _deterministic_quality(
-            enriched.get("task_key", ""),
-            enriched.get("task_match"),
-            format_valid,
-        )
-
-    seven_b_invoked = enriched.get("seven_b_invoked")
-    if seven_b_invoked is None:
-        seven_b_invoked = enriched.get("7b_invocation")
-    if seven_b_invoked is None:
-        seven_b_invoked = enriched.get("accepted_by_1b") is False or int(enriched.get("tokens_7b", 0) or 0) > 0
-    enriched["seven_b_invoked"] = bool(seven_b_invoked)
-    return enriched
+    return _METRIC_SUITE.rescore_saved_row(row)
 
 
 def quality_value(row: Dict[str, Any]) -> float | None:
@@ -145,30 +127,3 @@ def diverse_select(rows: Sequence[Dict[str, Any]], count: int, *, key: str = "ta
                 next_keys.append(bucket_key)
         keys = next_keys
     return selected
-
-
-def _task_match(row: Dict[str, Any]) -> bool | None:
-    task_key = str(row.get("task_key", ""))
-    prediction = row.get("prediction")
-    ground_truth = row.get("ground_truth")
-
-    if task_key == "Q&A" and isinstance(prediction, dict):
-        direct_answer = str(prediction.get("direct_answer", "")).strip().lower()
-        gold = str(ground_truth).strip().lower()
-        return direct_answer == gold
-
-    if task_key == "AG" and isinstance(prediction, dict) and isinstance(ground_truth, dict):
-        return str(prediction.get("score")) == str(ground_truth.get("score"))
-
-    if task_key == "EC" and isinstance(prediction, dict) and isinstance(ground_truth, dict):
-        return str(prediction.get("corrected_answer")) == str(ground_truth.get("corrected_answer"))
-
-    return None
-
-
-def _deterministic_quality(task_key: str, task_match: bool | None, format_validity: bool) -> float | None:
-    if task_match is not None:
-        return 1.0 if task_match else 0.0
-    if task_key in FORMAT_ONLY_TASK_KEYS:
-        return 1.0 if format_validity else 0.0
-    return None

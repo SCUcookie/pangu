@@ -6,10 +6,9 @@ import json
 from pathlib import Path
 from typing import Dict, Optional, Sequence
 
-import requests
-
 from config import GPT5_API_BASE, GPT5_API_KEY, GPT5_MODEL_NAME, OUTPUT_EVAL_CACHE_DIR
 from core.prompts import GPT5_JUDGE_PROMPT_ZH
+from evaluation.openai_api import request_json_response
 
 
 class JudgeRunner:
@@ -18,10 +17,6 @@ class JudgeRunner:
     def __init__(self, cache_dir: Optional[Path] = None):
         self.cache_dir = Path(cache_dir or OUTPUT_EVAL_CACHE_DIR)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        self.headers = {
-            "Authorization": f"Bearer {GPT5_API_KEY}",
-            "Content-Type": "application/json",
-        }
 
     def judge_row(self, row: Dict) -> Dict:
         cache_key = self._cache_key(row)
@@ -37,24 +32,25 @@ class JudgeRunner:
         )
         payload = {
             "model": GPT5_MODEL_NAME,
-            "messages": [
-                {"role": "system", "content": "你是一个严谨的教育专家评估系统。"},
-                {"role": "user", "content": prompt},
-            ],
-            "temperature": 0.2,
-            "response_format": {"type": "json_object"},
+            "system_prompt": "你是一个严谨的教育专家评估系统。",
+            "user_prompt": prompt,
         }
 
         try:
-            response = requests.post(
-                f"{GPT5_API_BASE}/chat/completions",
-                headers=self.headers,
-                json=payload,
+            response_record = request_json_response(
+                api_base=GPT5_API_BASE,
+                api_key=GPT5_API_KEY,
+                model_name=GPT5_MODEL_NAME,
+                system_prompt=payload["system_prompt"],
+                user_prompt=payload["user_prompt"],
                 timeout=60,
             )
-            response.raise_for_status()
-            parsed = json.loads(response.json()["choices"][0]["message"]["content"])
-            record = {"request": payload, "response": parsed}
+            parsed = response_record["parsed"]
+            record = {
+                "request": response_record["request"],
+                "response": parsed,
+                "api_mode": response_record["api_mode"],
+            }
         except Exception as error:
             record = {
                 "request": payload,

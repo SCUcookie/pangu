@@ -1,0 +1,52 @@
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[
+  x=1cm,
+  y=1cm,
+  >=Latex,
+  line/.style={-Latex, very thick, draw=paceNavy},
+  box/.style={
+    rounded corners=10pt,
+    draw=paceInk,
+    very thick,
+    align=center,
+    minimum height=1.55cm,
+    text width=3.2cm,
+    inner sep=8pt,
+    fill=white
+  },
+  goldbox/.style={box, fill=paceGold!70},
+  tealbox/.style={box, fill=paceTealLight},
+  greenbox/.style={box, fill=paceGreenLight},
+  orangebox/.style={box, fill=paceOrangeLight, text width=3.6cm},
+  whitewide/.style={box, text width=4.1cm},
+  graybox/.style={box, fill=paceGray, text width=7.8cm, minimum height=1.0cm},
+  decision/.style={
+    diamond,
+    aspect=2.2,
+    draw=paceInk,
+    very thick,
+    fill=paceBlueLight,
+    align=center,
+    inner sep=2pt,
+    text width=2.4cm
+  }
+]
+\node[goldbox]   (query)      at (0.0,  0.0)  {\textbf{EduBench sample}\\or user query};
+\node[box]       (norm)       at (4.3,  0.0)  {\textbf{Request normalizer}\\shared-8 schema};
+\node[tealbox]   (router)     at (8.8,  0.0)  {\textbf{1B tutor-router}\\draft answer\\task family\\confidence + risk};
+\node[decision]  (decision)   at (8.8, -3.0)  {\textbf{Risk below}\\threshold?};
+\node[greenbox]  (accept)     at (4.0, -3.0)  {\textbf{Accept 1B result}\\low-risk sample\\no specialist call};
+\node[orangebox] (specialist) at (13.6,-3.0)  {\textbf{7B specialist refinement}\\reasoning prompts\\assessment prompts\\planning prompts};
+\node[whitewide] (validator)  at (8.8, -6.0)  {\textbf{Validator + formatter}\\reject scaffolds\\repair output shape\\save normalized answer};
+\node[graybox]   (artifacts)  at (8.8, -8.0)  {\textbf{Saved artifacts:} predictions | traces | summaries | judge cache};
+
+\draw[line] (query) -- (norm);
+\draw[line] (norm) -- (router);
+\draw[line] (router) -- (decision);
+\draw[line] (decision) -- node[midway, above, font=\scriptsize\bfseries, text=paceGreen] {yes} (accept);
+\draw[line] (decision) -- node[midway, above, font=\scriptsize\bfseries, text=paceRed] {no} (specialist);
+\draw[line] (accept) -- ($(accept.south)!0.5!(validator.north)$) -- (validator);
+\draw[line] (specialist) -- ($(specialist.south)!0.5!(validator.north)$) -- (validator);
+\draw[line] (validator) -- (artifacts);
+\end{tikzpicture}%
+}

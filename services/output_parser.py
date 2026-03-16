@@ -34,28 +34,57 @@ class OutputParser:
         "string",
         "字符串",
         "draft answer",
+        "draft_answer",
         "tool hint",
         "additional notes if needed",
     }
 
     GENERIC_PLACEHOLDER_PATTERNS = (
         "draft answer",
+        "draft_answer",
         "your draft answer",
         "your answer here",
         "[your answer]",
         "placeholder",
         "tries to satisfy the target contract",
+        "1b draft",
+        "1b 草稿",
+        "待补充",
     )
 
     SCAFFOLD_PATTERNS = (
         "predicted_task_",
+        "task_key",
+        "task_type",
+        "expected_output_format",
+        "confidence_label",
+        "confidence_score",
         "format_signals",
+        "contract_ok",
+        "tool_hint",
         "output the json",
+        "output valid json",
         "let's think step by step",
         "understanding the task",
         "final json output",
         "output format",
+        "请根据以上信息",
+        "根据已知任务信息",
+        "请输出一个符合要求的 json",
     )
+
+    ROUTER_SCHEMA_KEYS = {
+        "predicted_task_family",
+        "predicted_subject",
+        "draft_answer",
+        "confidence_label",
+        "confidence_score",
+        "format_signals",
+        "tool_hint",
+        "predicted_task_type",
+        "predicted_task_key",
+        "predicted_task",
+    }
 
     def parse_router_output(self, text: str) -> RouterOutput:
         payloads = self._extract_json_payloads(text)
@@ -127,10 +156,6 @@ class OutputParser:
                         "normalized_prediction": prediction,
                         "errors": ["json_parse_failed"],
                     }
-            else:
-                salvaged = self._salvage_non_dict_payload(sample, payload)
-                if salvaged is not None:
-                    return salvaged
             if not isinstance(payload, dict):
                 salvaged = self._salvage_non_dict_payload(sample, payload)
                 if salvaged is not None:
@@ -167,11 +192,13 @@ class OutputParser:
                 "explanation": payload.get("explanation", payload.get("correction_explanation", payload.get("纠错说明"))),
             }
         if task_key == "IP":
-            hints = payload.get("hints", payload.get("guidance", payload.get("提供的思路")))
+            hints = self._unwrap_router_payload(payload.get("hints", payload.get("guidance", payload.get("提供的思路"))))
             return {"hints": hints}
         if task_key == "PCC":
             return {
-                "learning_path": payload.get("learning_path", payload.get("learning_path_planning", payload.get("学习路径规划建议"))),
+                "learning_path": self._unwrap_router_payload(
+                    payload.get("learning_path", payload.get("learning_path_planning", payload.get("学习路径规划建议")))
+                ),
                 "personalized_suggestions": payload.get(
                     "personalized_suggestions",
                     payload.get("personalized_recommendations", payload.get("个性化意见生成")),
@@ -179,16 +206,22 @@ class OutputParser:
             }
         if task_key == "PLS":
             return {
-                "personalized_learning_content": payload.get(
-                    "personalized_learning_content",
-                    payload.get("个性化学习内容/任务"),
+                "personalized_learning_content": self._unwrap_router_payload(
+                    payload.get(
+                        "personalized_learning_content",
+                        payload.get("个性化学习内容/任务"),
+                    )
                 )
             }
         if task_key == "QG":
             return {
-                "generated_question": payload.get("generated_question", payload.get("question", payload.get("问题"))),
-                "answer": payload.get("answer", payload.get("答案")),
-                "rationale": payload.get("rationale", payload.get("guidance", payload.get("提供的思路"))),
+                "generated_question": self._unwrap_router_payload(
+                    payload.get("generated_question", payload.get("question", payload.get("问题")))
+                ),
+                "answer": self._unwrap_router_payload(payload.get("answer", payload.get("答案"))),
+                "rationale": self._unwrap_router_payload(
+                    payload.get("rationale", payload.get("guidance", payload.get("提供的思路")))
+                ),
             }
         if task_key == "TMG":
             teaching_materials = payload.get("teaching_materials", payload.get("教学素材"))
@@ -319,9 +352,9 @@ class OutputParser:
         if isinstance(value, list):
             if key == "error_list":
                 return False
-            return not value
+            return not self._has_meaningful_leaf(value)
         if isinstance(value, dict):
-            return not value
+            return not self._has_meaningful_leaf(value)
         return False
 
     def _is_meaningful_value(self, value: Any) -> bool:
@@ -452,13 +485,41 @@ class OutputParser:
         lines = []
         for raw_line in text.splitlines():
             cleaned = re.sub(r"^\s*(?:[-*•]|\d+[\.\)])\s*", "", raw_line).strip()
-            if cleaned and self._is_meaningful_output(cleaned):
+            if cleaned and self._is_meaningful_output(cleaned) and not self._looks_like_scaffold(cleaned):
                 lines.append(cleaned)
         if len(lines) >= 2:
             return lines
         if lines:
             return lines[0]
         return text.strip()
+
+    def _unwrap_router_payload(self, value: Any) -> Any:
+        if self._is_router_schema_dict(value):
+            draft_answer = value.get("draft_answer")
+            if self._is_meaningful_value(draft_answer):
+                return draft_answer
+        return value
+
+    def _is_router_schema_dict(self, value: Any) -> bool:
+        if not isinstance(value, dict):
+            return False
+        keys = {str(key) for key in value.keys()}
+        schema_overlap = keys & self.ROUTER_SCHEMA_KEYS
+        return len(schema_overlap) >= 3 or {"draft_answer", "predicted_task_family"} <= keys
+
+    def _has_meaningful_leaf(self, value: Any) -> bool:
+        if value is None:
+            return False
+        if isinstance(value, str):
+            return self._is_meaningful_output(value) and not self._looks_like_scaffold(value)
+        if isinstance(value, list):
+            return any(self._has_meaningful_leaf(item) for item in value)
+        if isinstance(value, dict):
+            if self._is_router_schema_dict(value):
+                draft_answer = value.get("draft_answer")
+                return self._has_meaningful_leaf(draft_answer)
+            return any(self._has_meaningful_leaf(item) for item in value.values())
+        return True
 
     def _extract_score_value(self, text: str) -> Any:
         score_label = re.search(

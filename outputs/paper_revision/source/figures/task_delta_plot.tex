@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.96\linewidth,
+  height=6.8cm,
+  ybar,
+  ymin=-0.35,
+  ymax=0.42,
+  symbolic x coords={Q\&A,AG,EC,IP,PCC,PLS,QG,TMG},
+  xtick=data,
+  xlabel={Task},
+  ylabel={Quality delta vs.\ \texttt{rule\_v2}},
+  axis line style={draw=paceInk, very thick},
+  tick style={draw=paceInk},
+  tick label style={font=\small},
+  x tick label style={rotate=0, anchor=north},
+  label style={font=\small},
+  grid=major,
+  major grid style={draw=paceGray},
+  enlarge x limits=0.06,
+  bar width=10pt,
+  clip=false
+]
+\addplot[fill=paceTeal, draw=none] coordinates {
+  (EC,0.03)
+  (IP,0.00)
+  (QG,0.26)
+  (TMG,0.37)
+};
+\addplot[fill=paceRed, draw=none] coordinates {
+  (Q\&A,-0.03)
+  (AG,-0.02)
+  (PCC,-0.03)
+  (PLS,-0.27)
+};
+
+\node[font=\scriptsize, anchor=south] at (axis cs:EC,0.04) {+0.03};
+\node[font=\scriptsize, anchor=south] at (axis cs:IP,0.01) {+0.00};
+\node[font=\scriptsize, anchor=south] at (axis cs:QG,0.275) {+0.26};
+\node[font=\scriptsize, anchor=south] at (axis cs:TMG,0.385) {+0.37};
+
+\node[font=\scriptsize, anchor=north] at (axis cs:Q\&A,-0.04) {-0.03};
+\node[font=\scriptsize, anchor=north] at (axis cs:AG,-0.03) {-0.02};
+\node[font=\scriptsize, anchor=north] at (axis cs:PCC,-0.04) {-0.03};
+\node[font=\scriptsize, anchor=north] at (axis cs:PLS,-0.285) {-0.27};
+\end{axis}
+\end{tikzpicture}

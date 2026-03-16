@@ -1,0 +1,11 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+System & Samples & Quality & Format & Latency (s) & 7B rate & 1B accept \\
+\midrule
+\texttt{1b\_only} & 354 & 0.167 & 0.220 & 7.77 & 0.0\% & 100.0\% \\
+\texttt{rule\_v2} & 354 & 0.456 & 0.686 & 17.87 & 100.0\% & -- \\
+\rowcolor{paceTealLight}
+\texttt{cascade\_final} & 354 & 0.510 & 0.833 & 28.20 & \textbf{77.1\%} & \textbf{22.9\%} \\
+\texttt{7b\_only} & 354 & \textbf{0.591} & \textbf{0.847} & 22.32 & 100.0\% & -- \\
+\bottomrule
+\end{tabular}

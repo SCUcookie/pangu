@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, List, Sequence
 
 from evaluation.judge import JudgeRunner
+from evaluation.metrics import MetricSuite
 from evaluation.summarize import SummaryBuilder
 
 
@@ -22,7 +23,8 @@ def recompute_from_prediction_file(
     do_judge: bool = False,
     summary_out: Path | None = None,
 ) -> Dict:
-    rows = _read_jsonl(prediction_file)
+    metric_suite = MetricSuite()
+    rows = [metric_suite.rescore_saved_row(row) for row in _read_jsonl(prediction_file)]
     if do_judge:
         rows = JudgeRunner().evaluate_rows(rows)
 
@@ -41,7 +43,7 @@ def recompute_from_prediction_file(
         lang = ""
         split = ""
 
-    summary = SummaryBuilder().build(
+    summary = SummaryBuilder(metric_suite=metric_suite).build(
         rows,
         system_name=system_name,
         lang=lang,
