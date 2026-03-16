@@ -57,94 +57,115 @@
   note/.style={font=\scriptsize, text=paceInk!82}
 ]
 
-\node[prep] (splits) at (3.7,2.5) {\textbf{Deterministic splits}\\shared-8 benchmark};
-\node[prep] (prompts) at (7.6,2.5) {\textbf{Prompt bank}\\family specialists};
-\node[prep] (freeze) at (11.5,2.5) {\textbf{Threshold freeze}\\dev calibration};
+% OFFLINE PREP
+\node[prep] (splits) at (3.8,2.8) {\textbf{Deterministic splits}\\shared-8 benchmark};
+\node[prep] (prompts) at (7.6,2.8) {\textbf{Prompt bank}\\family specialists};
+\node[prep] (freeze) at (11.4,2.8) {\textbf{Threshold freeze}\\dev calibration};
 
+% MAIN PIPELINE
 \node[stage, fill=paceGold!80] (input) at (0,0)
   {\textbf{EduBench sample}\\prompt, task, language};
-\node[badge, fill=paceGold!45] at ($(input.north west)+(0.35,-0.34)$) {E};
-\node[chip] at ($(input.south)+(0,-0.48)$) {Q\&A \quad AG \quad EC \quad QG};
 
 \node[stage] (normalize) at (3.8,0)
   {\textbf{Request normalizer}\\task key, family, output contract};
-\node[badge, fill=paceBlueLight] at ($(normalize.north west)+(0.35,-0.34)$) {N};
-\node[chip] at ($(normalize.south)+(0,-0.48)$) {ZH / EN \quad JSON schema};
 
 \node[stage, fill=paceTealLight] (router) at (7.6,0)
   {\textbf{1B tutor-router}\\draft answer + route cues};
-\node[badge, fill=paceTealLight!75] at ($(router.north west)+(0.35,-0.34)$) {1B};
-\node[chip] at ($(router.south)+(0,-0.48)$) {draft \quad family \quad confidence};
 
-\node[stage, fill=paceBlueLight] (risk) at (11.4,0)
-  {\textbf{Risk calibrator}\\frozen dev thresholds};
-\node[badge, fill=paceBlueLight!70] at ($(risk.north west)+(0.35,-0.34)$) {R};
-\draw[rounded corners=3pt, draw=paceInk!45, fill=white]
-  ($(risk.south west)+(0.35,0.28)$) rectangle ($(risk.south east)+(-0.35,0.72)$);
-\fill[paceGreen]  ($(risk.south west)+(0.47,0.34)$) rectangle ($(risk.south west)+(0.88,0.60)$);
-\fill[paceTeal]   ($(risk.south west)+(0.98,0.34)$) rectangle ($(risk.south west)+(1.39,0.54)$);
-\fill[paceOrange] ($(risk.south west)+(1.49,0.34)$) rectangle ($(risk.south west)+(1.90,0.66)$);
-\fill[paceRed]    ($(risk.south west)+(2.00,0.34)$) rectangle ($(risk.south west)+(2.41,0.80)$);
-\draw[paceRed, thick] ($(risk.south west)+(2.28,0.30)$) -- ($(risk.south west)+(2.28,0.84)$);
+% CUSTOM RISK CALIBRATOR
+\node[stage, fill=paceBlueLight, minimum height=2.1cm] (risk) at (11.4,0) {};
+\node[align=center, font=\small] at ($(risk.north)+(0,-0.6)$) {\textbf{Risk calibrator}\\frozen dev thresholds};
+\begin{scope}[shift={(risk.south west)}]
+  \draw[rounded corners=3pt, draw=paceInk!45, fill=white] (0.4,0.3) rectangle (2.65,0.7);
+  \fill[paceGreen]  (0.5,0.36) rectangle (0.9,0.64);
+  \fill[paceTeal]   (1.0,0.36) rectangle (1.4,0.58);
+  \fill[paceOrange] (1.5,0.36) rectangle (1.9,0.64);
+  \fill[paceRed]    (2.0,0.36) rectangle (2.55,0.85);
+  \draw[paceRed, thick] (2.35,0.32) -- (2.35,0.89);
+\end{scope}
 
-\node[stage, minimum width=3.25cm, minimum height=1.95cm, text width=2.7cm] (profile) at (15.2,0)
-  {\textbf{Routing profile}\\task-dependent escalation};
-\node[badge, fill=paceOrangeLight!75] at ($(profile.north west)+(0.35,-0.34)$) {T};
-\node[anchor=west, font=\scriptsize] at ($(profile.west)+(0.35,0.25)$) {IP};
-\fill[paceGreen] ($(profile.west)+(0.88,0.10)$) rectangle ($(profile.west)+(1.95,0.38)$);
-\fill[paceNavy]  ($(profile.west)+(1.95,0.10)$) rectangle ($(profile.west)+(2.35,0.38)$);
-\node[anchor=west, font=\scriptsize] at ($(profile.west)+(0.35,-0.15)$) {PLS};
-\fill[paceGreen] ($(profile.west)+(0.88,-0.30)$) rectangle ($(profile.west)+(1.42,-0.02)$);
-\fill[paceNavy]  ($(profile.west)+(1.42,-0.30)$) rectangle ($(profile.west)+(2.35,-0.02)$);
-\node[anchor=west, font=\scriptsize] at ($(profile.west)+(0.35,-0.55)$) {QG};
-\draw[paceGreen, thick] ($(profile.west)+(0.88,-0.70)$) -- ($(profile.west)+(0.88,-0.42)$);
-\fill[paceNavy]  ($(profile.west)+(0.88,-0.70)$) rectangle ($(profile.west)+(2.35,-0.42)$);
+% CUSTOM ROUTING PROFILE
+\node[stage, minimum width=3.3cm, minimum height=2.1cm] (profile) at (15.2,0) {};
+\node[align=center, font=\small] at ($(profile.north)+(0,-0.6)$) {\textbf{Routing profile}\\task-dependent escalation};
+\begin{scope}[shift={(profile.south west)}]
+  \node[anchor=west, font=\scriptsize] at (0.4, 0.95) {IP};
+  \fill[paceGreen] (1.0, 0.85) rectangle (2.1, 1.05);
+  \fill[paceNavy]  (2.1, 0.85) rectangle (2.6, 1.05);
 
-\node[branch, fill=paceGreenLight] (accept) at (8.6,-3.35)
+  \node[anchor=west, font=\scriptsize] at (0.4, 0.55) {PLS};
+  \fill[paceGreen] (1.0, 0.45) rectangle (1.6, 0.65);
+  \fill[paceNavy]  (1.6, 0.45) rectangle (2.6, 0.65);
+
+  \node[anchor=west, font=\scriptsize] at (0.4, 0.15) {QG};
+  \draw[paceGreen, thick] (1.0, -0.05) -- (1.0, 0.25);
+  \fill[paceNavy]  (1.0, 0.05) rectangle (2.6, 0.25);
+\end{scope}
+
+% BRANCHES
+\node[branch, fill=paceGreenLight] (accept) at (5.7,-4.0)
   {\textbf{Direct answer path}\\accept validated 1B output};
-\node[badge, fill=paceGreenLight!75] at ($(accept.north west)+(0.35,-0.34)$) {A};
-\node[chip] at ($(accept.south)+(0,-0.46)$) {fast \quad low-cost \quad valid};
 
-\node[branch, fill=paceOrangeLight, minimum width=3.6cm, text width=3.0cm] (specialist) at (12.8,-3.35)
+\node[branch, fill=paceOrangeLight, minimum width=3.6cm, text width=3.0cm] (specialist) at (11.4,-4.0)
   {\textbf{7B specialist repair}\\reasoning, assessment, planning};
-\node[badge, fill=paceOrangeLight!85] at ($(specialist.north west)+(0.35,-0.34)$) {7B};
-\node[chip] at ($(specialist.south)+(0,-0.46)$) {reason \quad grade \quad plan};
 
-\node[stage, minimum width=4.65cm, minimum height=1.7cm, text width=4.0cm] (validator) at (10.7,-6.1)
+% VALIDATION & ARTIFACTS
+\node[stage, minimum width=4.65cm, minimum height=1.7cm, text width=4.0cm] (validator) at (8.55,-7.0)
   {\textbf{Validation and repair}\\reject scaffolds, repair malformed fields, finalize answer};
-\node[badge, fill=paceGray!18] at ($(validator.north west)+(0.35,-0.34)$) {V};
-\node[chip] at ($(validator.south)+(0,-0.46)$) {schema \quad substance \quad trace};
 
-\node[stage, fill=paceGray!55, minimum width=6.5cm, minimum height=1.25cm, text width=5.9cm] (artifacts) at (10.7,-8.25)
+\node[stage, fill=paceGray!55, minimum width=6.5cm, minimum height=1.25cm, text width=5.9cm] (artifacts) at (8.55,-9.0)
   {\textbf{Artifacts and audit trail}\\predictions \;|\; traces \;|\; summaries \;|\; judge cache};
-\node[badge, fill=paceGray!35] at ($(artifacts.north west)+(0.35,-0.32)$) {L};
 
-\draw[flow] (input) -- (normalize);
-\draw[flow] (normalize) -- (router);
-\draw[flow] (router) -- (risk);
-\draw[flow] (risk.east) -- (profile.west);
-\draw[flow] (risk.south) |- node[pos=0.28, left, font=\scriptsize\bfseries, text=paceGreen!60!black] {low risk} (accept.north);
-\draw[flow] (risk.south) |- node[pos=0.28, right, font=\scriptsize\bfseries, text=paceRed] {high risk} (specialist.north);
-\draw[flow] (accept.south) |- (validator.west);
-\draw[flow] (specialist.south) |- (validator.east);
-\draw[flow] (validator) -- (artifacts);
+% BADGES
+\node[badge, fill=paceGold!45] at (input.north west) {E};
+\node[badge, fill=paceBlueLight] at (normalize.north west) {N};
+\node[badge, fill=paceTealLight!75] at (router.north west) {1B};
+\node[badge, fill=paceBlueLight!70] at (risk.north west) {R};
+\node[badge, fill=paceOrangeLight!75] at (profile.north west) {T};
+\node[badge, fill=paceGreenLight!75] at (accept.north west) {A};
+\node[badge, fill=paceOrangeLight!85] at (specialist.north west) {7B};
+\node[badge, fill=paceGray!18] at (validator.north west) {V};
+\node[badge, fill=paceGray!35] at (artifacts.north west) {L};
 
-\draw[support] (splits.south) -- (normalize.north);
-\draw[support] (prompts.south) -- (specialist.north);
-\draw[support] (freeze.south) -- (risk.north);
-
+% BACKGROUND ROUTING
 \begin{scope}[on background layer]
   \node[panel, fit=(input)(normalize)(router)(risk)(profile)(accept)(specialist)(validator)(artifacts)] (onlinepanel) {};
   \node[panel, fit=(splits)(prompts)(freeze)] (offlinepanel) {};
+
+  \draw[flow] (input) -- (normalize);
+  \draw[flow] (normalize) -- (router);
+  \draw[flow] (router) -- (risk);
+  \draw[flow] (risk) -- (profile);
+
+  \draw[flow] (risk.south) -- (specialist.north) node[midway, right, font=\scriptsize\bfseries, text=paceRed, xshift=2pt] {high risk};
+  \draw[flow, rounded corners=6pt] ($(risk.south)+(0,-0.8)$) -| (accept.north) node[pos=0.25, above, font=\scriptsize\bfseries, text=paceGreen!60!black] {low risk};
+
+  \draw[flow, rounded corners=6pt] (accept.south) -- +(0,-0.8) -| (validator.north);
+  \draw[flow, rounded corners=6pt] (specialist.south) -- +(0,-0.8) -| (validator.north);
+
+  \draw[flow] (validator) -- (artifacts);
+
+  \draw[support] (splits) -- (normalize);
+  \draw[support] (freeze) -- (risk);
+  \draw[support, rounded corners=6pt] (prompts.south) -- +(0,-0.4) -| (9.5, -2.0) |- (specialist.west);
 \end{scope}
 
+% CHIPS
+\node[chip] at (input.south) {Q\&A \quad AG \quad EC \quad QG};
+\node[chip] at (normalize.south) {ZH / EN \quad JSON schema};
+\node[chip] at (router.south) {draft \quad family \quad confidence};
+\node[chip] at (accept.south) {fast \quad low-cost \quad valid};
+\node[chip] at (specialist.south) {reason \quad grade \quad plan};
+\node[chip] at (validator.south) {schema \quad substance \quad trace};
+
+% MARGINALIA
 \node[anchor=south west, font=\scriptsize\bfseries, text=paceNavy]
   at ($(onlinepanel.north west)+(0.02,0.08)$) {Online inference path};
 \node[anchor=south west, font=\scriptsize\bfseries, text=paceNavy]
   at ($(offlinepanel.north west)+(0.02,0.08)$) {Offline preparation};
-\node[note, anchor=north west] at ($(accept.south west)+(0,-0.78)$)
-  {Routine requests stop at 1B.};
-\node[note, anchor=north west] at ($(specialist.south west)+(0,-0.78)$)
-  {Harder samples pay for 7B repair only when needed.};
+
+\node[note, anchor=east, align=right] at ($(accept.west)+(-0.3, 0)$)
+  {Routine requests\\stop at 1B.};
+\node[note, anchor=west, align=left] at ($(specialist.east)+(0.3, 0)$)
+  {Harder samples pay\\for 7B repair\\only when needed.};
 \end{tikzpicture}%
 }
